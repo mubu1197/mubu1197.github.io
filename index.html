@@ -16,7 +16,7 @@ a{color:inherit;text-decoration:none}
 nav{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:clamp(12px,3vw,32px);padding:0 clamp(16px,4vw,48px);height:56px;background:rgba(13,12,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
 nav b{font:700 15px var(--serif);color:var(--title);letter-spacing:.08em;margin-right:auto}
 nav a{font-size:13px;color:var(--mute)}nav a:hover{color:var(--gold)}
-header{min-height:78vh;display:flex;flex-direction:column;justify-content:center;padding:80px clamp(16px,6vw,96px);background:linear-gradient(rgba(13,12,15,.45),rgba(13,12,15,.92)),url(img/header.jpg) center/cover,radial-gradient(ellipse at 70% 30%,#241d14 0,transparent 60%),radial-gradient(ellipse at 10% 90%,#15121a 0,transparent 55%)}
+header{min-height:78vh;display:flex;flex-direction:column;justify-content:center;padding:80px clamp(16px,6vw,96px);background:linear-gradient(rgba(13,12,15,.45),rgba(13,12,15,.92)),url("https://cdn.caveduck.io/cdn-cgi/image/anim=true,dpr=1.5,f=auto,fit=crop,g=top,w=2000/charim/398b96c8-676c-4ed4-8683-cf97fa138c20?v=a521f2") center/cover,radial-gradient(ellipse at 70% 30%,#241d14 0,transparent 60%),radial-gradient(ellipse at 10% 90%,#15121a 0,transparent 55%)}
 header p.s{font-size:13px;color:var(--gold);letter-spacing:.15em}
 h1{font:700 clamp(38px,9vw,92px)/1.1 var(--serif);color:var(--title);margin:14px 0 18px;letter-spacing:.02em}
 header p.d{max-width:560px;color:var(--mute);font-size:16px}
@@ -63,7 +63,7 @@ body.lock{overflow:hidden}
 
 #lang{background:var(--bg);color:var(--mute);border:1px solid var(--line);border-radius:99px;padding:4px 10px;font:inherit;font-size:12px}
 .ic{position:relative;flex-shrink:0;background:var(--c);mix-blend-mode:lighten}
-.ic img{display:block;width:100%;height:100%;object-fit:contain;filter:invert(1);mix-blend-mode:multiply}
+.ic img{display:block;width:100%;height:100%;object-fit:cover;filter:invert(1);mix-blend-mode:multiply}
 .ic.x{aspect-ratio:1!important;width:34px!important;height:34px;margin:0 14px;border:3px solid var(--gold);border-radius:5px;transform:rotate(45deg);mix-blend-mode:normal;box-shadow:0 0 18px var(--c)}
 .ic.x img{display:none}
 .cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:16px}
@@ -84,6 +84,23 @@ body.lock{overflow:hidden}
 .drop{line-height:2;font-size:15.5px;max-width:640px}
 .drop::first-letter{float:left;font:700 4.4em/.85 var(--serif);color:var(--c);padding:6px 12px 0 0}
 h3.sub{font:700 17px var(--serif);color:var(--title);margin:28px 0 14px}
+
+#detail>div:last-child{flex:1;min-width:0}
+#detail p{max-width:680px}
+.more{margin-top:20px}
+.go{background:none;border:1px solid var(--gold);color:var(--gold);padding:8px 24px;border-radius:99px;font:inherit;font-size:13px;line-height:1.4;cursor:pointer;transition:background .2s,color .2s}
+.go:hover{background:var(--gold);color:var(--bg)}
+.sq{position:relative}
+.sq>img{position:absolute;left:0;top:0}
+.ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.ph .ic{width:44%!important}
+.info{flex:1;min-width:260px;max-width:640px}
+.kv{display:flex;padding:9px 0;border-bottom:1px solid var(--line);font-size:14px;line-height:1.7}
+.kv .k{flex:0 0 92px;color:var(--gold)}
+.kv .k::after{content:" :";color:var(--dim)}
+.kv .v{flex:1;color:var(--text)}
+.body{max-width:680px}
+.body p{line-height:2;font-size:15.5px;margin:0 0 1.3em;max-width:680px}
 </style>
 </head>
 <body>
@@ -221,37 +238,63 @@ schools.innerHTML=box([["자연계 Nature","불·물·바람·대지·번개·�
 fac.innerHTML=box([["교무청","학원 운영, 학칙과 입학·졸업 관리, 교직원 업무."],["강의동","중앙강의실, 대강당, 12학부별 학부관, 공용 강의시설. 학부관은 각자 독립된 건물이고 양식도 다릅니다."],["기숙사동","여러 건물과 정원으로 이루어진 단지. 모두 개인실이며, 허락을 맡으면 성별에 상관없이 서로의 방에 드나들 수 있습니다."],["생활동","식당, 카페, 상점, 대욕탕, 노점 거리. 거리 중심으로 구성된 동입니다."],["수련동","마법 실습실, 무기 훈련장, 결투장, 숲·설원·폐허·동굴을 재현한 모의 공략 구역."],["연회동","대연회장, 소연회장, 귀빈실, 사교실, 테라스, 정원."]]);
 nat.innerHTML=box([["노르테이아 공화국","대륙 중앙의 소규모 도시국가이자 국제 중립국. 아카데미를 중심으로 형성되었고 독립과 중립은 국제 조약으로 보장됩니다."],["라그나르 제국","대륙에서 가장 강대한 국가. 황실과 대귀족, 제후들이 권력을 나눕니다."],["에드레인 왕국","왕실과 전통 귀족의 위계가 뚜렷한 정통 왕국. 명예와 기사도, 계승을 중시합니다."],["베르셀 왕국","무역·금융·연금 산업으로 부를 쌓은 왕국. 상인 가문이 작위를 얻어 귀족이 되었습니다."],["세라디움 법국","생명과 질서의 여신 아우렐리아를 유일한 주신으로 섬기며 성문법으로 통치합니다."],["오리디아 성역","엘프의 오랜 터전. 고대의 숲과 자연 마법, 정령술이 발달했고 엘프 원로원이 다스립니다."]]);
 </script>
+<script src="content.js"></script>
+<script>var LONG=window.LONG||{},ROSTER=window.ROSTER||"";</script>
 <script>
 const ID=["marche","rossier","varche","tonica","bronte","castel","erva","levant","volter","bellois","kardel","orden"];
 const K=F.map((f,i)=>({n:f[0],c:f[2],id:ID[i]}));K.push({n:"교무청",c:"#a68a54",id:"office"});
 const $=id=>document.getElementById(id);
-const ic=(k,w)=>`<div class="ic" style="--c:${K[k].c};width:${w}px;aspect-ratio:1686/2528"><img src="img/${K[k].id}.png" alt="" onerror="this.parentNode.classList.add('x')"></div>`;
-// 학부 상세 설명: LONG.marche="긴 설명…" 처럼 채우면 상세 페이지에 나옵니다
-const LONG={};
-// 캐릭터: f는 학부 번호(0=마르셰 … 11=오르덴, 12=교무청), r은 역할(교관/학생/총장 등), 이미지는 img/char/id.png
-const CH=[
-{id:"sample1",n:"샘플 교관",f:0,r:"교관",t:"소개를 여기에 적어요."},
-{id:"sample2",n:"샘플 학생",f:0,r:"학생",t:""},
-{id:"sample3",n:"샘플 총장",f:12,r:"총장",t:""}];
-const sq=c=>`<div class="sq" style="--c:${K[c.f].c}"><img src="img/char/${c.id}.png" alt="" onerror="this.remove()"></div>`;
+// 학부 아이콘 이미지: 가로 크기(w)는 아래 W 값 하나로 한 번에 바꿀 수 있어요
+const W=1000;
+const CD=(id,v)=>`https://cdn.caveduck.io/cdn-cgi/image/anim=true,dpr=1.5,f=auto,fit=crop,g=top,w=${W}/charim/${id}?v=${v}`;
+const IMG={
+marche:CD('c99772c3-5c37-4049-854c-abb80de64ef7','9fcad5'),
+rossier:CD('895777b7-eab6-4bad-9717-8dc7f8e3e26b','4aca59'),
+varche:CD('e3d0782c-7eca-4c19-be43-c7c1b4f7fb10','b9258b'),
+tonica:CD('cc432e7a-db4b-4f69-a5be-2b9433867942','5c858f'),
+bronte:CD('c273eb31-1c70-41c1-8e8e-28e654bae325','3a61ae'),
+castel:CD('53f05c82-9093-4a50-979f-0e667d52be2a','be6b3f'),
+erva:CD('1e9a84c7-4549-4c77-aa08-4e8de0bc381f','5a97a6'),
+levant:CD('fcb71afb-22aa-40a0-8114-341559e68905','5bb769'),
+volter:CD('a69ebe33-154d-4da3-bcfe-2d78e7aeeb69','7bf686'),
+bellois:CD('b28d65d1-5cba-4ab6-a1ae-9d9276ddb111','62ad5b'),
+kardel:CD('a8539329-ef11-49a9-91b0-b38b5c2508fa','afec36'),
+orden:CD('aff6aa31-5f47-446d-920c-e115dfab8445','b2a990'),
+office:CD('444796ab-4063-4472-82fb-e3b5e427f7b5','b395a2')};
+const dim=h=>"#"+[1,3,5].map(j=>Math.round(parseInt(h.substr(j,2),16)*.4).toString(16).padStart(2,"0")).join("");
+const ic=(k,w,col)=>`<div class="ic" style="--c:${col||K[k].c};width:${w}px;aspect-ratio:1686/2108"><img src="${IMG[K[k].id]||''}" alt="" onerror="this.parentNode.classList.add('x')"></div>`;
+// 캐릭터 명단은 content.js의 ROSTER에서 읽어 옵니다
+const CH=[];
+(function(){let f=-1,n={};
+ ROSTER.split("\n").forEach(line=>{line=line.trim();if(!line||line.slice(0,2)=="//")return;
+  if(line[0]=="#"){f=K.findIndex(k=>k.n==line.slice(1).trim());return}
+  const p=line.split("|").map(x=>x.trim());if(f<0||p.length<10)return;
+  n[f]=(n[f]||0)+1;
+  CH.push({id:K[f].id+"-"+n[f],f:f,r:p[0],o:p[0]=="교관",n:p[1],nat:p[2],noble:p[3],g:p[4],a:+p[5],cls:p[6],sch:p[7],cir:+p[8],pers:p[9],img:p[10]||""});
+ })})();
+const sq=c=>`<div class="sq" style="--c:${K[c.f].c}"><div class="ph">${ic(c.f,60,dim(K[c.f].c))}</div>${c.img?`<img src="${c.img}" alt="" onerror="this.remove()">`:""}</div>`;
 const card=c=>`<button class="cc" data-id="${c.id}">${sq(c)}<span>${c.n}</span></button>`;
 const on=new Set(K.map((_,i)=>i));
 $('cf').innerHTML=K.map((k,i)=>`<button class="gem" style="--c:${k.c}" data-i="${i}" aria-label="${k.n}" title="${k.n}"></button>`).join('');
-const rl=()=>{$('cl').innerHTML=CH.filter(c=>on.has(c.f)).map(card).join('')};rl();
+const rl=()=>{$('cl').innerHTML=CH.filter(c=>on.has(c.f)||(c.o&&on.has(12))).map(card).join('')};rl();
 $('cf').onclick=e=>{const g=e.target.closest('.gem');if(!g)return;const i=+g.dataset.i;on.has(i)?on.delete(i):on.add(i);g.classList.toggle('off',!on.has(i));rl()};
 function openC(id){const c=CH.find(x=>x.id==id);$('clist').hidden=true;$('cd').hidden=false;
- $('cd').innerHTML=`<button class="back">← 목록</button><div class="cdw">${sq(c)}<div><h3>${c.n}</h3><div class="m">${K[c.f].n} · ${c.r}</div><p>${c.t}</p></div></div>`;
+ const nb=c.noble.indexOf("귀족")==0?"귀족 · "+(c.noble.split(":")[1]||c.nat).trim()+(c.a<35?(c.g=="여"?" 영애":" 영식"):" 출신"):c.noble;
+ const rows=[["풀네임",c.n],["국적",c.nat],["신분",nb],["성별",c.g],["나이",c.a+"세"],["소속 학부",K[c.f].n]];
+ if(c.r!="학생")rows.push(["직책",c.r+(c.o?" (교무청 소속)":"")]);
+ rows.push(["유형",c.cls],["특화 계열",c.sch],["서클",c.cir+"서클"],["성격",c.pers]);
+ $('cd').innerHTML=`<button class="back">← 목록</button><div class="cdw">${sq(c)}<div class="info"><h3>${c.n}</h3><div class="m">${K[c.f].n} · ${c.r}</div>${rows.map(r=>`<div class="kv"><span class="k">${r[0]}</span><span class="v">${r[1]}</span></div>`).join("")}</div></div>`;
  $('chars').scrollIntoView()}
 document.addEventListener('click',e=>{const c=e.target.closest('.cc');if(c)return openC(c.dataset.id);
  if(e.target.closest('#cd .back')){$('cd').hidden=true;$('clist').hidden=false}});
 function openF(i){const f=F[i],ls=(h,q)=>h||'<p class="lead">아직 등록되지 않았어요.</p>';
  $('fpage').hidden=false;
- $('fpb').innerHTML=ic(i,200)+`<div><h2>${f[0]} <small>${f[1]}</small></h2><div style="font-size:13px;color:var(--gold);margin:6px 0 18px">${f[4]} · ${f[5]} 중심 · 상징 ${f[3]}</div><p class="drop" style="--c:${f[2]}">${LONG[ID[i]]||f[6]}</p></div>`;
+ $('fpb').innerHTML=ic(i,200)+`<div><h2>${f[0]} <small>${f[1]}</small></h2><div style="font-size:13px;color:var(--gold);margin:6px 0 18px">${f[4]} · ${f[5]} 중심 · 상징 ${f[3]}</div><div class="body" style="--c:${f[2]}">${(LONG[ID[i]]||f[6]).split(/\n\s*\n/).map((t,k)=>`<p${k?"":' class="drop"'}>${t.trim()}</p>`).join("")}</div></div>`;
  $('fpi').innerHTML=ls(CH.filter(c=>c.f==i&&c.r=="교관").map(card).join(''));
  $('fps').innerHTML=ls(CH.filter(c=>c.f==i&&c.r!="교관").map(card).join(''));
  $('fpage').scrollIntoView()}
 const _p=pick;pick=function(i){_p(i);const b=det.querySelector('.big');if(b)b.outerHTML=ic(i,76);
- det.lastElementChild.insertAdjacentHTML('beforeend',`<button class="chip" onclick="openF(${i})">자세히 보기</button>`)};pick(0);
+ det.lastElementChild.insertAdjacentHTML('beforeend',`<div class="more"><button class="go" onclick="openF(${i})">자세히 보기</button></div>`)};pick(0);
 const SC=["","","","","","","","","","","",""];
 $('sg').innerHTML=SC.map((t,i)=>`<div class="box"><h3>${i+1}월</h3><p>${t||"일정을 입력하세요"}</p></div>`).join('');
 const T={
