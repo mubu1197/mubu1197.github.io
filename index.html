@@ -69,7 +69,7 @@ body.lock{overflow:hidden}
 .cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:16px}
 .cc{background:none;border:0;color:var(--text);font:inherit;font-size:13px;text-align:center;cursor:pointer}
 .sq{aspect-ratio:1;background:var(--panel);border:1px solid var(--line);border-bottom:3px solid var(--c);margin-bottom:6px;overflow:hidden}
-.sq img{display:block;width:100%;height:100%;object-fit:cover}
+.sq img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
 .cc:hover .sq{border-color:var(--c)}
 .frow{display:flex;flex-wrap:wrap;gap:22px;margin-bottom:28px;padding:6px}
 .frow .gem{transition:opacity .25s}.frow .gem.off{opacity:.15}
@@ -279,7 +279,10 @@ const CH=[];
   n[f]=(n[f]||0)+1;
   CH.push({id:K[f].id+"-"+n[f],f:f,r:p[0],o:p[0]=="교관",n:p[1],nat:p[2],noble:p[3],race:p[4],g:p[5],a:+p[6],cls:p[7],sch:p[8],cir:+p[9],pers:p[10],img:p[11]||""});
  })})();
-const sq=c=>`<div class="sq" style="--c:${K[c.f].c}"><div class="ph">${ic(c.f,60,dim(K[c.f].c))}</div>${c.img?`<img src="${c.img}" alt="" onerror="this.remove()">`:""}</div>`;
+// 이미지 칸: 파일 이름만 적으면 img/이름.png → jpg → jpeg → webp → gif 순으로 찾습니다
+const cimg=v=>{if(!v)return"";return /^(https?:|\/|img\/)|\.\w{3,5}$/.test(v)?`<img src="${v}" alt="" onerror="this.remove()">`:`<img src="img/${v}.png" data-b="img/${v}" data-x="0" alt="" onerror="imgExt(this)">`};
+function imgExt(i){const E=['jpg','jpeg','webp','gif'],n=+i.dataset.x;if(n<E.length){i.dataset.x=n+1;i.src=i.dataset.b+'.'+E[n]}else i.remove()}
+const sq=c=>`<div class="sq" style="--c:${K[c.f].c}"><div class="ph">${ic(c.f,60,dim(K[c.f].c))}</div>${cimg(c.img)}</div>`;
 const card=c=>`<button class="cc" data-id="${c.id}">${sq(c)}<span>${c.n}</span></button>`;
 const on=new Set(K.map((_,i)=>i));
 $('cf').innerHTML=ORD.map(i=>{const k=K[i];return `<button class="gem${i==12?' core':''}" style="--c:${k.c}" data-i="${i}" aria-label="${k.n}" title="${k.n}"></button>`}).join('');
