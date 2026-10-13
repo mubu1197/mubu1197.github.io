@@ -16,7 +16,7 @@ a{color:inherit;text-decoration:none}
 nav{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:clamp(12px,3vw,32px);padding:0 clamp(16px,4vw,48px);height:56px;background:rgba(13,12,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);overflow-x:auto;white-space:nowrap}
 nav b{font:700 15px var(--serif);color:var(--title);letter-spacing:.08em;margin-right:auto}
 nav a{font-size:13px;color:var(--mute)}nav a:hover{color:var(--gold)}
-header{min-height:78vh;display:flex;flex-direction:column;justify-content:center;padding:80px clamp(16px,6vw,96px);background:linear-gradient(rgba(13,12,15,.45),rgba(13,12,15,.92)),url("https://cdn.caveduck.io/cdn-cgi/image/anim=true,dpr=1.5,f=auto,fit=crop,g=top,w=2000/charim/398b96c8-676c-4ed4-8683-cf97fa138c20?v=a521f2") center/cover,radial-gradient(ellipse at 70% 30%,#241d14 0,transparent 60%),radial-gradient(ellipse at 10% 90%,#15121a 0,transparent 55%)}
+header{min-height:78vh;display:flex;flex-direction:column;justify-content:center;padding:80px clamp(16px,6vw,96px);background:linear-gradient(rgba(13,12,15,.45),rgba(13,12,15,.92)),url("img/header.jpg") center/cover,url("https://cdn.caveduck.io/cdn-cgi/image/anim=true,dpr=1.5,f=auto,fit=crop,g=top,w=2000/charim/398b96c8-676c-4ed4-8683-cf97fa138c20?v=a521f2") center/cover,radial-gradient(ellipse at 70% 30%,#241d14 0,transparent 60%),radial-gradient(ellipse at 10% 90%,#15121a 0,transparent 55%)}
 header p.s{font-size:13px;color:var(--gold);letter-spacing:.15em}
 h1{font:700 clamp(38px,9vw,92px)/1.1 var(--serif);color:var(--title);margin:14px 0 18px;letter-spacing:.02em}
 header p.d{max-width:560px;color:var(--mute);font-size:16px}
@@ -267,7 +267,9 @@ kardel:CD('a8539329-ef11-49a9-91b0-b38b5c2508fa','afec36'),
 orden:CD('aff6aa31-5f47-446d-920c-e115dfab8445','b2a990'),
 office:CD('444796ab-4063-4472-82fb-e3b5e427f7b5','b395a2')};
 const dim=h=>"#"+[1,3,5].map(j=>Math.round(parseInt(h.substr(j,2),16)*.4).toString(16).padStart(2,"0")).join("");
-const ic=(k,w,col)=>`<div class="ic" style="--c:${col||K[k].c};width:${w}px;aspect-ratio:1686/2108"><img src="${IMG[K[k].id]||''}" alt="" onerror="this.parentNode.classList.add('x')"></div>`;
+// 먼저 같은 저장소의 img/학부이름.png 를 불러오고, 없으면 위 외부 링크(IMG)로, 그것도 안 되면 마름모 브로치로 대체합니다
+function imgFail(i){if(!i.dataset.t&&IMG[i.dataset.k]){i.dataset.t=1;i.src=IMG[i.dataset.k]}else i.parentNode.classList.add('x')}
+const ic=(k,w,col)=>`<div class="ic" style="--c:${col||K[k].c};width:${w}px;aspect-ratio:1686/2108"><img src="img/${K[k].id}.png" data-k="${K[k].id}" alt="" onerror="imgFail(this)"></div>`;
 // 캐릭터 명단은 content.js의 ROSTER에서 읽어 옵니다
 const CH=[];
 (function(){let f=-1,n={};
