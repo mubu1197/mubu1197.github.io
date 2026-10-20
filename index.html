@@ -110,6 +110,29 @@ h3.sub{font:700 17px var(--serif);color:var(--title);margin:28px 0 14px}
 .gem.core{width:30px;height:30px;margin:0 10px;border-color:var(--title);position:relative}
 .gem.core::after{content:"";position:absolute;inset:-9px;border:1px solid var(--gold);border-radius:6px;opacity:.75}
 .body p{line-height:2;font-size:15.5px;margin:0 0 1.3em;max-width:680px}
+.circ li{grid-template-columns:104px 1fr}
+.grades{display:grid;grid-template-columns:repeat(auto-fit,minmax(74px,1fr));gap:8px;margin:0 0 8px}
+.gr{border:1px solid var(--line);background:var(--panel);border-radius:4px;padding:8px 4px;text-align:center}
+.gr b{display:block;font:700 20px var(--serif);color:var(--gold);line-height:1.3}
+.gr span{font-size:12px;color:var(--mute)}
+.mem{margin-top:8px;font-size:12.5px;color:var(--dim)}
+.mem b{color:var(--gold);font-weight:500}
+.mg{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.mc{border:1px solid var(--line);background:var(--panel);border-radius:4px;padding:12px 14px}
+.mc h3{font:700 14px var(--serif);color:var(--gold);margin-bottom:8px}
+.evb{display:flex;gap:8px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--line);color:var(--text);font:inherit;font-size:13px;line-height:1.5;padding:7px 0;cursor:pointer}
+.evb:hover .et{color:var(--gold)}
+.evb .ed{flex:0 0 52px;color:var(--dim);font-size:12px}
+.evb.none{cursor:default}
+.sq.wide{aspect-ratio:3/2;width:min(100%,460px)}
+.dia{width:34px;height:34px;border:3px solid var(--gold);border-radius:5px;transform:rotate(45deg);opacity:.35}
+.flags{display:flex;gap:14px;flex-wrap:wrap;margin:16px 0}
+.flags .flag{flex:0 0 132px}
+.evtext{margin-top:20px;max-width:640px}
+.evtext p{line-height:2;font-size:15.5px;margin:0 0 1.2em}
+.err{margin:16px;padding:14px 18px;border:1px solid #b53a3a;background:#1b1010;color:#e8c8c8;border-radius:4px;font-size:14px;line-height:1.7}
+.fl{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+@media(max-width:560px){.circ li{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -125,22 +148,18 @@ h3.sub{font:700 17px var(--serif);color:var(--title);margin:28px 0 14px}
 
 <section id="world">
 <h2 data-t="world">세계관</h2>
-<p class="lead">기계가 없고 검과 마법이 발달한 중세풍 판타지입니다. 아카데미는 원래 귀족을 위한 곳이고, 귀족이 아니면 추천서로 입학합니다.</p>
-<div class="grid">
-<div class="box"><h3>입학과 기수</h3><p>20세 이상 성인만 입학하고 교육 과정은 3년입니다. 3년마다 새 기수를 모집하며, 등장인물은 모두 같은 기수의 동기입니다. 선배·후배 관계는 없습니다.</p></div>
-<div class="box"><h3>제복</h3><p>검은 리본을 칼라 아래에 매고, 학부 상징색의 보석 브로치를 가슴 위쪽에 답니다. 남성은 흰 셔츠·바지에 감색 재킷, 여성은 흰 셔츠·치마에 검은 코르셋과 감색 망토를 입습니다.</p></div>
-</div>
+<p class="lead">검과 마법이 발달한 중세풍 판타지입니다. 아카데미의 기본 규칙과 제복을 정리했습니다.</p>
+<div class="grid" id="wgrid"></div>
+<h3 class="sub">제복</h3>
+<p class="lead" id="ulead" style="margin-bottom:16px"></p>
+<div class="grid" id="ugrid"></div>
 </section>
 
 <section id="gate">
 <h2 data-t="gate">게이트</h2>
-<p class="lead">차원문 형태로 나타나는 장소이며 등급이 나뉩니다. 토벌은 최고의 명예입니다.</p>
-<div class="grid">
-<div class="box"><h3>등장</h3><p>등장 조건은 밝혀지지 않았고, 간헐적으로 나타납니다.</p></div>
-<div class="box"><h3>우두머리와 내부</h3><p>게이트마다 우두머리가 있고, 내부 환경은 우두머리에 맞게 조성됩니다.</p></div>
-<div class="box"><h3>방치의 위험</h3><p>오래 방치하면 우두머리가 밖으로 나와 인류에게 해를 가하므로, 그 전에 토벌해야 합니다.</p></div>
-<div class="box"><h3>토벌과 폐쇄</h3><p>우두머리가 죽으면 게이트 안의 환경과 생명체는 공격성을 잃고, 약 24시간 뒤 게이트가 닫힙니다.</p></div>
-</div>
+<p class="lead">차원문 형태로 나타나는 장소이며 등급이 나뉩니다. 토벌은 최고의 명예입니다. 아래 숫자는 등급별 기본 공훈입니다.</p>
+<div class="grades" id="grades"></div>
+<div id="gbody"></div>
 </section>
 
 <section id="faculty">
@@ -149,14 +168,12 @@ h3.sub{font:700 17px var(--serif);color:var(--title);margin:28px 0 14px}
 <div class="chips" id="chips"></div>
 <div class="row" id="row"></div>
 <div id="detail" aria-live="polite"></div>
-<div class="grid" style="margin-top:28px">
-<div class="box"><h3>계승회 · 6학부</h3><p>선대의 지식과 전통, 학부의 역사, 검증된 방식을 지키고 이어가는 파벌입니다.</p></div>
-<div class="box"><h3>개척회 · 6학부</h3><p>새로운 마법, 공략법, 무기와 전술을 연구하며 아직 아무도 하지 않은 것을 시도하는 파벌입니다.</p></div>
-</div>
+<p class="lead" id="flead" style="margin:28px 0 14px"></p>
+<div class="grid" id="fgrid"></div>
 </section>
 
 <section id="fpage" hidden>
-<button class="back" onclick="fpage.hidden=true;document.getElementById('faculty').scrollIntoView()">← 12학부</button>
+<button class="back" onclick="document.getElementById('fpage').hidden=true;document.getElementById('faculty').scrollIntoView()">← 12학부</button>
 <div class="fpw" id="fpb"></div>
 <h3 class="sub" id="fh1">교관</h3><div class="cg" id="fpi"></div>
 <h3 class="sub" id="fh2">학생</h3><div class="cg" id="fps"></div>
@@ -171,27 +188,34 @@ h3.sub{font:700 17px var(--serif);color:var(--title);margin:28px 0 14px}
 
 <section id="magic">
 <h2 data-t="magic">마법</h2>
-<p class="lead">등급은 서클로 나뉩니다. 계열은 여섯이며 구분 없이 배울 수 있지만, 대부분은 한두 계열을 깊이 다룹니다. 암흑계는 금기가 아닌 통제된 학문으로 취급되며 아카데미에서도 제한적으로 가르칩니다.</p>
+<p class="lead" id="clead"></p>
 <ul class="circ" id="circ"></ul>
-<div class="grid" style="margin-top:32px" id="schools"></div>
+<p class="lead" id="mlead" style="margin:36px 0 16px"></p>
+<div class="grid" id="schools"></div>
+<div class="grid" id="mnotes" style="margin-top:14px"></div>
 </section>
 
 <section id="campus">
 <h2 data-t="campus">캠퍼스</h2>
-<p class="lead">교무청과 여섯 개 동으로 이루어져 있습니다.</p>
+<p class="lead" id="cplead"></p>
 <div class="grid" id="fac"></div>
 </section>
 
 <section id="sched">
 <h2 data-t="sched">연간 일정</h2>
-<p class="lead">아카데미의 한 해를 월별로 정리하는 칸입니다.</p>
-<div class="grid" id="sg"></div>
+<div id="slist">
+<p class="lead">아카데미의 한 해입니다. 행사를 누르면 자세한 내용이 열립니다.</p>
+<div class="mg" id="sg"></div>
+</div>
+<div id="evd" hidden></div>
 </section>
 
 <section id="nations">
 <h2 data-t="nations">나라</h2>
 <p class="lead">노르테이아를 둘러싼 다섯 나라가 아카데미를 함께 운영합니다.</p>
 <div class="grid" id="nat"></div>
+<h3 class="sub">이름 표기</h3>
+<div class="grid" id="naming"></div>
 </section>
 
 <footer>노르테이아 아카데미 세계관 초안 · 내용은 계속 바뀔 수 있습니다</footer>
@@ -208,53 +232,45 @@ h3.sub{font:700 17px var(--serif);color:var(--title);margin:28px 0 14px}
  t=setTimeout(close,4200);
 })();
 </script>
+<script src="content.js"></script>
 <script>
-const F=[
-["마르셰","Marche","#e8e4dc","백합","계승회","사교","품위와 격식을 중시하며 보수적이다. 체술보다 우아하고 정교한 마법을 선호한다. 게이트 토벌은 필요한 의무로 여기지만 무용담을 위한 위험한 행동은 꺼린다.","의전"],
-["로시에","Rossier","#d9822b","여우","개척회","사교","경쟁심이 강하고 사람과 상황을 읽는 데 능하다. 정면승부보다 상황을 유리하게 만드는 응용력과 전술을 선호한다. 게이트 토벌을 자신과 가문의 명성을 높이는 수단으로 본다.","외교"],
-["바르체","Varche","#d9729a","장미","개척회","사교","가문보다 개인의 매력을 중시하며, 화려하고 자신감 있다. 감정 표현과 연애·사교에 적극적이다. 존재감을 드러내는 화려한 마법과 공격 기술을 선호하고, 토벌에서도 자신의 능력을 증명해 보이는 것을 즐긴다.","화술"],
-["토니카","Tonica","#b53a3a","사자","계승회","토벌","거칠고 호전적이지만 의리를 중시한다. 냉병기를 비롯한 체술을 선호하며 마법은 무기를 보조하는 용도로 쓴다. 게이트를 반드시 처단해야 할 악으로 여기며 실리보다 명예를 중시한다.","무술"],
-["브론테","Bronte","#d9b832","벼락","개척회","토벌","대담하고 직선적이며 실패를 크게 두려워하지 않는다. 순간적인 폭발력과 돌파력을 가진 능력을 선호한다. 위험할수록 가치 있는 도전으로 여기며, 강한 우두머리와의 싸움을 기대한다.","병법"],
-["카스텔","Castel","#6fb4e0","성탑","계승회","토벌","책임감과 자존심이 강하며 집단을 이끄는 것을 본분으로 삼는다. 지휘와 협동에 적합한 능력, 안정성과 지속력을 중시한다. 게이트 토벌을 강자가 약자를 지키는 의무로 여긴다.","지휘"],
-["에르바","Erva","#3f66c4","열쇠","개척회","지식","호기심과 집착이 강하며 밝혀지지 않은 진실을 끝까지 파고든다. 마법과 고대 기술을 선호하고, 새로 발견한 것을 응용하는 데 관심이 많다. 게이트의 기원, 내부 법칙, 우두머리의 정체를 알아내기 위해 토벌에 참여한다.","사학"],
-["레반트","Levant","#8cc152","사슴","계승회","지식","엘프 문화와 자연 마법을 중심에 둔 학부. 느긋하고 고고하며 내부 결속력이 강하다. 궁술, 자연계 마법, 정령 관련 능력을 선호한다. 게이트를 정복할 대상이 아니라 생태와 환경을 이해해야 할 대상으로 본다.","약학"],
-["볼테르","Volter","#8a5cc4","불꽃","개척회","지식","기존 지식과 마법을 변형하고 실험해 새로운 활용법을 만든다. 호기심과 독창성을 중시하며, 정해진 원리와 관습을 따르기보다 직접 시험해 새로운 가능성을 발견하는 것을 즐긴다.","연금"],
-["벨로아","Bellois","#96603a","동전","개척회","다중","현실적이고 계산이 빠르며 자신에게 돌아올 이익을 따진다. 마법과 체술을 가리지 않고 실전성과 효율을 기준으로 선택하며 마도구를 적극 활용한다. 게이트 토벌을 사업으로 보고 보상, 전리품, 명성, 위험도를 계산해 움직인다.","교역"],
-["야누스","Janus","#2b2b30","까마귀","계승회","다중","관찰력이 뛰어나고 말수가 적으며 비밀을 철저히 지킨다. 은신, 탐지, 환영, 정신계 마법 등 정보를 얻고 상황을 통제하는 능력을 선호한다. 게이트 토벌에서도 상대에 대한 정보와 사전 분석을 중시한다.","첩보"],
-["오르덴","Orden","#3f8a52","밀 이삭","계승회","다중","공동체에 대한 책임을 가장 중요한 의무로 여긴다. 규율과 안정, 실질적인 성과를 중시하며, 화려한 개인의 영광보다 공동체 전체의 안전과 번영을 우선한다.","병참"],
-["교무청","Office","#a68a54","신전 기둥","","행정","학원 운영 전체를 맡는 행정 기관입니다. 총장과 부총장, 여섯 처장, 그리고 12학부의 교관이 소속되어 있고, 학칙과 입학·졸업, 토벌 일정을 총괄합니다.",""]];
+const $=id=>document.getElementById(id);
+if(typeof FAC==="undefined"||typeof ROSTER==="undefined"||typeof EVENTS==="undefined"){
+ document.getElementById('splash').classList.add('out');document.body.classList.remove('lock');
+ document.body.insertAdjacentHTML('afterbegin','<div class="err"><b>content.js 를 읽지 못했어요.</b><br>① GitHub에 content.js 가 index.html 과 같은 곳에 올라가 있는지, ② content.js 안에 ` (백틱) 나 따옴표가 잘못 들어가지 않았는지 확인해 주세요. 방금 고친 곳이 있다면 되돌려 보세요.</div>');
+ throw new Error("content.js missing");
+}
+const F=FAC;
 const ORD=[0,1,2,3,4,5,12,6,7,8,9,10,11];
+const ID=["marche","rossier","varche","tonica","bronte","castel","erva","levant","volter","bellois","kardel","orden","office"];
+const K=F.map((f,i)=>({n:f[0],c:f[2],id:ID[i]}));
+const box=a=>a.map(x=>`<div class="box"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('');
+const paras=(t,cls)=>t.split(/\n\s*\n/).map((p,k)=>`<p${k||!cls?"":' class="'+cls+'"'}>${p.trim()}</p>`).join("");
+
+// ── 세계관 · 제복
+$('wgrid').innerHTML=box(WORLD);
+$('ulead').textContent=UNIFORM_LEAD;
+$('ugrid').innerHTML=box(UNIFORM);
+
+// ── 게이트
+$('grades').innerHTML=GATE_GRADES.map(g=>`<div class="gr"><b>${g[0]}</b><span>공훈 ${g[1]}</span></div>`).join('');
+$('gbody').innerHTML=GATE.map(g=>`<h3 class="sub">${g.h}</h3><div class="grid">${box(g.b)}</div>`).join('');
+
+// ── 학부 브로치
 const gem=(i,cls)=>`<button class="gem ${i==12?'core ':''}${cls||''}" style="--c:${F[i][2]}" data-i="${i}" aria-label="${F[i][0]}"></button>`;
-hero=document.getElementById('heroGems');
+const hero=$('heroGems');
 hero.innerHTML=ORD.map(i=>gem(i)).join('');
 hero.onclick=e=>{const g=e.target.closest('.gem');if(g){pick(+g.dataset.i);location.hash='faculty'}};
 const fil=[["전체",()=>1],["계승회",f=>f[4]=="계승회"],["개척회",f=>f[4]=="개척회"],["사교 중심",f=>f[5]=="사교"],["토벌 중심",f=>f[5]=="토벌"],["지식 탐구 중심",f=>f[5]=="지식"],["다중 시도 중심",f=>f[5]=="다중"]];
-const chips=document.getElementById('chips'),row=document.getElementById('row'),det=document.getElementById('detail');
+const chips=$('chips'),row=$('row'),det=$('detail');
 chips.innerHTML=fil.map((x,i)=>`<button class="chip" aria-pressed="${i==0}" data-k="${i}">${x[0]}</button>`).join('');
 row.innerHTML=ORD.map(i=>gem(i)).join('');
-function pick(i){
- const f=F[i];
- row.querySelectorAll('.gem').forEach(g=>g.classList.toggle('on',+g.dataset.i==i));
- det.innerHTML=`<div class="big" style="--c:${f[2]}"></div><div><h3>${f[0]} <small style="font:13px var(--sans);color:var(--mute)">${f[1]}</small></h3><div class="m">${i==12?"행정 기관":f[4]+" · "+f[5]+" 중심"} · 상징 ${f[3]}</div>${f[7]?`<p class="maj"><b>전공 :</b> ${f[7]}</p>`:""}<p>${f[6]}</p></div>`;
-}
 chips.onclick=e=>{const c=e.target.closest('.chip');if(!c)return;
  chips.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x==c));
  row.querySelectorAll('.gem').forEach(g=>g.classList.toggle('off',+g.dataset.i!=12&&!fil[+c.dataset.k][1](F[+g.dataset.i])))};
 row.onclick=e=>{const g=e.target.closest('.gem');if(g)pick(+g.dataset.i)};
-pick(0);
-const C=[["1서클","입문","Initiate","마나를 감지하고 방출합니다. 촛불 점화, 미풍 생성 같은 단순한 현상."],["2서클","기초","Novice","마나를 일정한 형태로 유지하고 제어합니다. 마나 실드, 작은 투사체, 체술 보조."],["3서클","숙련","Adept","실전에서 독립적으로 쓰는 완성된 마법. 화염구, 빙결창 같은 본격 공격 마법."],["4서클","전문","Expert","여러 마법을 연계하거나 넓은 범위에 영향을 줍니다. 복합 마법, 광역 공격, 강력한 방벽."],["5서클","대가","Master","전장의 양상을 바꿀 만큼 정교하고 강력합니다. 대규모 환경 간섭, 고난도 응용."],["6서클","대마도","Archmage","공간·기후·생명 현상 같은 현실의 근본 작용에 간섭합니다. 국가 단위 전략 자산급."],["7서클","초월","Transcendent","독자적인 마법 체계를 완성하고, 영역 전개나 게이트 구조에 직접 간섭합니다."],["8서클~","미지","Unknown","현시대의 마법 이론으로 정립되지 않은 영역."]];
-circ.innerHTML=C.map(c=>`<li><b>${c[0]}</b><div><em>${c[1]}</em> <span>${c[2]}</span><br><span>${c[3]}</span></div></li>`).join('');
-const box=(a,b,c)=>a.map(x=>`<div class="box"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('');
-schools.innerHTML=box([["자연계 Nature","자연물과 자연 현상을 마나로 다룹니다. 불·물·바람·대지·번개·얼음 같은 원소 마법입니다."],["신성계 Divine","해로운 영향을 정화하고 축복과 보호를 부여합니다. 상처와 부정한 기운을 씻어 내는 치유도 여기에 속하며, 신이나 신앙이 필수는 아닙니다."],["암흑계 Dark","죽음의 흔적과 부정적인 상태를 이용해 대상의 존재와 의지를 갉아먹습니다. 저주, 강령술, 그림자 마법."],["생명계 Life","생물의 육체와 생명 작용 자체에 개입합니다. 성장과 재생, 증식, 활력의 증진과 쇠퇴, 독과 질병의 제어, 육체 구조의 변화. 신성계가 외부의 은총으로 돕는 것과 달리 대상의 몸이 지닌 생물학적 작용을 직접 조작합니다."],["비전계 Arcane","특정 대상이나 성질에 속하지 않고 순수한 마나만으로 현상을 일으킵니다. 다른 계열에 속하지 않는 마나 운용은 모두 비전계이며, 시공간 마법과 정신 마법이 대표적입니다."],["강화계 Reinforcement","마나를 신체와 무기, 장비에 직접 주입해 물리적 성능을 높입니다. 신체 강화, 반사신경 향상, 무기 강화, 충격 흡수, 마나 보호."]]);
-fac.innerHTML=box([["교무청","학원 운영, 학칙과 입학·졸업 관리, 교직원 업무."],["강의동","중앙강의실, 대강당, 12학부별 학부관, 공용 강의시설. 학부관은 각자 독립된 건물이고 양식도 다릅니다."],["기숙사동","여러 건물과 정원으로 이루어진 단지. 모두 개인실이며, 허락을 맡으면 성별에 상관없이 서로의 방에 드나들 수 있습니다."],["생활동","식당, 카페, 상점, 대욕탕, 노점 거리. 거리 중심으로 구성된 동입니다."],["수련동","마법 실습실, 무기 훈련장, 결투장, 숲·설원·폐허·동굴을 재현한 모의 공략 구역."],["연회동","대연회장, 소연회장, 귀빈실, 사교실, 테라스, 정원."]]);
-</script>
-<script src="content.js"></script>
-<script>var LONG=window.LONG||{},ROSTER=window.ROSTER||"";</script>
-<script>
-const ID=["marche","rossier","varche","tonica","bronte","castel","erva","levant","volter","bellois","kardel","orden","office"];
-const K=F.map((f,i)=>({n:f[0],c:f[2],id:ID[i]}));
-const $=id=>document.getElementById(id);
-// 학부 아이콘 이미지: 가로 크기(w)는 아래 W 값 하나로 한 번에 바꿀 수 있어요
+
+// ── 학부 아이콘 이미지 (img/학부이름.png → 외부 링크 → 마름모)
 const W=1000;
 const CD=(id,v)=>`https://cdn.caveduck.io/cdn-cgi/image/anim=true,dpr=1.5,f=auto,fit=crop,g=top,w=${W}/charim/${id}?v=${v}`;
 const IMG={
@@ -272,54 +288,94 @@ kardel:CD('a8539329-ef11-49a9-91b0-b38b5c2508fa','afec36'),
 orden:CD('aff6aa31-5f47-446d-920c-e115dfab8445','b2a990'),
 office:CD('444796ab-4063-4472-82fb-e3b5e427f7b5','b395a2')};
 const dim=h=>"#"+[1,3,5].map(j=>Math.round(parseInt(h.substr(j,2),16)*.4).toString(16).padStart(2,"0")).join("");
-// 먼저 같은 저장소의 img/학부이름.png 를 불러오고, 없으면 위 외부 링크(IMG)로, 그것도 안 되면 마름모 브로치로 대체합니다
 function imgFail(i){if(!i.dataset.t&&IMG[i.dataset.k]){i.dataset.t=1;i.src=IMG[i.dataset.k]}else i.parentNode.classList.add('x')}
 const ic=(k,w,col)=>`<div class="ic" style="--c:${col||K[k].c};width:${w}px;aspect-ratio:1686/2108"><img src="img/${K[k].id}.png" data-k="${K[k].id}" alt="" onerror="imgFail(this)"></div>`;
-// 캐릭터 명단은 content.js의 ROSTER에서 읽어 옵니다
+
+// ── 학부 요약
+function pick(i){
+ const f=F[i];
+ row.querySelectorAll('.gem').forEach(g=>g.classList.toggle('on',+g.dataset.i==i));
+ det.innerHTML=`${ic(i,76)}<div><h3>${f[0]} <small style="font:13px var(--sans);color:var(--mute)">${f[1]}</small></h3><div class="m">${i==12?"행정 기관":f[4]+" · "+f[5]+" 중심"} · 상징 ${f[3]}</div>${f[7]?`<p class="maj"><b>전공 :</b> ${f[7]}</p>`:""}<p>${f[6]}</p><div class="more"><button class="go" onclick="openF(${i})">자세히 보기</button></div></div>`;
+}
+
+// ── 이미지 칸: 파일 이름만 적으면 img/이름.png → jpg → jpeg → webp → gif 순으로 찾습니다
+const cimg=v=>{if(!v)return"";return /^(https?:|\/|img\/)|\.\w{3,5}$/.test(v)?`<img src="${v}" alt="" onerror="this.remove()">`:`<img src="img/${v}.png" data-b="img/${v}" data-x="0" alt="" onerror="imgExt(this)">`};
+function imgExt(i){const E=['jpg','jpeg','webp','gif'],n=+i.dataset.x;if(n<E.length){i.dataset.x=n+1;i.src=i.dataset.b+'.'+E[n]}else i.remove()}
+
+// ── 파벌 (깃발 칸)
+$('flead').textContent=FACTION_LEAD;
+$('fgrid').innerHTML=FACTIONS.map(x=>{const m=F.slice(0,12).filter(f=>f[4]==x.n).map(f=>f[0]).join(" · ");
+ return `<div class="box nb"><div class="flag">깃발${cimg(x.flag)}</div><div><h3>${x.n} · ${F.slice(0,12).filter(f=>f[4]==x.n).length}학부</h3><p>${x.t}</p><p class="mem"><b>소속 학부</b> ${m}</p></div></div>`}).join('');
+
+// ── 서클
+$('clead').textContent=CIRCLE_LEAD;
+$('circ').innerHTML=CIRCLES.map(c=>`<li><b>${c[0]}</b><div><em>${c[1]}</em> <span>${c[2]}</span><br><span>${c[3]}</span></div></li>`).join('');
+const stage=n=>CIRCLES[Math.max(0,Math.min(CIRCLES.length-1,Math.ceil(n/2)-1))];
+$('mlead').textContent=MAGIC_LEAD;
+$('schools').innerHTML=box(SCHOOLS);
+$('mnotes').innerHTML=box(MAGIC_NOTES);
+
+// ── 캠퍼스
+$('cplead').textContent=CAMPUS_LEAD;
+$('fac').innerHTML=box(CAMPUS);
+
+// ── 나라
+$('nat').innerHTML=NATIONS.map(x=>`<div class="box nb"><div class="flag">국기${cimg(x[1])}</div><div><h3>${x[0]}</h3><p>${x[2]}</p>${x[3]?`<p class="mem"><b>귀족 이름 표기</b> 이름 ${x[3]} 성</p>`:""}</div></div>`).join('');
+$('naming').innerHTML=box(NAMING);
+
+// ── 캐릭터 명단 (content.js 의 ROSTER)
 const CH=[];
 (function(){let f=-1,n={};
  ROSTER.split("\n").forEach(line=>{line=line.trim();if(!line||line.slice(0,2)=="//")return;
   if(line[0]=="#"){f=K.findIndex(k=>k.n==line.slice(1).trim());return}
   const p=line.split("|").map(x=>x.trim());if(f<0||p.length<11)return;
   n[f]=(n[f]||0)+1;
-  CH.push({id:K[f].id+"-"+n[f],f:f,r:p[0],o:p[0]=="교관",n:p[1],s:p[1].split(/\s+/)[0],nat:p[2],noble:p[3],race:p[4],g:p[5],a:+p[6],cls:p[7],sch:p[8],cir:+p[9],pers:p[10],img:p[11]||""});
+  CH.push({id:K[f].id+"-"+n[f],f:f,r:p[0],o:p[0]=="교관",n:p[1],s:p[1].split(/\s+/)[0],nat:p[2],noble:p[3],race:p[4],g:p[5],a:p[6],cls:p[7],sch:p[8],cir:+p[9],pers:p[10],img:p[11]||""});
  })})();
-// 이미지 칸: 파일 이름만 적으면 img/이름.png → jpg → jpeg → webp → gif 순으로 찾습니다
-const cimg=v=>{if(!v)return"";return /^(https?:|\/|img\/)|\.\w{3,5}$/.test(v)?`<img src="${v}" alt="" onerror="this.remove()">`:`<img src="img/${v}.png" data-b="img/${v}" data-x="0" alt="" onerror="imgExt(this)">`};
-function imgExt(i){const E=['jpg','jpeg','webp','gif'],n=+i.dataset.x;if(n<E.length){i.dataset.x=n+1;i.src=i.dataset.b+'.'+E[n]}else i.remove()}
 const sq=c=>`<div class="sq" style="--c:${K[c.f].c}"><div class="ph">${ic(c.f,60,dim(K[c.f].c))}</div>${cimg(c.img)}</div>`;
-// 국기: img 폴더에 아래 이름으로 올리면 됩니다 (규격 2688x1792, 확장자는 자동으로 찾아요)
-const NAT=[["노르테이아 공화국","flag_norteia","대륙 중앙의 소규모 도시국가이자 국제 중립국. 아카데미를 중심으로 형성되었고 독립과 중립은 국제 조약으로 보장됩니다."],["라그나르 제국","flag_ragnar","대륙에서 가장 강대한 국가. 황실과 대귀족, 제후들이 권력을 나눕니다."],["에드레인 왕국","flag_edrein","왕실과 전통 귀족의 위계가 뚜렷한 정통 왕국. 명예와 기사도, 계승을 중시합니다."],["베르셀 왕국","flag_bersel","무역·금융·연금 산업으로 부를 쌓은 왕국. 상인 가문이 작위를 얻어 귀족이 되었습니다."],["세라디움 법국","flag_seradium","생명과 질서의 여신 아우렐리아를 유일한 주신으로 섬기며 성문법으로 통치합니다."],["오리디아 성역","flag_oridia","엘프의 오랜 터전. 고대의 숲과 자연 마법, 정령술이 발달했고 엘프 원로원이 다스립니다."]];
-$('nat').innerHTML=NAT.map(x=>`<div class="box nb"><div class="flag">국기${cimg(x[1])}</div><div><h3>${x[0]}</h3><p>${x[2]}</p></div></div>`).join('');
 const card=c=>`<button class="cc" data-id="${c.id}">${sq(c)}<span>${c.s}</span></button>`;
 const on=new Set(K.map((_,i)=>i));
 $('cf').innerHTML=ORD.map(i=>{const k=K[i];return `<button class="gem${i==12?' core':''}" style="--c:${k.c}" data-i="${i}" aria-label="${k.n}" title="${k.n}"></button>`}).join('');
 const rl=()=>{$('cl').innerHTML=CH.filter(c=>on.has(c.f)||(c.o&&on.has(12))).map(card).join('')};rl();
 $('cf').onclick=e=>{const g=e.target.closest('.gem');if(!g)return;const i=+g.dataset.i;on.has(i)?on.delete(i):on.add(i);g.classList.toggle('off',!on.has(i));rl()};
+const kv=rows=>rows.map(r=>`<div class="kv"><span class="k">${r[0]}</span><span class="v">${r[1]}</span></div>`).join("");
 function openC(id){const c=CH.find(x=>x.id==id);$('clist').hidden=true;$('cd').hidden=false;
- const nb=c.noble.indexOf("귀족")==0?"귀족 · "+(c.noble.split(":")[1]||c.nat).trim()+(c.a<35?(c.g=="여"?" 영애":" 영식"):" 출신"):c.noble;
- const rows=[["풀네임",c.n],["종족",c.race],["국적",c.nat],["신분",nb],["성별",c.g],["나이",c.a+"세"],["소속 학부",K[c.f].n]];
+ const st=stage(c.cir);
+ const rows=[["풀네임",c.n],["종족",c.race],["국적",c.nat],["신분",c.noble],["성별",c.g],["나이",c.a],["소속 학부",K[c.f].n]];
  if(c.r!="학생")rows.push(["직책",c.r+(c.o?" (교무청 소속)":"")]);
- rows.push(["유형",c.cls],["특화 계열",c.sch],["서클",c.cir+"서클"],["성격",c.pers]);
- $('cd').innerHTML=`<button class="back">← 목록</button><div class="cdw">${sq(c)}<div class="info"><h3>${c.s}</h3><div class="m">${K[c.f].n} · ${c.r}</div>${rows.map(r=>`<div class="kv"><span class="k">${r[0]}</span><span class="v">${r[1]}</span></div>`).join("")}</div></div>`;
+ rows.push(["유형",c.cls],["특화 계열",c.sch],["서클",c.cir+"서클 · "+st[1]+" "+st[2]],["성격",c.pers]);
+ $('cd').innerHTML=`<button class="back">← 목록</button><div class="cdw">${sq(c)}<div class="info"><h3>${c.s}</h3><div class="m">${K[c.f].n} · ${c.r}</div>${kv(rows)}</div></div>`;
  $('chars').scrollIntoView()}
-document.addEventListener('click',e=>{const c=e.target.closest('.cc');if(c)return openC(c.dataset.id);
- if(e.target.closest('#cd .back')){$('cd').hidden=true;$('clist').hidden=false}});
-function openF(i){const f=F[i],ls=(h,q)=>h||'<p class="lead">아직 등록되지 않았어요.</p>';
+
+// ── 학부 상세 페이지
+function openF(i){const f=F[i],ls=h=>h||'<p class="lead">아직 등록되지 않았어요.</p>';
  $('fpage').hidden=false;
- $('fpb').innerHTML=ic(i,200)+`<div><h2>${f[0]} <small>${f[1]}</small></h2><div style="font-size:13px;color:var(--gold);margin:6px 0 ${f[7]?"6px":"18px"}">${i==12?"행정 기관":f[4]+" · "+f[5]+" 중심"} · 상징 ${f[3]}</div>${f[7]?`<div class="maj" style="margin-bottom:18px"><b>전공 :</b> ${f[7]}</div>`:""}<div class="body" style="--c:${f[2]}">${(LONG[ID[i]]||f[6]).split(/\n\s*\n/).map((t,k)=>`<p${k?"":' class="drop"'}>${t.trim()}</p>`).join("")}</div></div>`;
+ $('fpb').innerHTML=ic(i,200)+`<div><h2>${f[0]} <small>${f[1]}</small></h2><div style="font-size:13px;color:var(--gold);margin:6px 0 ${f[7]?"6px":"18px"}">${i==12?"행정 기관":f[4]+" · "+f[5]+" 중심"} · 상징 ${f[3]}</div>${f[7]?`<div class="maj" style="margin-bottom:18px"><b>전공 :</b> ${f[7]}</div>`:""}<div class="body" style="--c:${f[2]}">${paras(LONG[ID[i]]||f[6],"drop")}</div></div>`;
  const hs=[$('fh1'),$('fh2')];
- if(i==12){hs[0].textContent="총장 · 처장";hs[1].textContent="교관 (12학부)";
+ if(i==12){hs[0].textContent="교직원";hs[1].textContent="교관 (12학부)";
   $('fpi').innerHTML=ls(CH.filter(c=>c.f==12).map(card).join(''));
   $('fps').innerHTML=ls(CH.filter(c=>c.o).map(card).join(''))}
  else{hs[0].textContent="교관";hs[1].textContent="학생";
   $('fpi').innerHTML=ls(CH.filter(c=>c.f==i&&c.r=="교관").map(card).join(''));
   $('fps').innerHTML=ls(CH.filter(c=>c.f==i&&c.r!="교관").map(card).join(''))}
  $('fpage').scrollIntoView()}
-const _p=pick;pick=function(i){_p(i);const b=det.querySelector('.big');if(b)b.outerHTML=ic(i,76);
- det.lastElementChild.insertAdjacentHTML('beforeend',`<div class="more"><button class="go" onclick="openF(${i})">자세히 보기</button></div>`)};pick(0);
-const SC=["","","","","","","","","","","",""];
-$('sg').innerHTML=SC.map((t,i)=>`<div class="box"><h3>${i+1}월</h3><p>${t||"일정을 입력하세요"}</p></div>`).join('');
+
+// ── 연간 일정
+const EV={};EVENTS.forEach(e=>EV[e.id]=e);
+$('sg').innerHTML=MONTHS.map((m,i)=>`<div class="mc"><h3>${i+1}월</h3>${m.map(x=>EV[x[0]]?`<button class="evb" data-e="${x[0]}"><span class="ed">${x[2]}</span><span class="et">${x[1]}</span></button>`:`<div class="evb none"><span class="ed">${x[2]}</span><span class="et">${x[1]}</span></div>`).join('')}</div>`).join('');
+function openE(id){const e=EV[id];if(!e)return;$('slist').hidden=true;$('evd').hidden=false;
+ const ph=`<div class="ph"><span class="dia"></span></div>`;
+ $('evd').innerHTML=`<button class="back">← 연간 일정</button><div class="cdw"><div class="sq wide" style="--c:#a68a54">${ph}${cimg(e.img)}</div><div class="info"><h3>${e.t}</h3><div class="m">연간 일정</div>${kv(e.info)}${e.flags?`<div class="flags">${e.flags.map(f=>`<div class="flag">깃발${cimg(f)}</div>`).join('')}</div>`:""}</div></div><div class="evtext">${paras(e.text)}</div>`;
+ $('sched').scrollIntoView()}
+
+document.addEventListener('click',e=>{
+ const c=e.target.closest('.cc');if(c)return openC(c.dataset.id);
+ if(e.target.closest('#cd .back')){$('cd').hidden=true;$('clist').hidden=false;return}
+ const v=e.target.closest('.evb[data-e]');if(v)return openE(v.dataset.e);
+ if(e.target.closest('#evd .back')){$('evd').hidden=true;$('slist').hidden=false;$('sched').scrollIntoView()}});
+
+pick(0);
+
 const T={
 ko:{title:"노르테이아 아카데미",world:"세계관",gate:"게이트",faculty:"12학부",magic:"마법",chars:"캐릭터",campus:"캠퍼스",sched:"연간 일정",nations:"나라"},
 ja:{title:"ノルテイア・アカデミー",world:"世界観",gate:"ゲート",faculty:"12学部",magic:"魔法",chars:"キャラクター",campus:"キャンパス",sched:"年間スケジュール",nations:"国家"},
