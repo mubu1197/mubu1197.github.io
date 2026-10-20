@@ -159,11 +159,33 @@ h3.sub{font-size:19px;margin:52px 0 18px;padding-left:12px;border-left:3px solid
 .box.cp .r34 img{aspect-ratio:3/4}
 .ug{grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))}
 @media(max-width:640px){.dl>div{grid-template-columns:1fr;gap:4px}.pic.wide img{aspect-ratio:16/9}}
+
+details.ac{border:1px solid var(--line);background:var(--panel);border-radius:4px;margin-bottom:10px}
+details.ac>summary{list-style:none;cursor:pointer;padding:17px 20px;display:flex;align-items:center;gap:12px;font:700 16.5px var(--serif);color:var(--title)}
+details.ac>summary::-webkit-details-marker{display:none}
+details.ac>summary::before{content:"+";color:var(--gold);width:16px;font:500 22px/1 var(--sans)}
+details.ac[open]>summary::before{content:"\2212"}
+details.ac>summary small{margin-left:auto;font:13px var(--sans);color:var(--dim)}
+details.ac[open]>summary{border-bottom:1px solid var(--line)}
+details.ac .in{padding:20px}
+details.ac .in>p{font-size:15.5px;line-height:1.95;color:var(--text);max-width:720px}
+details.ac .pic{max-width:560px}
+details.ac .dl{border-top:0}
+.fc{display:grid;grid-template-columns:minmax(200px,300px) 1fr;gap:28px;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:24px;margin-bottom:18px}
+.fc .flag{flex:none;width:100%}
+.fc h3{font:700 26px var(--serif);color:var(--title)}
+.fc h3 small{font:13px var(--sans);color:var(--mute);margin-left:6px}
+.fc p{font-size:15.5px;line-height:1.9;margin:8px 0 16px;color:#b8ad99}
+.fm{display:flex;flex-wrap:wrap;gap:8px}
+.fm button{display:inline-flex;align-items:center;gap:9px;background:none;border:1px solid var(--line);color:var(--text);padding:7px 15px;border-radius:99px;font:inherit;font-size:14px;cursor:pointer}
+.fm button:hover{border-color:var(--c)}
+.fm i{width:9px;height:9px;transform:rotate(45deg);background:var(--c);border:1px solid var(--gold)}
+@media(max-width:640px){.fc{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div id="splash" role="dialog" aria-label="노르테이아 아카데미 입장"><div class="sg"></div><div class="logo" data-t="title">노르테이아 아카데미</div><div class="en">NORTEIA ACADEMY</div><button id="enter">입장</button></div>
-<nav><b>노르테이아</b><a href="#world" data-t="world">세계관</a><a href="#gate" data-t="gate">게이트</a><a href="#faculty" data-t="faculty">12학부</a><a href="#chars" data-t="chars">캐릭터</a><a href="#magic" data-t="magic">마법</a><a href="#campus" data-t="campus">캠퍼스</a><a href="#sched" data-t="sched">연간 일정</a><a href="#nations" data-t="nations">나라</a><select id="lang" aria-label="언어"><option value="ko">한국어</option><option value="ja">日本語</option><option value="en">English</option><option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option><option value="es">Español</option></select></nav>
+<nav><b>노르테이아</b><a href="#world" data-t="world">세계관</a><a href="#gate" data-t="gate">게이트</a><a href="#faculty" data-t="faculty">12학부</a><a href="#factions" data-t="factions">파벌</a><a href="#magic" data-t="magic">마법</a><a href="#campus" data-t="campus">캠퍼스</a><a href="#sched" data-t="sched">연간 일정</a><a href="#nations" data-t="nations">나라</a><a href="#chars" data-t="chars">캐릭터</a><select id="lang" aria-label="언어"><option value="ko">한국어</option><option value="ja">日本語</option><option value="en">English</option><option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option><option value="es">Español</option></select></nav>
 
 <header>
 <p class="s">NORTEIA ACADEMY</p>
@@ -174,12 +196,9 @@ h3.sub{font-size:19px;margin:52px 0 18px;padding-left:12px;border-left:3px solid
 
 <section id="world">
 <h2 data-t="world">세계관</h2>
-<p class="lead">검과 마법이 발달한 중세풍 판타지입니다. 아카데미의 기본 규칙과 제복을 정리했습니다.</p>
+<p class="lead">검과 마법이 발달한 중세풍 판타지입니다. 아카데미의 기본 규칙을 정리했습니다.</p>
 <div id="wpic"></div>
 <div class="grid" id="wgrid"></div>
-<h3 class="sub">제복</h3>
-<p class="lead" id="ulead" style="margin-bottom:16px"></p>
-<div class="grid ug" id="ugrid"></div>
 </section>
 
 <section id="gate">
@@ -195,8 +214,12 @@ h3.sub{font-size:19px;margin:52px 0 18px;padding-left:12px;border-left:3px solid
 <div class="chips" id="chips"></div>
 <div class="row" id="row"></div>
 <div id="detail" aria-live="polite"></div>
-<p class="lead" id="flead" style="margin:28px 0 14px"></p>
-<div class="grid" id="fgrid"></div>
+</section>
+
+<section id="factions">
+<h2 data-t="factions">파벌</h2>
+<p class="lead" id="flead"></p>
+<div id="fcs"></div>
 </section>
 
 <section id="fpage" hidden>
@@ -206,12 +229,7 @@ h3.sub{font-size:19px;margin:52px 0 18px;padding-left:12px;border-left:3px solid
 <h3 class="sub" id="fh2">학생</h3><div class="cg" id="fps"></div>
 </section>
 
-<section id="chars">
-<h2 data-t="chars">캐릭터</h2>
-<p class="lead">브로치를 눌러 학부별로 켜고 끌 수 있어요. 캐릭터를 누르면 상세 정보가 열립니다.</p>
-<div id="clist"><div class="frow" id="cf"></div><div class="cg" id="cl"></div></div>
-<div id="cd" hidden></div>
-</section>
+
 
 <section id="magic">
 <h2 data-t="magic">마법</h2>
@@ -226,7 +244,7 @@ h3.sub{font-size:19px;margin:52px 0 18px;padding-left:12px;border-left:3px solid
 <section id="campus">
 <h2 data-t="campus">캠퍼스</h2>
 <p class="lead" id="cplead"></p>
-<div class="grid" id="fac"></div>
+<div id="fac"></div>
 </section>
 
 <section id="sched">
@@ -242,8 +260,13 @@ h3.sub{font-size:19px;margin:52px 0 18px;padding-left:12px;border-left:3px solid
 <h2 data-t="nations">나라</h2>
 <p class="lead">노르테이아를 둘러싼 다섯 나라가 아카데미를 함께 운영합니다.</p>
 <div class="grid" id="nat"></div>
-<h3 class="sub">이름 표기</h3>
-<div class="grid" id="naming"></div>
+</section>
+
+<section id="chars">
+<h2 data-t="chars">캐릭터</h2>
+<p class="lead">브로치를 눌러 학부별로 켜고 끌 수 있어요. 캐릭터를 누르면 상세 정보가 열립니다.</p>
+<div id="clist"><div class="frow" id="cf"></div><div class="cg" id="cl"></div></div>
+<div id="cd" hidden></div>
 </section>
 
 <footer>노르테이아 아카데미 세계관 초안 · 내용은 계속 바뀔 수 있습니다</footer>
@@ -282,15 +305,13 @@ const pbox=(a,c)=>a.map(x=>`<div class="box cp">${pic(x[2],c)}<div class="tx"><h
 const dl=a=>`<div class="dl">${a.map(x=>`<div><div class="k">${x[0]}</div><div class="v">${x[1]}</div></div>`).join('')}</div>`;
 const paras=(t,cls)=>t.split(/\n\s*\n/).map((p,k)=>`<p${k||!cls?"":' class="'+cls+'"'}>${p.trim()}</p>`).join("");
 
-// ── 세계관 · 제복
+// ── 세계관
 $('wpic').innerHTML=pic(typeof WORLD_IMG!=='undefined'?WORLD_IMG:'','wide');
 $('wgrid').innerHTML=box(WORLD);
-$('ulead').textContent=UNIFORM_LEAD;
-$('ugrid').innerHTML=pbox(UNIFORM,'r34');
 
 // ── 게이트
 $('grades').innerHTML=GATE_GRADES.map(g=>`<div class="gr"><b>${g[0]}</b><span>공훈 ${g[1]}</span></div>`).join('');
-$('gbody').innerHTML=GATE.map(g=>`<h3 class="sub">${g.h}</h3>${pic(g.img,'wide')}${dl(g.b)}`).join('');
+$('gbody').innerHTML=GATE.map(g=>`<details class="ac"><summary>${g.h}<small>${g.b.length}항목</small></summary><div class="in">${pic(g.img,'wide')}${dl(g.b)}</div></details>`).join('');
 
 // ── 학부 브로치
 const gem=(i,cls)=>`<button class="gem ${i==12?'core ':''}${cls||''}" style="--c:${F[i][2]}" data-i="${i}" aria-label="${F[i][0]}"></button>`;
@@ -336,8 +357,8 @@ function pick(i){
 
 // ── 파벌 (깃발 칸)
 $('flead').textContent=FACTION_LEAD;
-$('fgrid').innerHTML=FACTIONS.map(x=>{const m=F.slice(0,12).filter(f=>f[4]==x.n).map(f=>f[0]).join(" · ");
- return `<div class="box nb"><div class="flag">깃발${cimg(x.flag)}</div><div><h3>${x.n} · ${F.slice(0,12).filter(f=>f[4]==x.n).length}학부</h3><p>${x.t}</p><p class="mem"><b>소속 학부</b> ${m}</p></div></div>`}).join('');
+$('fcs').innerHTML=FACTIONS.map(x=>{const ix=F.slice(0,12).map((f,i)=>i).filter(i=>F[i][4]==x.n);
+ return `<div class="fc"><div class="flag">깃발${cimg(x.flag)}</div><div><h3>${x.n} <small>${ix.length}학부</small></h3><p>${x.t}</p><div class="fm">${ix.map(i=>`<button onclick="openF(${i})" style="--c:${F[i][2]}"><i></i>${F[i][0]}</button>`).join('')}</div></div></div>`}).join('');
 
 // ── 서클
 $('mpic').innerHTML=pic(typeof MAGIC_IMG!=='undefined'?MAGIC_IMG:'','wide');
@@ -350,11 +371,10 @@ $('mnotes').innerHTML=box(MAGIC_NOTES);
 
 // ── 캠퍼스
 $('cplead').textContent=CAMPUS_LEAD;
-$('fac').innerHTML=pbox(CAMPUS,'r32');
+$('fac').innerHTML=CAMPUS.map(x=>`<details class="ac"><summary>${x[0]}</summary><div class="in">${pic(x[2],'r32')}<p>${x[1]}</p></div></details>`).join('');
 
 // ── 나라
-$('nat').innerHTML=NATIONS.map(x=>`<div class="box nb"><div class="flag">국기${cimg(x[1])}</div><div><h3>${x[0]}</h3><p>${x[2]}</p>${x[3]?`<p class="mem"><b>귀족 이름 표기</b> 이름 ${x[3]} 성</p>`:""}</div></div>`).join('');
-$('naming').innerHTML=box(NAMING);
+$('nat').innerHTML=NATIONS.map(x=>`<div class="box nb"><div class="flag">국기${cimg(x[1])}</div><div><h3>${x[0]}</h3><p>${x[2]}</p></div></div>`).join('');
 
 // ── 캐릭터 명단 (content.js 의 ROSTER)
 const CH=[];
@@ -412,12 +432,12 @@ document.addEventListener('click',e=>{
 pick(0);
 
 const T={
-ko:{title:"노르테이아 아카데미",world:"세계관",gate:"게이트",faculty:"12학부",magic:"마법",chars:"캐릭터",campus:"캠퍼스",sched:"연간 일정",nations:"나라"},
-ja:{title:"ノルテイア・アカデミー",world:"世界観",gate:"ゲート",faculty:"12学部",magic:"魔法",chars:"キャラクター",campus:"キャンパス",sched:"年間スケジュール",nations:"国家"},
-en:{title:"Norteia Academy",world:"World",gate:"Gates",faculty:"12 Faculties",magic:"Magic",chars:"Characters",campus:"Campus",sched:"Annual Schedule",nations:"Nations"},
-"zh-CN":{title:"诺尔泰亚学院",world:"世界观",gate:"传送门",faculty:"十二学部",magic:"魔法",chars:"角色",campus:"校园",sched:"年度日程",nations:"国家"},
-"zh-TW":{title:"諾爾泰亞學院",world:"世界觀",gate:"傳送門",faculty:"十二學部",magic:"魔法",chars:"角色",campus:"校園",sched:"年度日程",nations:"國家"},
-es:{title:"Academia de Norteia",world:"Mundo",gate:"Portales",faculty:"12 facultades",magic:"Magia",chars:"Personajes",campus:"Campus",sched:"Calendario anual",nations:"Naciones"}};
+ko:{title:"노르테이아 아카데미",world:"세계관",gate:"게이트",faculty:"12학부",magic:"마법",chars:"캐릭터",campus:"캠퍼스",sched:"연간 일정",nations:"나라",factions:"파벌"},
+ja:{title:"ノルテイア・アカデミー",world:"世界観",gate:"ゲート",faculty:"12学部",magic:"魔法",chars:"キャラクター",campus:"キャンパス",sched:"年間スケジュール",nations:"国家",factions:"派閥"},
+en:{title:"Norteia Academy",world:"World",gate:"Gates",faculty:"12 Faculties",magic:"Magic",chars:"Characters",campus:"Campus",sched:"Annual Schedule",nations:"Nations",factions:"Factions"},
+"zh-CN":{title:"诺尔泰亚学院",world:"世界观",gate:"传送门",faculty:"十二学部",magic:"魔法",chars:"角色",campus:"校园",sched:"年度日程",nations:"国家",factions:"派系"},
+"zh-TW":{title:"諾爾泰亞學院",world:"世界觀",gate:"傳送門",faculty:"十二學部",magic:"魔法",chars:"角色",campus:"校園",sched:"年度日程",nations:"國家",factions:"派系"},
+es:{title:"Academia de Norteia",world:"Mundo",gate:"Portales",faculty:"12 facultades",magic:"Magia",chars:"Personajes",campus:"Campus",sched:"Calendario anual",nations:"Naciones",factions:"Facciones"}};
 function setLang(l){const d=T[l]||T.ko;document.querySelectorAll('[data-t]').forEach(e=>e.textContent=d[e.dataset.t]);document.documentElement.lang=l;document.title=d.title;try{localStorage.setItem('lang',l)}catch(e){}}
 $('lang').onchange=e=>setLang(e.target.value);
 try{const l=localStorage.getItem('lang');if(l&&T[l]){$('lang').value=l;setLang(l)}}catch(e){}
