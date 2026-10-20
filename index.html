@@ -238,7 +238,6 @@ details.ac .dl{border-top:0}
 <ul class="circ" id="circ"></ul>
 <p class="lead" id="mlead" style="margin:36px 0 16px"></p>
 <div class="grid" id="schools"></div>
-<div class="grid" id="mnotes" style="margin-top:14px"></div>
 </section>
 
 <section id="campus">
@@ -367,7 +366,6 @@ $('circ').innerHTML=CIRCLES.map(c=>`<li><b>${c[0]}</b><div><em>${c[1]}</em> <spa
 const stage=n=>CIRCLES[Math.max(0,Math.min(CIRCLES.length-1,Math.ceil(n/2)-1))];
 $('mlead').textContent=MAGIC_LEAD;
 $('schools').innerHTML=box(SCHOOLS);
-$('mnotes').innerHTML=box(MAGIC_NOTES);
 
 // ── 캠퍼스
 $('cplead').textContent=CAMPUS_LEAD;
