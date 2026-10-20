@@ -133,6 +133,32 @@ h3.sub{font:700 17px var(--serif);color:var(--title);margin:28px 0 14px}
 .err{margin:16px;padding:14px 18px;border:1px solid #b53a3a;background:#1b1010;color:#e8c8c8;border-radius:4px;font-size:14px;line-height:1.7}
 .fl{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 @media(max-width:560px){.circ li{grid-template-columns:1fr}}
+
+/* 읽기 편하게: 글자 크기·대비·여백 */
+.lead{color:#a89c88;font-size:15.5px;line-height:1.9;max-width:720px}
+.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.box{padding:20px 22px}
+.box h3{font-size:15.5px;margin-bottom:10px}
+.box p{font-size:15px;line-height:1.95;color:#b8ad99}
+h3.sub{font-size:19px;margin:52px 0 18px;padding-left:12px;border-left:3px solid var(--gold)}
+.circ li{font-size:15.5px;line-height:1.9;padding:16px 0}
+.circ span{color:#b0a592}
+.dl{border-top:1px solid var(--line)}
+.dl>div{display:grid;grid-template-columns:190px 1fr;gap:6px 28px;padding:18px 4px;border-bottom:1px solid var(--line)}
+.dl .k{font:700 15.5px/1.7 var(--serif);color:var(--gold)}
+.dl .v{font-size:15.5px;line-height:1.95;color:var(--text);max-width:720px}
+.pic{margin:0 0 26px;border:1px solid var(--line);background:var(--panel);overflow:hidden;border-radius:4px}
+.pic img{display:block;width:100%;height:auto}
+.pic.wide img{aspect-ratio:21/9;object-fit:cover}
+.pic.empty{display:none}
+.box.cp{padding:0;overflow:hidden}
+.box.cp .tx{padding:18px 22px 22px}
+.box.cp .pic{margin:0;border:0;border-radius:0;border-bottom:1px solid var(--line)}
+.box.cp .pic img{object-fit:cover;object-position:center top}
+.box.cp .r32 img{aspect-ratio:3/2}
+.box.cp .r34 img{aspect-ratio:3/4}
+.ug{grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))}
+@media(max-width:640px){.dl>div{grid-template-columns:1fr;gap:4px}.pic.wide img{aspect-ratio:16/9}}
 </style>
 </head>
 <body>
@@ -149,10 +175,11 @@ h3.sub{font:700 17px var(--serif);color:var(--title);margin:28px 0 14px}
 <section id="world">
 <h2 data-t="world">세계관</h2>
 <p class="lead">검과 마법이 발달한 중세풍 판타지입니다. 아카데미의 기본 규칙과 제복을 정리했습니다.</p>
+<div id="wpic"></div>
 <div class="grid" id="wgrid"></div>
 <h3 class="sub">제복</h3>
 <p class="lead" id="ulead" style="margin-bottom:16px"></p>
-<div class="grid" id="ugrid"></div>
+<div class="grid ug" id="ugrid"></div>
 </section>
 
 <section id="gate">
@@ -189,6 +216,7 @@ h3.sub{font:700 17px var(--serif);color:var(--title);margin:28px 0 14px}
 <section id="magic">
 <h2 data-t="magic">마법</h2>
 <p class="lead" id="clead"></p>
+<div id="mpic"></div>
 <ul class="circ" id="circ"></ul>
 <p class="lead" id="mlead" style="margin:36px 0 16px"></p>
 <div class="grid" id="schools"></div>
@@ -245,16 +273,24 @@ const ORD=[0,1,2,3,4,5,12,6,7,8,9,10,11];
 const ID=["marche","rossier","varche","tonica","bronte","castel","erva","levant","volter","bellois","kardel","orden","office"];
 const K=F.map((f,i)=>({n:f[0],c:f[2],id:ID[i]}));
 const box=a=>a.map(x=>`<div class="box"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('');
+// ── 이미지 칸: 파일 이름만 적으면 img/이름.png → jpg → jpeg → webp → gif 순으로 찾습니다
+const cimg=v=>{if(!v)return"";return /^(https?:|\/|img\/)|\.\w{3,5}$/.test(v)?`<img src="${v}" alt="" loading="lazy" decoding="async" onerror="this.remove()">`:`<img src="img/${v}.png" data-b="img/${v}" data-x="0" alt="" loading="lazy" decoding="async" onerror="imgExt(this)">`};
+function imgExt(i){const E=['jpg','jpeg','webp','gif'],n=+i.dataset.x;if(n<E.length){i.dataset.x=n+1;i.src=i.dataset.b+'.'+E[n]}else{const p=i.parentNode;i.remove();if(p&&p.classList.contains('pic'))p.classList.add('empty')}}
+
+const pic=(n,c)=>n?`<div class="pic ${c||''}">${cimg(n)}</div>`:'';
+const pbox=(a,c)=>a.map(x=>`<div class="box cp">${pic(x[2],c)}<div class="tx"><h3>${x[0]}</h3><p>${x[1]}</p></div></div>`).join('');
+const dl=a=>`<div class="dl">${a.map(x=>`<div><div class="k">${x[0]}</div><div class="v">${x[1]}</div></div>`).join('')}</div>`;
 const paras=(t,cls)=>t.split(/\n\s*\n/).map((p,k)=>`<p${k||!cls?"":' class="'+cls+'"'}>${p.trim()}</p>`).join("");
 
 // ── 세계관 · 제복
+$('wpic').innerHTML=pic(typeof WORLD_IMG!=='undefined'?WORLD_IMG:'','wide');
 $('wgrid').innerHTML=box(WORLD);
 $('ulead').textContent=UNIFORM_LEAD;
-$('ugrid').innerHTML=box(UNIFORM);
+$('ugrid').innerHTML=pbox(UNIFORM,'r34');
 
 // ── 게이트
 $('grades').innerHTML=GATE_GRADES.map(g=>`<div class="gr"><b>${g[0]}</b><span>공훈 ${g[1]}</span></div>`).join('');
-$('gbody').innerHTML=GATE.map(g=>`<h3 class="sub">${g.h}</h3><div class="grid">${box(g.b)}</div>`).join('');
+$('gbody').innerHTML=GATE.map(g=>`<h3 class="sub">${g.h}</h3>${pic(g.img,'wide')}${dl(g.b)}`).join('');
 
 // ── 학부 브로치
 const gem=(i,cls)=>`<button class="gem ${i==12?'core ':''}${cls||''}" style="--c:${F[i][2]}" data-i="${i}" aria-label="${F[i][0]}"></button>`;
@@ -298,16 +334,13 @@ function pick(i){
  det.innerHTML=`${ic(i,76)}<div><h3>${f[0]} <small style="font:13px var(--sans);color:var(--mute)">${f[1]}</small></h3><div class="m">${i==12?"행정 기관":f[4]+" · "+f[5]+" 중심"} · 상징 ${f[3]}</div>${f[7]?`<p class="maj"><b>전공 :</b> ${f[7]}</p>`:""}<p>${f[6]}</p><div class="more"><button class="go" onclick="openF(${i})">자세히 보기</button></div></div>`;
 }
 
-// ── 이미지 칸: 파일 이름만 적으면 img/이름.png → jpg → jpeg → webp → gif 순으로 찾습니다
-const cimg=v=>{if(!v)return"";return /^(https?:|\/|img\/)|\.\w{3,5}$/.test(v)?`<img src="${v}" alt="" onerror="this.remove()">`:`<img src="img/${v}.png" data-b="img/${v}" data-x="0" alt="" onerror="imgExt(this)">`};
-function imgExt(i){const E=['jpg','jpeg','webp','gif'],n=+i.dataset.x;if(n<E.length){i.dataset.x=n+1;i.src=i.dataset.b+'.'+E[n]}else i.remove()}
-
 // ── 파벌 (깃발 칸)
 $('flead').textContent=FACTION_LEAD;
 $('fgrid').innerHTML=FACTIONS.map(x=>{const m=F.slice(0,12).filter(f=>f[4]==x.n).map(f=>f[0]).join(" · ");
  return `<div class="box nb"><div class="flag">깃발${cimg(x.flag)}</div><div><h3>${x.n} · ${F.slice(0,12).filter(f=>f[4]==x.n).length}학부</h3><p>${x.t}</p><p class="mem"><b>소속 학부</b> ${m}</p></div></div>`}).join('');
 
 // ── 서클
+$('mpic').innerHTML=pic(typeof MAGIC_IMG!=='undefined'?MAGIC_IMG:'','wide');
 $('clead').textContent=CIRCLE_LEAD;
 $('circ').innerHTML=CIRCLES.map(c=>`<li><b>${c[0]}</b><div><em>${c[1]}</em> <span>${c[2]}</span><br><span>${c[3]}</span></div></li>`).join('');
 const stage=n=>CIRCLES[Math.max(0,Math.min(CIRCLES.length-1,Math.ceil(n/2)-1))];
@@ -317,7 +350,7 @@ $('mnotes').innerHTML=box(MAGIC_NOTES);
 
 // ── 캠퍼스
 $('cplead').textContent=CAMPUS_LEAD;
-$('fac').innerHTML=box(CAMPUS);
+$('fac').innerHTML=pbox(CAMPUS,'r32');
 
 // ── 나라
 $('nat').innerHTML=NATIONS.map(x=>`<div class="box nb"><div class="flag">국기${cimg(x[1])}</div><div><h3>${x[0]}</h3><p>${x[2]}</p>${x[3]?`<p class="mem"><b>귀족 이름 표기</b> 이름 ${x[3]} 성</p>`:""}</div></div>`).join('');
@@ -332,6 +365,8 @@ const CH=[];
   n[f]=(n[f]||0)+1;
   CH.push({id:K[f].id+"-"+n[f],f:f,r:p[0],o:p[0]=="교관",n:p[1],s:p[1].split(/\s+/)[0],nat:p[2],noble:p[3],race:p[4],g:p[5],a:p[6],cls:p[7],sch:p[8],cir:+p[9],pers:p[10],img:p[11]||""});
  })})();
+// 순서: 교무청 교직원 → 마르셰 → 로시에 … 오르덴, 각 학부는 교관이 맨 앞
+CH.sort((a,b)=>(a.f==12?-1:a.f)-(b.f==12?-1:b.f)||(b.o-a.o));
 const sq=c=>`<div class="sq" style="--c:${K[c.f].c}"><div class="ph">${ic(c.f,60,dim(K[c.f].c))}</div>${cimg(c.img)}</div>`;
 const card=c=>`<button class="cc" data-id="${c.id}">${sq(c)}<span>${c.s}</span></button>`;
 const on=new Set(K.map((_,i)=>i));
