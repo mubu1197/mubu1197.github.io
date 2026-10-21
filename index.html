@@ -195,6 +195,7 @@ details.ac .dl{border-top:0}
 .sk .pic img{width:100%;aspect-ratio:1;object-fit:cover}
 @media(max-width:640px){.fi li{grid-template-columns:1fr}}
 .cap{font-size:13px;color:var(--dim);letter-spacing:.08em;margin:0 0 8px}
+.motto{font:500 clamp(19px,2.6vw,25px)/1.6 var(--serif);color:#d9cdb4;margin:0 0 26px;padding:4px 0 4px 16px;border-left:2px solid var(--gold);max-width:680px;letter-spacing:.01em}
 </style>
 </head>
 <body>
@@ -419,7 +420,7 @@ function openC(id){const c=CH.find(x=>x.id==id);$('clist').hidden=true;$('cd').h
 // ── 학부 상세 페이지
 function openF(i){const f=F[i],ls=h=>h||'<p class="lead">아직 등록되지 않았어요.</p>';
  $('fpage').hidden=false;
- $('fpb').innerHTML=ic(i,200)+`<div><h2>${f[0]} <small>${f[1]}</small></h2><div style="font-size:13px;color:var(--gold);margin:6px 0 ${f[7]?"6px":"18px"}">${i==12?"행정 기관":f[4]+" · "+f[5]+" 중심"} · 상징 ${f[3]}</div>${f[7]?`<div class="maj" style="margin-bottom:18px"><b>전공 :</b> ${f[7]}</div>`:""}<div class="body" style="--c:${f[2]}">${paras(LONG[ID[i]]||f[6],"drop")}</div></div>`;
+ $('fpb').innerHTML=ic(i,200)+`<div><h2>${f[0]} <small>${f[1]}</small></h2><div style="font-size:13px;color:var(--gold);margin:6px 0 ${f[7]?"6px":"18px"}">${i==12?"행정 기관":f[4]+" · "+f[5]+" 중심"} · 상징 ${f[3]}</div>${f[7]?`<div class="maj" style="margin-bottom:18px"><b>전공 :</b> ${f[7]}</div>`:""}${typeof MOTTO!=="undefined"&&MOTTO[ID[i]]?`<div class="motto">${MOTTO[ID[i]]}</div>`:""}<div class="body" style="--c:${f[2]}">${paras(LONG[ID[i]]||f[6],"drop")}</div></div>`;
  const hs=[$('fh1'),$('fh2')];
  if(i==12){hs[0].textContent="교직원";hs[1].textContent="교관 (12학부)";
   $('fpi').innerHTML=ls(CH.filter(c=>c.f==12).map(card).join(''));
