@@ -181,6 +181,19 @@ details.ac .dl{border-top:0}
 .fm button:hover{border-color:var(--c)}
 .fm i{width:9px;height:9px;transform:rotate(45deg);background:var(--c);border:1px solid var(--gold)}
 @media(max-width:640px){.fc{grid-template-columns:1fr}}
+
+.fl2{margin:20px 0 6px;font:700 14px var(--serif);color:var(--gold);letter-spacing:.05em}
+.fi{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}
+.fi li{display:grid;grid-template-columns:150px 1fr;gap:4px 20px;padding:11px 2px;border-bottom:1px solid var(--line);font-size:15px;line-height:1.8}
+.fi li.nd{grid-template-columns:1fr}
+.fi b{color:var(--title);font-weight:500}
+.fi span{color:#b8ad99}
+#schools{grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr))}
+.sk{display:flex;gap:18px;align-items:flex-start}
+.sk>div{min-width:0}
+.sk .pic{flex:0 0 112px;margin:0}
+.sk .pic img{width:100%;aspect-ratio:1;object-fit:cover}
+@media(max-width:640px){.fi li{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -365,11 +378,11 @@ $('clead').textContent=CIRCLE_LEAD;
 $('circ').innerHTML=CIRCLES.map(c=>`<li><b>${c[0]}</b><div><em>${c[1]}</em> <span>${c[2]}</span><br><span>${c[3]}</span></div></li>`).join('');
 const stage=n=>CIRCLES[Math.max(0,Math.min(CIRCLES.length-1,Math.ceil(n/2)-1))];
 $('mlead').textContent=MAGIC_LEAD;
-$('schools').innerHTML=box(SCHOOLS);
+$('schools').innerHTML=SCHOOLS.map(x=>`<div class="box sk">${pic(x[2],'sq1')}<div><h3>${x[0]}</h3><p>${x[1]}</p></div></div>`).join('');
 
 // ── 캠퍼스
 $('cplead').textContent=CAMPUS_LEAD;
-$('fac').innerHTML=CAMPUS.map(x=>`<details class="ac"><summary>${x[0]}</summary><div class="in">${pic(x[2],'r32')}<p>${x[1]}</p></div></details>`).join('');
+$('fac').innerHTML=CAMPUS.map(x=>`<details class="ac"><summary>${x[0]}</summary><div class="in">${pic(x[2],'r32')}<p>${x[1]}</p><div class="fl2">${x[3]}</div><ul class="fi">${x[4].map(i=>`<li${i[1]?'':' class="nd"'}><b>${i[0]}</b>${i[1]?`<span>${i[1]}</span>`:''}</li>`).join('')}</ul></div></details>`).join('');
 
 // ── 나라
 $('nat').innerHTML=NATIONS.map(x=>`<div class="box nb"><div class="flag">국기${cimg(x[1])}</div><div><h3>${x[0]}</h3><p>${x[2]}</p></div></div>`).join('');
