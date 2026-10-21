@@ -218,13 +218,12 @@ details.ac .dl{border-top:0}
 </head>
 <body>
 <div id="splash" role="dialog" aria-label="노르테이아 아카데미 입장"><div class="sg"></div><div class="logo" data-t="title">노르테이아 아카데미</div><div class="en">NORTEIA ACADEMY</div><button id="enter">입장</button></div>
-<nav><b>노르테이아</b><a href="#world" data-t="world">세계관</a><a href="#gate" data-t="gate">게이트</a><a href="#faculty" data-t="faculty">12학부</a><a href="#factions" data-t="factions">파벌</a><a href="#magic" data-t="magic">마법</a><a href="#campus" data-t="campus">캠퍼스</a><a href="#sched" data-t="sched">연간 일정</a><a href="#nations" data-t="nations">나라</a><a href="#chars" data-t="chars">캐릭터</a><select id="lang" aria-label="언어"><option value="ko">한국어</option><option value="ja">日本語</option><option value="en">English</option><option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option><option value="es">Español</option></select></nav>
+<nav><b>노르테이아</b><a href="#world" data-t="world">세계관</a><a href="#gate" data-t="gate">게이트</a><a href="#factions" data-t="factions">파벌</a><a href="#faculty" data-t="faculty">12학부</a><a href="#magic" data-t="magic">마법</a><a href="#campus" data-t="campus">캠퍼스</a><a href="#sched" data-t="sched">연간 일정</a><a href="#nations" data-t="nations">나라</a><a href="#chars" data-t="chars">캐릭터</a><select id="lang" aria-label="언어"><option value="ko">한국어</option><option value="ja">日本語</option><option value="en">English</option><option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option><option value="es">Español</option></select></nav>
 
 <header>
 <p class="s">NORTEIA ACADEMY</p>
 <h1 data-t="title">노르테이아 아카데미</h1>
 <p class="d">대륙 중앙의 중립 도시국가, 여섯 나라가 함께 세운 아카데미.<br>게이트에 맞서는 열두 학부의 이야기를 모았습니다.</p>
-<div class="gems" id="heroGems" aria-label="12학부 브로치"></div>
 </header>
 
 <section id="world">
@@ -242,18 +241,18 @@ details.ac .dl{border-top:0}
 <div id="gbody"></div>
 </section>
 
-<section id="faculty">
-<h2 data-t="faculty">12학부</h2>
-<p class="lead">12학부와, 가운데의 큰 브로치인 교무청. 브로치를 눌러 살펴보세요.</p>
-<div class="chips" id="chips"></div>
-<div class="row" id="row"></div>
-<div id="detail" aria-live="polite"></div>
-</section>
-
 <section id="factions">
 <h2 data-t="factions">파벌</h2>
 <p class="lead" id="flead"></p>
 <div id="fcs"></div>
+</section>
+
+<section id="faculty">
+<h2 data-t="faculty">12학부</h2>
+<p class="lead">12학부와 교무청의 브로치입니다. 눌러서 살펴보세요.</p>
+<div class="chips" id="chips"></div>
+<div class="row" id="row"></div>
+<div id="detail" aria-live="polite"></div>
 </section>
 
 <section id="fpage" hidden>
@@ -351,9 +350,6 @@ $('gbody').innerHTML=GATE.map(g=>`<details class="ac"><summary>${g.h}<small>${g.
 const gem=(i,cls)=>`<button class="gem ${i==12?'core ':''}${cls||''}" style="--c:${F[i][2]}" data-i="${i}" aria-label="${F[i][0]}" title="${F[i][0]}"><span class="gi"><img src="img/${ID[i]}.png" data-k="${ID[i]}" alt="" onload="gnorm(this)" onerror="imgFail(this)"></span></button>`;
 const gemRows=cls=>{const g=i=>gem(i,cls);return `<div class="gln">${g(12)}</div><div class="gln">${[0,1,2,3,4,5].map(g).join('')}</div><div class="gln">${[6,7,8,9,10,11].map(g).join('')}</div>`};
 function gnorm(i){if(i.dataset.n)return;i.dataset.n=1;try{var W=i.naturalWidth,H=i.naturalHeight;if(!W)return;var k=Math.min(1,256/Math.max(W,H)),w=Math.round(W*k),hh=Math.round(H*k),c=document.createElement('canvas');c.width=w;c.height=hh;var x=c.getContext('2d');x.drawImage(i,0,0,w,hh);var d=x.getImageData(0,0,w,hh).data,x0=w,y0=hh,x1=-1,y1=-1;for(var y=0;y<hh;y++)for(var u=0;u<w;u++){var p=(y*w+u)*4;if(d[p+3]>40&&d[p]<225){if(u<x0)x0=u;if(u>x1)x1=u;if(y<y0)y0=y;if(y>y1)y1=y}}if(x1<0)return;var bw=(x1-x0+1)/k,bh=(y1-y0+1)/k,S=192,s=S/Math.max(bw,bh),o=document.createElement('canvas');o.width=o.height=S;var q=o.getContext('2d');q.fillStyle='#fff';q.fillRect(0,0,S,S);q.imageSmoothingQuality='high';q.drawImage(i,x0/k,y0/k,bw,bh,(S-bw*s)/2,(S-bh*s)/2,bw*s,bh*s);i.src=o.toDataURL('image/png')}catch(e){}}
-const hero=$('heroGems');
-hero.innerHTML=gemRows();
-hero.onclick=e=>{const g=e.target.closest('.gem');if(g)openF(+g.dataset.i)};
 const fil=[["전체",()=>1],["계승회",f=>f[4]=="계승회"],["개척회",f=>f[4]=="개척회"],["사교 중심",f=>f[5]=="사교"],["토벌 중심",f=>f[5]=="토벌"],["지식 탐구 중심",f=>f[5]=="지식"],["다중 시도 중심",f=>f[5]=="다중"]];
 const chips=$('chips'),row=$('row'),det=$('detail');
 chips.innerHTML=fil.map((x,i)=>`<button class="chip" aria-pressed="${i==0}" data-k="${i}">${x[0]}</button>`).join('');
@@ -480,7 +476,7 @@ try{const l=localStorage.getItem('lang');if(l&&T[l]){$('lang').value=l;setLang(l
 <div class="dock" id="dock"></div>
 <script>
 (function(){
-var d=document.getElementById('dock'),ids=['world','gate','faculty','factions','magic','campus','sched','nations','chars'];
+var d=document.getElementById('dock'),ids=['world','gate','factions','faculty','magic','campus','sched','nations','chars'];
 function build(){
  var s='<a class="up" title="맨 위로" onclick="window.scrollTo({top:0,behavior:\'smooth\'})"><b>↑</b></a>';
  ids.forEach(function(id){var a=document.querySelector('nav a[href="#'+id+'"]');if(a)s+='<a data-id="'+id+'"><span>'+a.textContent+'</span><i></i></a>'});
