@@ -194,6 +194,7 @@ details.ac .dl{border-top:0}
 .sk .pic{flex:0 0 112px;margin:0}
 .sk .pic img{width:100%;aspect-ratio:1;object-fit:cover}
 @media(max-width:640px){.fi li{grid-template-columns:1fr}}
+.cap{font-size:13px;color:var(--dim);letter-spacing:.08em;margin:0 0 8px}
 </style>
 </head>
 <body>
@@ -209,21 +210,22 @@ details.ac .dl{border-top:0}
 
 <section id="world">
 <h2 data-t="world">세계관</h2>
-<p class="lead">검과 마법이 발달한 중세풍 판타지입니다. 아카데미의 기본 규칙을 정리했습니다.</p>
+<p class="lead">노르테이아 아카데미를 둘러싼<br>세계의 기본 설정입니다.</p>
 <div id="wpic"></div>
 <div class="grid" id="wgrid"></div>
 </section>
 
 <section id="gate">
 <h2 data-t="gate">게이트</h2>
-<p class="lead">차원문 형태로 나타나는 장소이며 등급이 나뉩니다. 토벌은 최고의 명예입니다. 아래 숫자는 등급별 기본 공훈입니다.</p>
+<p class="lead">세계 곳곳에 나타나는 차원문.<br>우두머리를 쓰러뜨리는 토벌은 최고의 명예입니다.</p>
+<div class="cap">등급별 기본 공훈</div>
 <div class="grades" id="grades"></div>
 <div id="gbody"></div>
 </section>
 
 <section id="faculty">
 <h2 data-t="faculty">12학부</h2>
-<p class="lead">학부는 입학할 때 정하며 한 번 정하면 바꿀 수 없습니다. 정당한 사유가 있으면 교무청을 통해 변경할 수 있고, 모든 학부는 토벌에 반드시 참여합니다. 가운데의 큰 브로치는 학원 전체를 운영하는 교무청입니다. 브로치를 눌러 보세요.</p>
+<p class="lead">12학부와, 가운데의 큰 브로치인 교무청.<br>브로치를 눌러 살펴보세요.</p>
 <div class="chips" id="chips"></div>
 <div class="row" id="row"></div>
 <div id="detail" aria-live="polite"></div>
@@ -262,7 +264,7 @@ details.ac .dl{border-top:0}
 <section id="sched">
 <h2 data-t="sched">연간 일정</h2>
 <div id="slist">
-<p class="lead">아카데미의 한 해입니다. 행사를 누르면 자세한 내용이 열립니다.</p>
+<p class="lead">아카데미의 한 해.<br>행사를 누르면 자세한 내용이 열립니다.</p>
 <div class="mg" id="sg"></div>
 </div>
 <div id="evd" hidden></div>
@@ -270,18 +272,18 @@ details.ac .dl{border-top:0}
 
 <section id="nations">
 <h2 data-t="nations">나라</h2>
-<p class="lead">노르테이아 공화국을 포함한 여섯 나라가 아카데미를 함께 후원합니다.</p>
+<p class="lead">노르테이아 공화국을 포함한 여섯 나라가<br>아카데미를 함께 후원합니다.</p>
 <div class="grid" id="nat"></div>
 </section>
 
 <section id="chars">
 <h2 data-t="chars">캐릭터</h2>
-<p class="lead">브로치를 눌러 학부별로 켜고 끌 수 있어요. 캐릭터를 누르면 상세 정보가 열립니다.</p>
+<p class="lead">브로치를 눌러 학부별로 보고 숨길 수 있어요.<br>캐릭터를 누르면 상세 정보가 열립니다.</p>
 <div id="clist"><div class="frow" id="cf"></div><div class="cg" id="cl"></div></div>
 <div id="cd" hidden></div>
 </section>
 
-<footer>노르테이아 아카데미 세계관 초안 · 내용은 계속 바뀔 수 있습니다</footer>
+<footer>노르테이아 아카데미 · NORTEIA ACADEMY</footer>
 
 <script>
 (function(){
@@ -312,6 +314,7 @@ const box=a=>a.map(x=>`<div class="box"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).j
 const cimg=v=>{if(!v)return"";return /^(https?:|\/|img\/)|\.\w{3,5}$/.test(v)?`<img src="${v}" alt="" loading="lazy" decoding="async" onerror="this.remove()">`:`<img src="img/${v}.png" data-b="img/${v}" data-x="0" alt="" loading="lazy" decoding="async" onerror="imgExt(this)">`};
 function imgExt(i){const E=['jpg','jpeg','webp','gif'],n=+i.dataset.x;if(n<E.length){i.dataset.x=n+1;i.src=i.dataset.b+'.'+E[n]}else{const p=i.parentNode;i.remove();if(p&&p.classList.contains('pic'))p.classList.add('empty')}}
 
+const br=t=>String(t).replace(/\n/g,'<br>');
 const pic=(n,c)=>n?`<div class="pic ${c||''}">${cimg(n)}</div>`:'';
 const pbox=(a,c)=>a.map(x=>`<div class="box cp">${pic(x[2],c)}<div class="tx"><h3>${x[0]}</h3><p>${x[1]}</p></div></div>`).join('');
 const dl=a=>`<div class="dl">${a.map(x=>`<div><div class="k">${x[0]}</div><div class="v">${x[1]}</div></div>`).join('')}</div>`;
@@ -368,20 +371,20 @@ function pick(i){
 }
 
 // ── 파벌 (깃발 칸)
-$('flead').textContent=FACTION_LEAD;
+$('flead').innerHTML=br(FACTION_LEAD);
 $('fcs').innerHTML=FACTIONS.map(x=>{const ix=F.slice(0,12).map((f,i)=>i).filter(i=>F[i][4]==x.n);
  return `<div class="fc"><div class="flag">깃발${cimg(x.flag)}</div><div><h3>${x.n} <small>${ix.length}학부</small></h3><p>${x.t}</p><div class="fm">${ix.map(i=>`<button onclick="openF(${i})" style="--c:${F[i][2]}"><i></i>${F[i][0]}</button>`).join('')}</div></div></div>`}).join('');
 
 // ── 서클
 $('mpic').innerHTML=pic(typeof MAGIC_IMG!=='undefined'?MAGIC_IMG:'','wide');
-$('clead').textContent=CIRCLE_LEAD;
+$('clead').innerHTML=br(CIRCLE_LEAD);
 $('circ').innerHTML=CIRCLES.map(c=>`<li><b>${c[0]}</b><div><em>${c[1]}</em> <span>${c[2]}</span><br><span>${c[3]}</span></div></li>`).join('');
 const stage=n=>CIRCLES[Math.max(0,Math.min(CIRCLES.length-1,Math.ceil(n/2)-1))];
-$('mlead').textContent=MAGIC_LEAD;
+$('mlead').innerHTML=br(MAGIC_LEAD);
 $('schools').innerHTML=SCHOOLS.map(x=>`<div class="box sk">${pic(x[2],'sq1')}<div><h3>${x[0]}</h3><p>${x[1]}</p></div></div>`).join('');
 
 // ── 캠퍼스
-$('cplead').textContent=CAMPUS_LEAD;
+$('cplead').innerHTML=br(CAMPUS_LEAD);
 $('fac').innerHTML=CAMPUS.map(x=>`<details class="ac"><summary>${x[0]}</summary><div class="in">${pic(x[2],'r32')}<p>${x[1]}</p><div class="fl2">${x[3]}</div><ul class="fi">${x[4].map(i=>`<li${i[1]?'':' class="nd"'}><b>${i[0]}</b>${i[1]?`<span>${i[1]}</span>`:''}</li>`).join('')}</ul></div></details>`).join('');
 
 // ── 나라
