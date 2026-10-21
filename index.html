@@ -196,6 +196,15 @@ details.ac .dl{border-top:0}
 @media(max-width:640px){.fi li{grid-template-columns:1fr}}
 .cap{font-size:13px;color:var(--dim);letter-spacing:.08em;margin:0 0 8px}
 .motto{font:500 clamp(19px,2.6vw,25px)/1.6 var(--serif);color:#d9cdb4;margin:0 0 26px;padding:4px 0 4px 16px;border-left:2px solid var(--gold);max-width:680px;letter-spacing:.01em}
+.dock{position:fixed;right:14px;top:50%;transform:translateY(-50%);z-index:6;display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.dock a{display:flex;align-items:center;gap:9px;padding:6px 4px;font-size:12px;color:var(--mute);cursor:pointer}
+.dock a span{opacity:0;transform:translateX(6px);transition:.15s;background:rgba(13,12,15,.92);border:1px solid var(--line);padding:3px 9px;border-radius:4px;white-space:nowrap;pointer-events:none}
+.dock a i{width:8px;height:8px;border-radius:50%;border:1px solid var(--gold);background:transparent;transition:.15s}
+.dock a:hover span,.dock a.on span{opacity:1;transform:none}
+.dock a:hover i,.dock a.on i{background:var(--gold)}
+.dock a.up{margin-bottom:6px;color:var(--gold);font-size:13px}
+.dock a.up i{display:none}.dock a.up b{width:26px;height:26px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;background:rgba(13,12,15,.92);font-weight:400}
+@media(max-width:700px){.dock a:not(.up){display:none}.dock{top:auto;bottom:16px;right:12px;transform:none}.dock a.up{margin:0}}
 </style>
 </head>
 <body>
@@ -456,6 +465,25 @@ es:{title:"Academia de Norteia",world:"Mundo",gate:"Portales",faculty:"12 facult
 function setLang(l){const d=T[l]||T.ko;document.querySelectorAll('[data-t]').forEach(e=>e.textContent=d[e.dataset.t]);document.documentElement.lang=l;document.title=d.title;try{localStorage.setItem('lang',l)}catch(e){}}
 $('lang').onchange=e=>setLang(e.target.value);
 try{const l=localStorage.getItem('lang');if(l&&T[l]){$('lang').value=l;setLang(l)}}catch(e){}
+</script>
+<div class="dock" id="dock"></div>
+<script>
+(function(){
+var d=document.getElementById('dock'),ids=['world','gate','faculty','factions','magic','campus','sched','nations','chars'];
+function build(){
+ var s='<a class="up" title="맨 위로" onclick="window.scrollTo({top:0,behavior:\'smooth\'})"><b>↑</b></a>';
+ ids.forEach(function(id){var a=document.querySelector('nav a[href="#'+id+'"]');if(a)s+='<a data-id="'+id+'"><span>'+a.textContent+'</span><i></i></a>'});
+ d.innerHTML=s}
+build();
+document.getElementById('lang').addEventListener('change',function(){setTimeout(build,0)});
+d.addEventListener('click',function(e){var a=e.target.closest('a[data-id]');if(!a)return;
+ var fp=document.getElementById('fpage');if(fp)fp.hidden=true;
+ var el=document.getElementById(a.dataset.id);if(el)el.scrollIntoView({behavior:'smooth'})});
+function spy(){var cur='',y=window.innerHeight*0.35;
+ ids.forEach(function(id){var el=document.getElementById(id);if(el&&!el.hidden&&el.getBoundingClientRect().top<=y)cur=id});
+ d.querySelectorAll('a[data-id]').forEach(function(a){a.classList.toggle('on',a.dataset.id===cur)})}
+window.addEventListener('scroll',spy,{passive:true});spy();
+})();
 </script>
 </body>
 </html>
