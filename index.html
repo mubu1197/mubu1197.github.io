@@ -21,11 +21,13 @@ header p.s{font-size:13px;color:var(--gold);letter-spacing:.15em}
 h1{font:700 clamp(38px,9vw,92px)/1.1 var(--serif);color:var(--title);margin:14px 0 18px;letter-spacing:.02em}
 header p.d{max-width:560px;color:var(--mute);font-size:16px}
 .gems{display:flex;flex-wrap:wrap;gap:clamp(14px,3vw,26px);margin-top:48px;padding-left:6px}
-.gem{position:relative;display:grid;place-items:center;width:clamp(46px,7vw,58px);aspect-ratio:1;padding:0;border:2px solid var(--gold);border-radius:12px;background:#0d0c0f;box-shadow:0 0 14px color-mix(in srgb,var(--c) 70%,transparent),inset 0 0 0 2px #0d0c0f,inset 0 0 0 3px color-mix(in srgb,var(--c) 55%,transparent);cursor:pointer;transition:transform .25s,box-shadow .25s}
-.gem:hover{transform:translateY(-4px) scale(1.08);box-shadow:0 6px 20px var(--c),inset 0 0 0 2px #0d0c0f,inset 0 0 0 3px var(--c)}
-.gem .gi{position:relative;height:74%;aspect-ratio:1686/2108;background:var(--c);isolation:isolate;overflow:hidden}
-.gem .gi img{display:block;width:100%;height:100%;object-fit:cover;filter:invert(1);mix-blend-mode:multiply}
-.gem .gi.x{aspect-ratio:1;height:34%;border-radius:50%}.gem .gi.x img{display:none}
+.gem{position:relative;display:grid;place-items:center;width:clamp(46px,7vw,58px);aspect-ratio:1;padding:0;border:2px solid var(--gold);border-radius:12px;background:#000;box-shadow:0 0 14px color-mix(in srgb,var(--c) 70%,transparent),inset 0 0 0 2px #000,inset 0 0 0 3px color-mix(in srgb,var(--c) 55%,transparent);cursor:pointer;transition:transform .25s,box-shadow .25s;-webkit-tap-highlight-color:transparent}
+.gem:hover{transform:translateY(-4px) scale(1.08);box-shadow:0 6px 20px var(--c),inset 0 0 0 2px #000,inset 0 0 0 3px var(--c)}
+.gem .gi{position:relative;display:grid;place-items:center;width:100%;height:100%;padding:17%;box-sizing:border-box;background:#000;isolation:isolate;overflow:hidden;border-radius:10px}
+.gem .gi img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;filter:invert(1)}
+.gem .gi::after{content:"";position:absolute;inset:0;background:var(--c);mix-blend-mode:multiply;pointer-events:none}
+.gem .gi.x{padding:0}.gem .gi.x::after{display:none}.gem .gi.x img{display:none}
+.gem .gi.x::before{content:"";width:34%;height:34%;border-radius:50%;background:var(--c)}
 .gem.core{border-color:#e8e4dc}
 section{padding:72px clamp(16px,6vw,96px);border-top:1px solid var(--line);max-width:1200px;margin:auto}
 h2{font:700 clamp(24px,4vw,34px) var(--serif);color:var(--title);margin-bottom:8px}
@@ -40,7 +42,7 @@ h2{font:700 clamp(24px,4vw,34px) var(--serif);color:var(--title);margin-bottom:8
 .row{display:flex;flex-wrap:wrap;gap:22px;margin-bottom:28px;padding:6px}
 .row .gem{transition:transform .25s,opacity .25s}
 .row .gem.off{opacity:.15;pointer-events:none}
-.row .gem.on{transform:scale(1.12);border-color:#e8e4dc;box-shadow:0 0 22px var(--c),inset 0 0 0 2px #0d0c0f,inset 0 0 0 3px var(--c)}
+.row .gem.on{transform:scale(1.12);border-color:#e8e4dc;box-shadow:0 0 22px var(--c),inset 0 0 0 2px #000,inset 0 0 0 3px var(--c)}
 #detail{display:flex;gap:24px;align-items:center;border:1px solid var(--line);background:var(--panel);padding:clamp(18px,4vw,32px);border-radius:6px}
 #detail .big{flex-shrink:0;width:44px;height:44px;margin:0 14px;border:3px solid var(--gold);border-radius:5px;transform:rotate(45deg);background:var(--c);box-shadow:0 0 22px var(--c),inset 0 0 10px rgba(255,255,255,.3)}
 #detail h3{font:700 26px var(--serif);color:var(--title)}
@@ -111,8 +113,6 @@ h3.sub{font:700 17px var(--serif);color:var(--title);margin:28px 0 14px}
 @media(max-width:420px){.nb{flex-direction:column}.flag{flex-basis:auto;width:132px}}
 .body{max-width:680px}
 .gems,.row,.frow{align-items:center}
-.gem.core{width:30px;height:30px;margin:0 10px;border-color:var(--title);position:relative}
-.gem.core::after{content:"";position:absolute;inset:-9px;border:1px solid var(--gold);border-radius:6px;opacity:.75}
 .body p{line-height:2;font-size:15.5px;margin:0 0 1.3em;max-width:680px}
 .circ li{grid-template-columns:104px 1fr}
 .grades{display:grid;grid-template-columns:repeat(auto-fit,minmax(74px,1fr));gap:8px;margin:0 0 8px}
@@ -209,10 +209,11 @@ details.ac .dl{border-top:0}
 .dock a.up{margin-bottom:6px;color:var(--gold);font-size:13px}
 .dock a.up i{display:none}.dock a.up b{width:26px;height:26px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;background:rgba(13,12,15,.92);font-weight:400}
 @media(max-width:700px){.dock a:not(.up){display:none}.dock{top:auto;bottom:16px;right:12px;transform:none}.dock a.up{margin:0}}
-.bn{position:relative;width:100%;max-width:1100px;margin:-30px auto 56px}
-.bt{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:2px 8%}
+.bnw{background:var(--bg);padding:22px clamp(16px,6vw,96px) 6px;border-bottom:1px solid var(--line)}
+.bn{position:relative;width:100%;max-width:1200px;margin:0 auto}
+.bt{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:2px 0 14px;scroll-padding:0}
 .bt::-webkit-scrollbar{display:none}
-.bs{flex:0 0 min(84%,720px);scroll-snap-align:center;position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:150px;padding:22px 28px;border:1px solid var(--line);border-radius:16px;background:rgba(24,22,26,.94);color:var(--text);text-align:left;font:inherit;cursor:pointer;opacity:.55;transition:opacity .3s,border-color .3s}
+.bs{flex:0 0 min(86%,760px);scroll-snap-align:start;position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:160px;padding:22px 28px 46px;border:1px solid var(--line);border-radius:16px;background:var(--panel);color:var(--text);text-align:left;font:inherit;cursor:pointer;opacity:.55;transition:opacity .3s,border-color .3s}
 .bs.on{opacity:1;border-color:#5a4a2c}.bs:hover{border-color:var(--gold)}
 .bs .tg{display:inline-block;padding:4px 12px;border:1px solid #4a4238;border-radius:99px;font-size:12px;color:var(--mute);margin-bottom:12px}
 .bs h3{font:700 clamp(18px,2.6vw,25px)/1.45 var(--serif);color:var(--title)}
@@ -220,16 +221,18 @@ details.ac .dl{border-top:0}
 .bs .bi{margin:0;border:0;background:none;flex:0 0 auto;width:clamp(78px,16vw,120px);aspect-ratio:1;overflow:hidden;border-radius:12px}
 .bs .bi img{display:block;width:100%;height:100%;object-fit:cover}.bs .bi.empty{display:none}
 .ba{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:rgba(13,12,15,.92);color:var(--title);font-size:22px;line-height:1;cursor:pointer}
-.ba:hover{border-color:var(--gold);color:var(--gold)}.ba.l{left:-4px}.ba.r{right:-4px}
-@media(max-width:700px){.ba{display:none}.bs{flex-basis:88%;padding:18px 20px}.bt{padding:2px 6%}.bs .ct{left:20px}}
+.ba:hover{border-color:var(--gold);color:var(--gold)}.ba.l{left:-18px}.ba.r{right:-18px}
+@media(max-width:700px){.ba{display:none}.bs{flex-basis:88%;padding:18px 20px 42px}.bs .ct{left:20px}}
 </style>
 </head>
 <body>
 <div id="splash" role="dialog" aria-label="노르테이아 아카데미 입장"><div class="sg"></div><div class="logo" data-t="title">노르테이아 아카데미</div><div class="en">NORTEIA ACADEMY</div><button id="enter">입장</button></div>
 <nav><b>노르테이아</b><a href="#world" data-t="world">세계관</a><a href="#gate" data-t="gate">게이트</a><a href="#faculty" data-t="faculty">12학부</a><a href="#factions" data-t="factions">파벌</a><a href="#magic" data-t="magic">마법</a><a href="#campus" data-t="campus">캠퍼스</a><a href="#sched" data-t="sched">연간 일정</a><a href="#nations" data-t="nations">나라</a><a href="#chars" data-t="chars">캐릭터</a><select id="lang" aria-label="언어"><option value="ko">한국어</option><option value="ja">日本語</option><option value="en">English</option><option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option><option value="es">Español</option></select></nav>
 
-<header>
+<div class="bnw">
 <div class="bn" id="bn" aria-label="바로가기 배너"><div class="bt" id="bnT"></div><button class="ba l" id="bnL" aria-label="이전">‹</button><button class="ba r" id="bnR" aria-label="다음">›</button></div>
+</div>
+<header>
 <p class="s">NORTEIA ACADEMY</p>
 <h1 data-t="title">노르테이아 아카데미</h1>
 <p class="d">대륙 중앙의 중립 도시국가, 여섯 나라가 함께 세운 아카데미.<br>게이트에 맞서는 열두 학부의 이야기를 모았습니다.</p>
@@ -432,7 +435,7 @@ CH.sort((a,b)=>(a.f==12?-1:a.f)-(b.f==12?-1:b.f)||(b.o-a.o));
 const sq=c=>`<div class="sq" style="--c:${K[c.f].c}"><div class="ph">${ic(c.f,60,dim(K[c.f].c))}</div>${cimg(c.img)}</div>`;
 const card=c=>`<button class="cc" data-id="${c.id}">${sq(c)}<span>${c.s}</span></button>`;
 const on=new Set(K.map((_,i)=>i));
-$('cf').innerHTML=ORD.map(i=>{const k=K[i];return `<button class="gem${i==12?' core':''}" style="--c:${k.c}" data-i="${i}" aria-label="${k.n}" title="${k.n}"></button>`}).join('');
+$('cf').innerHTML=ORD.map(i=>{const k=K[i];return gem(i)}).join('');
 const rl=()=>{$('cl').innerHTML=CH.filter(c=>on.has(c.f)||(c.o&&on.has(12))).map(card).join('')};rl();
 $('cf').onclick=e=>{const g=e.target.closest('.gem');if(!g)return;const i=+g.dataset.i;on.has(i)?on.delete(i):on.add(i);g.classList.toggle('off',!on.has(i));rl()};
 const kv=rows=>rows.map(r=>`<div class="kv"><span class="k">${r[0]}</span><span class="v">${r[1]}</span></div>`).join("");
@@ -509,8 +512,8 @@ if(typeof BANNERS==="undefined")return;
 var T=document.getElementById('bnT');if(!T)return;
 T.innerHTML=BANNERS.map(function(b,i){return '<button class="bs" data-g="'+b[2]+'"><div><span class="tg">'+b[0]+'</span><h3>'+b[1].replace(/\n/g,'<br>')+'</h3></div>'+(b[3]?'<div class="pic bi">'+cimg(b[3])+'</div>':'')+'<span class="ct">'+(i+1)+' / '+BANNERS.length+'</span></button>'}).join('');
 var S=[].slice.call(T.children),cur=0,hold=false;
-function mark(){var c=T.scrollLeft+T.clientWidth/2,best=0,bd=1e9;S.forEach(function(s,i){var d=Math.abs(s.offsetLeft+s.offsetWidth/2-c);if(d<bd){bd=d;best=i}});cur=best;S.forEach(function(s,i){s.classList.toggle('on',i===cur)})}
-function go(i){i=(i+S.length)%S.length;var s=S[i];T.scrollTo({left:s.offsetLeft+s.offsetWidth/2-T.clientWidth/2,behavior:'smooth'})}
+function mark(){var c=T.scrollLeft,best=0,bd=1e9;S.forEach(function(s,i){var d=Math.abs(s.offsetLeft-T.offsetLeft-c);if(d<bd){bd=d;best=i}});cur=best;S.forEach(function(s,i){s.classList.toggle('on',i===cur)})}
+function go(i){i=(i+S.length)%S.length;var s=S[i];T.scrollTo({left:s.offsetLeft-T.offsetLeft,behavior:'smooth'})}
 T.addEventListener('scroll',function(){mark()},{passive:true});
 document.getElementById('bnL').onclick=function(){go(cur-1)};
 document.getElementById('bnR').onclick=function(){go(cur+1)};
