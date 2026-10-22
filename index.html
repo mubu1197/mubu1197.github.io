@@ -214,6 +214,14 @@ details.ac .dl{border-top:0}
 .gems{align-self:flex-start;margin-top:48px;padding:0}
 .row,.frow{margin-bottom:28px;padding:6px}
 .gln{display:flex;justify-content:center;gap:var(--gg)}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px;align-items:start}
+.dc{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:18px 20px}
+.dc h4{font:700 19px var(--serif);color:var(--title);margin-bottom:4px}
+.dc>p{font-size:13.5px;color:var(--mute);margin-bottom:8px;line-height:1.7}
+.dc ul{list-style:none;padding:0;margin:8px 0 0}
+.dc li{display:flex;gap:16px;padding:9px 0;border-top:1px solid var(--line);font-size:14.5px;color:var(--text)}
+.dc li b{flex:0 0 108px;font-weight:600;color:var(--gold);font-variant-numeric:tabular-nums;white-space:nowrap}
+.dc li.fr span{color:var(--title)}
 </style>
 </head>
 <body>
@@ -284,6 +292,8 @@ details.ac .dl{border-top:0}
 <div id="slist">
 <p class="lead">아카데미의 한 해. 행사를 누르면 자세한 내용이 열립니다.</p>
 <div class="mg" id="sg"></div>
+<h3 class="sub" id="dh">하루 일과</h3>
+<div class="dgrid" id="dg"></div>
 </div>
 <div id="evd" hidden></div>
 </section>
@@ -446,6 +456,8 @@ function openF(i){const f=F[i],ls=h=>h||'<p class="lead">아직 등록되지 않
   $('fps').innerHTML=ls(CH.filter(c=>c.f==i&&c.r!="교관").map(card).join(''))}
  $('fpage').scrollIntoView()}
 
+// ── 하루 일과
+if(typeof DAILY!=='undefined')$('dg').innerHTML=DAILY.map(d=>`<div class="dc"><h4>${d[0]}</h4>${d[1]?`<p>${d[1]}</p>`:''}<ul>${d[2].map(r=>`<li${/자유/.test(r[1])?' class="fr"':''}><b>${r[0]}</b><span>${r[1]}</span></li>`).join('')}</ul></div>`).join('');
 // ── 연간 일정
 const EV={};EVENTS.forEach(e=>EV[e.id]=e);
 $('sg').innerHTML=MONTHS.map((m,i)=>`<div class="mc"><h3>${i+1}월</h3>${m.map(x=>EV[x[0]]?`<button class="evb" data-e="${x[0]}"><span class="ed">${x[2]}</span><span class="et">${x[1]}</span></button>`:`<div class="evb none"><span class="ed">${x[2]}</span><span class="et">${x[1]}</span></div>`).join('')}</div>`).join('');
