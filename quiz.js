@@ -1,4 +1,4 @@
-/* ═══ 학부 배정 의식 ═══════════════════════════════════════════
+/* ═══ 학부 선택 도우미 ═══════════════════════════════════════════
    질문은 아래 RITUAL 에서 고칩니다.
    선택지 한 줄 = [문장, {학부번호:점수, ...}]
    학부 번호는 content.js 의 FAC 순서입니다.
@@ -36,7 +36,7 @@ var RITUAL=[
  ["연무장. 땀을 흘려야 직성이 풀린다.",{3:2,4:1}],
  ["연회장. 사람들 사이를 오가며 인맥을 넓힌다.",{1:2,2:1}],
  ["상점가에서 시세를 살피고 흥정을 구경한다.",{9:2,1:1}],
- ["기숙사 식당에서 모두의 끼니를 챙긴다.",{11:2,5:1}]]},
+ ["공용 휴게실에서 흐트러진 자리와 비품을 정돈해 둔다.",{11:2,5:1}]]},
 {q:"팀 과제에서 가장 맡고 싶은 역할은?",o:[
  ["전체를 이끄는 조장.",{5:2,0:1}],
  ["자료를 모아 몰래 분석하는 정보 담당.",{10:2,6:1}],
@@ -78,8 +78,8 @@ var RITUAL=[
  function meta(i){return F[i][4]+" · "+F[i][5]+" 중심 · 상징 "+F[i][3]}
 
  function intro(){
-  var h=saved(),prev=h<0?"":'<p class="rprev">지난 배정 결과 — <button class="rlink" data-a="last">'+F[h][0]+'</button></p>';
-  root.innerHTML='<div class="rintro">'+(typeof gem==="function"?'<div class="rgw" aria-hidden="true">'+gem(12).replace('<button','<button tabindex="-1"')+'</div>':'<div class="rgem"></div>')+'<p>'+N+'개의 질문에 답하면, 당신이 서게 될 학부가 정해집니다.<br>정답은 없으니 마음 가는 대로 골라 주세요.</p><button class="go" data-a="start">의식 시작</button>'+prev+'</div>';
+  var h=saved(),prev=h<0?"":'<p class="rprev">지난 추천 결과 —<button class="rlink" data-a="last">'+F[h][0]+'</button></p>';
+  root.innerHTML='<div class="rintro">'+(typeof gem==="function"?'<div class="rgw" aria-hidden="true">'+gem(12).replace('<button','<button tabindex="-1"')+'</div>':'<div class="rgem"></div>')+'<p>'+N+'개의 질문에 답하면, 당신에게 어울리는 학부를 알려 드립니다.<br>정답은 없으니 마음 가는 대로 골라 주세요.</p><button class="go" data-a="start">시작하기</button>'+prev+'</div>';
  }
  function start(){
   st={n:0,pick:[],ord:RITUAL.map(function(d){return shuf(d.o.map(function(_,k){return k}))}),tie:shuf(F.slice(0,12).map(function(_,i){return i}))};
@@ -98,7 +98,7 @@ var RITUAL=[
  function result(i,t){
   var f=F[i],top=t?t.sc[t.rk[0]]:0;
   var bars=t?'<div class="cap">성향 분포</div>'+t.rk.slice(0,3).map(function(j){return '<div class="rb2" style="--c:'+F[j][2]+'"><span>'+F[j][0]+'</span><i style="width:'+Math.round(t.sc[j]/top*100)+'%"></i></div>'}).join(''):'';
-  root.innerHTML='<div class="rr" style="--c:'+f[2]+'"><div class="cap">당신의 배정 학부</div><div class="rh">'+ic(i,110)+'<div><h3>'+f[0]+' <small>'+f[1]+'</small></h3><div class="m">'+meta(i)+'</div></div></div><p>'+f[6]+'</p>'+bars+'<div class="more rbt"><button class="go" onclick="openF('+i+')">학부 자세히 보기</button><button class="go" data-a="copy" data-i="'+i+'">결과 복사</button><button class="go" data-a="start">다시 하기</button></div></div>';
+  root.innerHTML='<div class="rr" style="--c:'+f[2]+'"><div class="cap">당신에게 어울리는 학부</div><div class="rh">'+ic(i,110)+'<div><h3>'+f[0]+' <small>'+f[1]+'</small></h3><div class="m">'+meta(i)+'</div></div></div><p>'+f[6]+'</p>'+bars+(window.letterBlock?window.letterBlock(i):'')+'<div class="more rbt"><button class="go" onclick="openF('+i+')">학부 자세히 보기</button><button class="go" data-a="copy" data-i="'+i+'">결과 복사</button><button class="go" data-a="start">다시 하기</button></div></div>';
  }
  root.addEventListener('click',function(e){
   var b=e.target.closest('button');if(!b||!st&&!b.dataset.a)return;
@@ -106,7 +106,7 @@ var RITUAL=[
   if(a=="start")return start();
   if(a=="last")return result(saved(),null);
   if(a=="back"){st.n--;st.pick.length=st.n;return ask()}
-  if(a=="copy"){var i=+b.dataset.i,s="나는 노르테이아 아카데미의 "+F[i][0]+" 학부에 배정되었다! "+location.href.split('#')[0];
+  if(a=="copy"){var i=+b.dataset.i,s="나에게 어울리는 노르테이아 아카데미의 학부는 "+F[i][0]+"! "+location.href.split('#')[0];
    try{navigator.clipboard.writeText(s).then(function(){b.textContent="복사되었어요"},function(){b.textContent="복사하지 못했어요"})}catch(x){b.textContent="복사하지 못했어요"}return}
   if(b.dataset.k!==undefined&&st){
    st.pick[st.n]=+b.dataset.k;st.n++;
