@@ -340,6 +340,40 @@ details.ac .dl{border-top:0}
 .ws-bar{margin-top:20px}
 @media(max-width:640px){#wscv{aspect-ratio:1/1}.ws-forms{grid-template-columns:repeat(2,1fr)}.ws-hint{bottom:calc(12% + 34px);font-size:13px}.ws-res{font-size:13px;padding:7px 12px}.ws-res small{display:none}.ws-sch .ws-clear{margin-left:0}}
 
+/* 플레이 존 */
+#play .chips{margin-bottom:22px}
+.pnote{margin:0 0 18px;max-width:680px;font-size:14px;line-height:1.85;color:var(--mute)}
+#mmr{max-width:760px}
+.mm-lead{color:#b8ad99;font-size:15px;line-height:1.9;margin-bottom:6px}
+.mm-bar{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin:14px 0}
+.mm-bar .chips{margin:0}
+.chip small{color:var(--dim);font-size:11.5px}
+.mm-stat{margin-left:auto;font-size:13.5px;color:var(--mute)}
+.mm-stat b{color:var(--gold);font-weight:500}
+.mm-board{display:grid;gap:10px;grid-template-columns:repeat(4,1fr)}
+.mm-board.c6{grid-template-columns:repeat(6,1fr)}
+.mm-card{aspect-ratio:3/4;padding:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mm-in{display:block;width:100%;height:100%;position:relative;transition:transform .18s}
+.mm-card.fl .mm-in{transform:scaleX(.02)}
+.mm-b,.mm-f{position:absolute;inset:0;border-radius:6px;overflow:hidden;isolation:isolate}
+.mm-b{background:url("img/office.png") center/auto 74% no-repeat,linear-gradient(150deg,#c2a76f,#8d7243);background-blend-mode:multiply;border:1px solid #d9c28a;transition:filter .2s}
+.mm-card:hover .mm-b,.mm-card:focus-visible .mm-b{filter:brightness(1.18)}
+.mm-f{display:none;place-items:center;background:linear-gradient(150deg,color-mix(in srgb,var(--c) 65%,#fff),var(--c) 55%,color-mix(in srgb,var(--c) 70%,#000));border:1px solid color-mix(in srgb,var(--c) 55%,#fff)}
+.mm-card.on .mm-b{display:none}
+.mm-card.on .mm-f{display:grid}
+.mm-f img{width:60%;height:70%;object-fit:contain;mix-blend-mode:multiply;opacity:.85;margin-top:-8%}
+.mm-f b{position:absolute;left:0;right:0;bottom:7px;text-align:center;font:700 clamp(11px,1.6vw,13.5px) var(--serif);color:rgba(0,0,0,.7)}
+.mm-f.dk img{filter:invert(1);mix-blend-mode:screen;opacity:.8}
+.mm-f.dk b{color:rgba(255,255,255,.8)}
+.mm-card.ok .mm-f{box-shadow:0 0 0 2px var(--c),0 0 18px var(--c)}
+.mm-card.ok{cursor:default}
+.mm-info{min-height:46px;margin:16px 0 0;padding:10px 14px;border:1px solid var(--line);border-radius:4px;background:var(--panel);font-size:14px;line-height:1.9;color:var(--text)}
+.mm-info:empty{visibility:hidden}
+.mm-info small{color:var(--dim);margin-left:4px}
+.mm-info .go{margin-left:8px;padding:3px 14px;font-size:12px}
+.mm-chip{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:8px;vertical-align:-1px}
+@media(max-width:560px){.mm-board.c6{grid-template-columns:repeat(4,1fr)}.mm-board{gap:8px}.mm-stat{margin-left:0;width:100%}}
+
 /* 입학 통지서 (밀랍 봉인 편지) */
 .lt-seal{position:relative;display:block;width:100%;aspect-ratio:1;isolation:isolate;overflow:hidden;border-radius:47% 53% 50% 50%/52% 48% 52% 48%;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--c) 65%,#fff) 0,var(--c) 42%,color-mix(in srgb,var(--c) 55%,#000) 100%);box-shadow:0 3px 8px rgba(0,0,0,.55),inset 0 0 0 3px rgba(255,255,255,.1)}
 .lt-seal::before{content:"";position:absolute;inset:11%;border-radius:50%;border:2px solid rgba(0,0,0,.22);z-index:2;pointer-events:none}
@@ -404,7 +438,7 @@ body.lt-lock{overflow:hidden}
 </head>
 <body>
 <div id="splash" role="dialog" aria-label="노르테이아 아카데미 입장"><div class="sg"></div><div class="logo" data-t="title">노르테이아 아카데미</div><div class="en">NORTEIA ACADEMY</div><button id="enter">입장</button></div>
-<nav><b>노르테이아</b><a href="#world" data-t="world">세계관</a><a href="#gate" data-t="gate">게이트</a><a href="#factions" data-t="factions">파벌</a><a href="#ritual" data-t="ritual">학부 선택 도우미</a><a href="#faculty" data-t="faculty">12학부</a><a href="#magic" data-t="magic">마법</a><a href="#workshop" data-t="workshop">주문 제작소</a><a href="#campus" data-t="campus">캠퍼스</a><a href="#sched" data-t="sched">연간 일정</a><a href="#nations" data-t="nations">국가</a><a href="#wc" data-t="wc">단짝 월드컵</a><a href="#chars" data-t="chars">캐릭터</a><select id="lang" aria-label="언어"><option value="ko">한국어</option><option value="ja">日本語</option><option value="en">English</option><option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option><option value="es">Español</option></select></nav>
+<nav><b>노르테이아</b><a href="#world" data-t="world">세계관</a><a href="#gate" data-t="gate">게이트</a><a href="#factions" data-t="factions">파벌</a><a href="#ritual" data-t="ritual">학부 선택 도우미</a><a href="#faculty" data-t="faculty">12학부</a><a href="#magic" data-t="magic">마법</a><a href="#campus" data-t="campus">캠퍼스</a><a href="#sched" data-t="sched">연간 일정</a><a href="#nations" data-t="nations">국가</a><a href="#wc" data-t="wc">단짝 월드컵</a><a href="#chars" data-t="chars">캐릭터</a><a href="#play" data-t="play">플레이 존</a><select id="lang" aria-label="언어"><option value="ko">한국어</option><option value="ja">日本語</option><option value="en">English</option><option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option><option value="es">Español</option></select></nav>
 
 <header>
 <p class="s">NORTEIA ACADEMY</p>
@@ -465,12 +499,6 @@ body.lt-lock{overflow:hidden}
 <div class="grid" id="schools"></div>
 </section>
 
-<section id="workshop">
-<h2 data-t="workshop">주문 제작소</h2>
-<p class="lead">여섯 계열의 마나를 합치고 형태를 골라 마법을 빚어 보세요.<br>처음 만든 마법은 마법서에 기록됩니다.</p>
-<div id="wsr"></div>
-</section>
-
 <section id="campus">
 <h2 data-t="campus">캠퍼스</h2>
 <p class="lead" id="cplead"></p>
@@ -507,6 +535,17 @@ body.lt-lock{overflow:hidden}
 <div id="cd" hidden></div>
 </section>
 
+<section id="play">
+<h2 data-t="play">플레이 존</h2>
+<p class="lead">쉬어 가는 곳이에요. 가볍게 즐겨 보세요.</p>
+<div class="chips" id="ptabs" role="group" aria-label="놀이 고르기"><button class="chip" data-p="mm" aria-pressed="true">브로치 짝맞추기</button><button class="chip" data-p="ws" aria-pressed="false">마나 놀이터</button></div>
+<div class="pp" id="pp-mm"><div id="mmr"></div></div>
+<div class="pp" id="pp-ws" hidden>
+<p class="pnote">여섯 계열의 마나를 합치고 형태를 골라 마법을 펼쳐 보세요. 이곳의 마법 이름과 형태는 놀이를 위한 것이에요.<br>실제 플레이에서는 정해진 명칭 없이 자유롭게 마법을 펼쳐요.</p>
+<div id="wsr"></div>
+</div>
+</section>
+
 <footer>노르테이아 아카데미 · NORTEIA ACADEMY</footer>
 
 <script>
@@ -527,6 +566,8 @@ body.lt-lock{overflow:hidden}
 <script src="letter.js" defer></script>
 <script src="spells.js" defer></script>
 <script src="workshop.js" defer></script>
+<script src="memory.js" defer></script>
+<script src="play.js" defer></script>
 <script>
 const $=id=>document.getElementById(id);
 if(typeof FAC==="undefined"||typeof ROSTER==="undefined"||typeof EVENTS==="undefined"){
@@ -677,12 +718,12 @@ document.addEventListener('click',e=>{
 pick(0);
 
 const T={
-ko:{title:"노르테이아 아카데미",world:"세계관",gate:"게이트",faculty:"12학부",magic:"마법",chars:"캐릭터",campus:"캠퍼스",sched:"연간 일정",nations:"국가",factions:"파벌",ritual:"학부 선택 도우미",wc:"단짝 월드컵",workshop:"주문 제작소"},
-ja:{title:"ノルテイア・アカデミー",world:"世界観",gate:"ゲート",faculty:"12学部",magic:"魔法",chars:"キャラクター",campus:"キャンパス",sched:"年間スケジュール",nations:"国家",factions:"派閥",ritual:"学部選びのお手伝い",wc:"相棒ワールドカップ",workshop:"呪文工房"},
-en:{title:"Norteia Academy",world:"World",gate:"Gates",faculty:"12 Faculties",magic:"Magic",chars:"Characters",campus:"Campus",sched:"Annual Schedule",nations:"Nations",factions:"Factions",ritual:"Faculty Guide",wc:"Soulmate Cup",workshop:"Spell Workshop"},
-"zh-CN":{title:"诺尔泰亚学院",world:"世界观",gate:"传送门",faculty:"十二学部",magic:"魔法",chars:"角色",campus:"校园",sched:"年度日程",nations:"国家",factions:"派系",ritual:"学部选择助手",wc:"搭档世界杯",workshop:"咒语工坊"},
-"zh-TW":{title:"諾爾泰亞學院",world:"世界觀",gate:"傳送門",faculty:"十二學部",magic:"魔法",chars:"角色",campus:"校園",sched:"年度日程",nations:"國家",factions:"派系",ritual:"學部選擇助手",wc:"搭檔世界盃",workshop:"咒語工坊"},
-es:{title:"Academia de Norteia",world:"Mundo",gate:"Portales",faculty:"12 facultades",magic:"Magia",chars:"Personajes",campus:"Campus",sched:"Calendario anual",nations:"Naciones",factions:"Facciones",ritual:"Guía de facultades",wc:"Copa de compañeros",workshop:"Taller de hechizos"}};
+ko:{title:"노르테이아 아카데미",world:"세계관",gate:"게이트",faculty:"12학부",magic:"마법",chars:"캐릭터",campus:"캠퍼스",sched:"연간 일정",nations:"국가",factions:"파벌",ritual:"학부 선택 도우미",wc:"단짝 월드컵",play:"플레이 존"},
+ja:{title:"ノルテイア・アカデミー",world:"世界観",gate:"ゲート",faculty:"12学部",magic:"魔法",chars:"キャラクター",campus:"キャンパス",sched:"年間スケジュール",nations:"国家",factions:"派閥",ritual:"学部選びのお手伝い",wc:"相棒ワールドカップ",play:"プレイゾーン"},
+en:{title:"Norteia Academy",world:"World",gate:"Gates",faculty:"12 Faculties",magic:"Magic",chars:"Characters",campus:"Campus",sched:"Annual Schedule",nations:"Nations",factions:"Factions",ritual:"Faculty Guide",wc:"Soulmate Cup",play:"Play Zone"},
+"zh-CN":{title:"诺尔泰亚学院",world:"世界观",gate:"传送门",faculty:"十二学部",magic:"魔法",chars:"角色",campus:"校园",sched:"年度日程",nations:"国家",factions:"派系",ritual:"学部选择助手",wc:"搭档世界杯",play:"游戏区"},
+"zh-TW":{title:"諾爾泰亞學院",world:"世界觀",gate:"傳送門",faculty:"十二學部",magic:"魔法",chars:"角色",campus:"校園",sched:"年度日程",nations:"國家",factions:"派系",ritual:"學部選擇助手",wc:"搭檔世界盃",play:"遊戲區"},
+es:{title:"Academia de Norteia",world:"Mundo",gate:"Portales",faculty:"12 facultades",magic:"Magia",chars:"Personajes",campus:"Campus",sched:"Calendario anual",nations:"Naciones",factions:"Facciones",ritual:"Guía de facultades",wc:"Copa de compañeros",play:"Zona de juegos"}};
 function setLang(l){const d=T[l]||T.ko;document.querySelectorAll('[data-t]').forEach(e=>e.textContent=d[e.dataset.t]);document.documentElement.lang=l;document.title=d.title;try{localStorage.setItem('lang',l)}catch(e){}}
 $('lang').onchange=e=>setLang(e.target.value);
 try{const l=localStorage.getItem('lang');if(l&&T[l]){$('lang').value=l;setLang(l)}}catch(e){}
@@ -690,7 +731,7 @@ try{const l=localStorage.getItem('lang');if(l&&T[l]){$('lang').value=l;setLang(l
 <div class="dock" id="dock"></div>
 <script>
 (function(){
-var d=document.getElementById('dock'),ids=['world','gate','factions','ritual','faculty','magic','workshop','campus','sched','nations','wc','chars'];
+var d=document.getElementById('dock'),ids=['world','gate','factions','ritual','faculty','magic','campus','sched','nations','wc','chars','play'];
 function build(){
  var s='<a class="up" title="맨 위로" onclick="window.scrollTo({top:0,behavior:\'smooth\'})"><b>↑</b></a>';
  ids.forEach(function(id){var a=document.querySelector('nav a[href="#'+id+'"]');if(a)s+='<a data-id="'+id+'"><span>'+a.textContent+'</span><i></i></a>'});
