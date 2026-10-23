@@ -372,6 +372,9 @@ details.ac .dl{border-top:0}
 .mm-info small{color:var(--dim);margin-left:4px}
 .mm-info .go{margin-left:8px;padding:3px 14px;font-size:12px}
 .mm-chip{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:8px;vertical-align:-1px}
+#mbr{max-width:420px}
+.mb-cv{display:block;width:100%;aspect-ratio:360/520;border:1px solid var(--line);border-radius:6px;background:#0c0b10;cursor:crosshair;outline:none}
+.mb-cv:focus-visible{border-color:var(--gold)}
 @media(max-width:560px){.mm-board.c6{grid-template-columns:repeat(4,1fr)}.mm-board{gap:8px}.mm-stat{margin-left:0;width:100%}}
 
 /* 입학 통지서 (밀랍 봉인 편지) */
@@ -538,8 +541,9 @@ body.lt-lock{overflow:hidden}
 <section id="play">
 <h2 data-t="play">플레이 존</h2>
 <p class="lead">쉬어 가는 곳이에요. 가볍게 즐겨 보세요.</p>
-<div class="chips" id="ptabs" role="group" aria-label="놀이 고르기"><button class="chip" data-p="mm" aria-pressed="true">브로치 짝맞추기</button><button class="chip" data-p="ws" aria-pressed="false">마나 놀이터</button></div>
+<div class="chips" id="ptabs" role="group" aria-label="놀이 고르기"><button class="chip" data-p="mm" aria-pressed="true">브로치 짝맞추기</button><button class="chip" data-p="ws" aria-pressed="false">마나 놀이터</button><button class="chip" data-p="mb" aria-pressed="false">마나 버블</button></div>
 <div class="pp" id="pp-mm"><div id="mmr"></div></div>
+<div class="pp" id="pp-mb" hidden><div id="mbr"></div></div>
 <div class="pp" id="pp-ws" hidden>
 <p class="pnote">여섯 계열의 마나를 합치고 형태를 골라 마법을 펼쳐 보세요. 이곳의 마법 이름과 형태는 놀이를 위한 것이에요.<br>실제 플레이에서는 정해진 명칭 없이 자유롭게 마법을 펼쳐요.</p>
 <div id="wsr"></div>
@@ -567,6 +571,7 @@ body.lt-lock{overflow:hidden}
 <script src="spells.js" defer></script>
 <script src="workshop.js" defer></script>
 <script src="memory.js" defer></script>
+<script src="bubble.js" defer></script>
 <script src="play.js" defer></script>
 <script>
 const $=id=>document.getElementById(id);
