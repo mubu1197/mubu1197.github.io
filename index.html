@@ -284,6 +284,62 @@ details.ac .dl{border-top:0}
 .wcf1 span{display:block;color:var(--dim);font-size:12px;margin-top:2px}
 @media(prefers-reduced-motion:reduce){.wcv{animation:none}}
 
+/* 주문 제작소 */
+#wsr{max-width:900px}
+.ws .cap{margin:20px 0 8px}
+.ws .cap span{color:var(--dim);letter-spacing:0;font-size:12px;margin-left:6px}
+.ws-stage{position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:radial-gradient(ellipse at 30% 40%,#1c1712 0,#0e0c0a 70%)}
+#wscv{display:block;width:100%;aspect-ratio:16/9;touch-action:none;cursor:grab;-webkit-tap-highlight-color:transparent}
+.ws-core{position:absolute;left:0;top:0;transform:translate(-50%,-50%);text-align:center;white-space:nowrap;font-size:14px;line-height:1.7;color:var(--mute);pointer-events:none;text-shadow:0 1px 8px #000,0 0 3px #000}
+.ws-core em{font-style:normal;color:var(--gold)}
+.ws-hint{position:absolute;left:0;right:0;bottom:calc(14% + 34px);text-align:center;font:500 14px var(--serif);letter-spacing:.1em;color:var(--dim);pointer-events:none;transition:opacity .5s}
+.ws-hint.off{opacity:0}
+.ws-res{position:absolute;left:12px;right:12px;top:10px;padding:9px 14px;border:1px solid var(--line);border-radius:4px;background:rgba(13,12,15,.88);font-size:14px;line-height:1.7;color:var(--text);opacity:0;transform:translateY(-6px);transition:opacity .3s,transform .3s;pointer-events:none}
+.ws-res.on{opacity:1;transform:none}
+.ws-res b{font:700 16px var(--serif);color:var(--title)}
+.ws-res u{text-decoration:none;color:#0d0c0f;background:var(--gold);border-radius:99px;font-size:11.5px;padding:1px 8px;margin-left:6px}
+.ws-res em{font-style:normal;color:var(--gold);margin-left:6px;font-size:12.5px}
+.ws-res small{display:block;font-size:12.5px;color:var(--mute);line-height:1.6;margin-top:2px}
+.ws-sch,.ws-forms{display:flex;flex-wrap:wrap;gap:8px}
+.ws-sch button{display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid var(--line);color:var(--text);padding:7px 14px;border-radius:99px;font:inherit;font-size:14px;cursor:pointer;transition:border-color .2s,background .2s}
+.ws-sch button i{width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c)}
+.ws-sch button[aria-pressed=true]{border-color:var(--c);background:#1c1812}
+.ws-sch button:hover{border-color:var(--c)}
+.ws-sch .ws-clear{margin-left:auto;color:var(--mute)}
+.ws-forms{display:grid;grid-template-columns:repeat(4,1fr)}
+.ws-forms button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:10px 12px;background:var(--panel);border:1px solid var(--line);border-radius:4px;color:var(--text);font:inherit;text-align:left;cursor:pointer;transition:border-color .2s,transform .2s}
+.ws-forms button b{font:700 15px var(--serif);color:var(--title)}
+.ws-forms button span{font-size:12px;color:var(--mute);line-height:1.5}
+.ws-forms button:hover,.ws-forms button:focus-visible{border-color:var(--gold);transform:translateY(-2px)}
+.ws-box{margin-top:26px}
+.ws-chip{display:inline-block;width:11px;height:11px;border-radius:50%;margin:0 6px 0 2px;vertical-align:-1px}
+.ws-res b .ws-chip{margin-right:8px}
+.ws-sw{width:13px;height:13px;border-radius:3px;flex:0 0 auto}
+.ws-card li.mix{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--mute);padding:2px 0 8px}
+.ws-card li.mix code{font-size:11px;color:var(--dim)}
+.ws-prog{height:3px;background:var(--line);border-radius:2px;margin:0 0 6px;overflow:hidden}
+.ws-gh:first-of-type{margin-top:14px}
+.ws-prog i{display:block;height:100%;width:0;background:var(--gold);transition:width .4s}
+.ws h3.sub small{font:13px var(--sans);color:var(--gold);margin-left:8px}
+.ws-gh{font:700 14px var(--serif);color:var(--mute);margin:22px 0 10px;letter-spacing:.05em}
+.ws-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;align-items:start}
+.ws-card{border:1px solid var(--line);background:var(--panel);border-radius:4px}
+.ws-card summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:7px;padding:10px 12px;font-size:14px}
+.ws-card summary::-webkit-details-marker{display:none}
+.ws-card summary .ws-sw{width:13px;height:13px;border-radius:3px}
+.ws-card summary b{font:700 14.5px var(--serif);color:var(--title)}
+.ws-card summary small{margin-left:auto;font-size:12px;color:var(--dim)}
+.ws-card.full{border-color:var(--gold)}
+.ws-card[open] summary{border-bottom:1px solid var(--line)}
+.ws-card ul{list-style:none;padding:6px 12px 10px;margin:0}
+.ws-card li{padding:6px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.6;color:var(--dim)}
+.ws-card li:last-child{border-bottom:0}
+.ws-card li b{display:block;font-weight:500;color:var(--mute)}
+.ws-card li.on b{color:var(--gold)}
+.ws-card li.on span{color:var(--text)}
+.ws-bar{margin-top:20px}
+@media(max-width:640px){#wscv{aspect-ratio:1/1}.ws-forms{grid-template-columns:repeat(2,1fr)}.ws-hint{bottom:calc(12% + 34px);font-size:13px}.ws-res{font-size:13px;padding:7px 12px}.ws-res small{display:none}.ws-sch .ws-clear{margin-left:0}}
+
 /* 입학 통지서 (밀랍 봉인 편지) */
 .lt-seal{position:relative;display:block;width:100%;aspect-ratio:1;isolation:isolate;overflow:hidden;border-radius:47% 53% 50% 50%/52% 48% 52% 48%;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--c) 65%,#fff) 0,var(--c) 42%,color-mix(in srgb,var(--c) 55%,#000) 100%);box-shadow:0 3px 8px rgba(0,0,0,.55),inset 0 0 0 3px rgba(255,255,255,.1)}
 .lt-seal::before{content:"";position:absolute;inset:11%;border-radius:50%;border:2px solid rgba(0,0,0,.22);z-index:2;pointer-events:none}
@@ -348,7 +404,7 @@ body.lt-lock{overflow:hidden}
 </head>
 <body>
 <div id="splash" role="dialog" aria-label="노르테이아 아카데미 입장"><div class="sg"></div><div class="logo" data-t="title">노르테이아 아카데미</div><div class="en">NORTEIA ACADEMY</div><button id="enter">입장</button></div>
-<nav><b>노르테이아</b><a href="#world" data-t="world">세계관</a><a href="#gate" data-t="gate">게이트</a><a href="#factions" data-t="factions">파벌</a><a href="#ritual" data-t="ritual">학부 선택 도우미</a><a href="#faculty" data-t="faculty">12학부</a><a href="#magic" data-t="magic">마법</a><a href="#campus" data-t="campus">캠퍼스</a><a href="#sched" data-t="sched">연간 일정</a><a href="#nations" data-t="nations">국가</a><a href="#wc" data-t="wc">단짝 월드컵</a><a href="#chars" data-t="chars">캐릭터</a><select id="lang" aria-label="언어"><option value="ko">한국어</option><option value="ja">日本語</option><option value="en">English</option><option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option><option value="es">Español</option></select></nav>
+<nav><b>노르테이아</b><a href="#world" data-t="world">세계관</a><a href="#gate" data-t="gate">게이트</a><a href="#factions" data-t="factions">파벌</a><a href="#ritual" data-t="ritual">학부 선택 도우미</a><a href="#faculty" data-t="faculty">12학부</a><a href="#magic" data-t="magic">마법</a><a href="#workshop" data-t="workshop">주문 제작소</a><a href="#campus" data-t="campus">캠퍼스</a><a href="#sched" data-t="sched">연간 일정</a><a href="#nations" data-t="nations">국가</a><a href="#wc" data-t="wc">단짝 월드컵</a><a href="#chars" data-t="chars">캐릭터</a><select id="lang" aria-label="언어"><option value="ko">한국어</option><option value="ja">日本語</option><option value="en">English</option><option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option><option value="es">Español</option></select></nav>
 
 <header>
 <p class="s">NORTEIA ACADEMY</p>
@@ -409,6 +465,12 @@ body.lt-lock{overflow:hidden}
 <div class="grid" id="schools"></div>
 </section>
 
+<section id="workshop">
+<h2 data-t="workshop">주문 제작소</h2>
+<p class="lead">여섯 계열의 마나를 합치고 형태를 골라 마법을 빚어 보세요.<br>처음 만든 마법은 마법서에 기록됩니다.</p>
+<div id="wsr"></div>
+</section>
+
 <section id="campus">
 <h2 data-t="campus">캠퍼스</h2>
 <p class="lead" id="cplead"></p>
@@ -463,6 +525,8 @@ body.lt-lock{overflow:hidden}
 <script src="quiz.js" defer></script>
 <script src="worldcup.js" defer></script>
 <script src="letter.js" defer></script>
+<script src="spells.js" defer></script>
+<script src="workshop.js" defer></script>
 <script>
 const $=id=>document.getElementById(id);
 if(typeof FAC==="undefined"||typeof ROSTER==="undefined"||typeof EVENTS==="undefined"){
@@ -613,12 +677,12 @@ document.addEventListener('click',e=>{
 pick(0);
 
 const T={
-ko:{title:"노르테이아 아카데미",world:"세계관",gate:"게이트",faculty:"12학부",magic:"마법",chars:"캐릭터",campus:"캠퍼스",sched:"연간 일정",nations:"국가",factions:"파벌",ritual:"학부 선택 도우미",wc:"단짝 월드컵"},
-ja:{title:"ノルテイア・アカデミー",world:"世界観",gate:"ゲート",faculty:"12学部",magic:"魔法",chars:"キャラクター",campus:"キャンパス",sched:"年間スケジュール",nations:"国家",factions:"派閥",ritual:"学部選びのお手伝い",wc:"相棒ワールドカップ"},
-en:{title:"Norteia Academy",world:"World",gate:"Gates",faculty:"12 Faculties",magic:"Magic",chars:"Characters",campus:"Campus",sched:"Annual Schedule",nations:"Nations",factions:"Factions",ritual:"Faculty Guide",wc:"Soulmate Cup"},
-"zh-CN":{title:"诺尔泰亚学院",world:"世界观",gate:"传送门",faculty:"十二学部",magic:"魔法",chars:"角色",campus:"校园",sched:"年度日程",nations:"国家",factions:"派系",ritual:"学部选择助手",wc:"搭档世界杯"},
-"zh-TW":{title:"諾爾泰亞學院",world:"世界觀",gate:"傳送門",faculty:"十二學部",magic:"魔法",chars:"角色",campus:"校園",sched:"年度日程",nations:"國家",factions:"派系",ritual:"學部選擇助手",wc:"搭檔世界盃"},
-es:{title:"Academia de Norteia",world:"Mundo",gate:"Portales",faculty:"12 facultades",magic:"Magia",chars:"Personajes",campus:"Campus",sched:"Calendario anual",nations:"Naciones",factions:"Facciones",ritual:"Guía de facultades",wc:"Copa de compañeros"}};
+ko:{title:"노르테이아 아카데미",world:"세계관",gate:"게이트",faculty:"12학부",magic:"마법",chars:"캐릭터",campus:"캠퍼스",sched:"연간 일정",nations:"국가",factions:"파벌",ritual:"학부 선택 도우미",wc:"단짝 월드컵",workshop:"주문 제작소"},
+ja:{title:"ノルテイア・アカデミー",world:"世界観",gate:"ゲート",faculty:"12学部",magic:"魔法",chars:"キャラクター",campus:"キャンパス",sched:"年間スケジュール",nations:"国家",factions:"派閥",ritual:"学部選びのお手伝い",wc:"相棒ワールドカップ",workshop:"呪文工房"},
+en:{title:"Norteia Academy",world:"World",gate:"Gates",faculty:"12 Faculties",magic:"Magic",chars:"Characters",campus:"Campus",sched:"Annual Schedule",nations:"Nations",factions:"Factions",ritual:"Faculty Guide",wc:"Soulmate Cup",workshop:"Spell Workshop"},
+"zh-CN":{title:"诺尔泰亚学院",world:"世界观",gate:"传送门",faculty:"十二学部",magic:"魔法",chars:"角色",campus:"校园",sched:"年度日程",nations:"国家",factions:"派系",ritual:"学部选择助手",wc:"搭档世界杯",workshop:"咒语工坊"},
+"zh-TW":{title:"諾爾泰亞學院",world:"世界觀",gate:"傳送門",faculty:"十二學部",magic:"魔法",chars:"角色",campus:"校園",sched:"年度日程",nations:"國家",factions:"派系",ritual:"學部選擇助手",wc:"搭檔世界盃",workshop:"咒語工坊"},
+es:{title:"Academia de Norteia",world:"Mundo",gate:"Portales",faculty:"12 facultades",magic:"Magia",chars:"Personajes",campus:"Campus",sched:"Calendario anual",nations:"Naciones",factions:"Facciones",ritual:"Guía de facultades",wc:"Copa de compañeros",workshop:"Taller de hechizos"}};
 function setLang(l){const d=T[l]||T.ko;document.querySelectorAll('[data-t]').forEach(e=>e.textContent=d[e.dataset.t]);document.documentElement.lang=l;document.title=d.title;try{localStorage.setItem('lang',l)}catch(e){}}
 $('lang').onchange=e=>setLang(e.target.value);
 try{const l=localStorage.getItem('lang');if(l&&T[l]){$('lang').value=l;setLang(l)}}catch(e){}
@@ -626,7 +690,7 @@ try{const l=localStorage.getItem('lang');if(l&&T[l]){$('lang').value=l;setLang(l
 <div class="dock" id="dock"></div>
 <script>
 (function(){
-var d=document.getElementById('dock'),ids=['world','gate','factions','ritual','faculty','magic','campus','sched','nations','wc','chars'];
+var d=document.getElementById('dock'),ids=['world','gate','factions','ritual','faculty','magic','workshop','campus','sched','nations','wc','chars'];
 function build(){
  var s='<a class="up" title="맨 위로" onclick="window.scrollTo({top:0,behavior:\'smooth\'})"><b>↑</b></a>';
  ids.forEach(function(id){var a=document.querySelector('nav a[href="#'+id+'"]');if(a)s+='<a data-id="'+id+'"><span>'+a.textContent+'</span><i></i></a>'});
