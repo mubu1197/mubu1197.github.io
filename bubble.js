@@ -21,7 +21,7 @@
  function mmss(s){return Math.floor(s/60)+':'+(s%60<10?'0':'')+(s%60)}
  function rnd(a,b){return a+Math.random()*(b-a)}
 
- root.innerHTML='<div class="mm"><p class="mm-lead">화면을 눌러 조준하고 손을 떼면 발사해요. 같은 색 구슬 셋 이상을 모아 터뜨려 보세요. 왼쪽 아래의 작은 구슬을 누르면 순서가 바뀌어요.</p>'
+ root.innerHTML='<div class="mm"><p class="mm-lead">화면을 눌러 조준하고 손을 떼면 발사해요.<br>같은 색 구슬 셋 이상을 모아 터뜨려 보세요.<br>왼쪽 아래의 작은 구슬을 누르면 순서가 바뀌어요.</p>'
   +'<div class="mm-bar"><div class="chips" id="mblv">'+LV.map(function(l,i){return '<button class="chip" data-l="'+i+'" aria-pressed="'+(i===lv)+'">'+l[0]+'</button>'}).join('')+'</div><div class="mm-stat" id="mbstat"></div></div>'
   +'<canvas id="mbc" class="mb-cv" tabindex="0" aria-label="마나 버블 판. 방향키로 조준하고 스페이스로 발사해요"></canvas>'
   +'<div class="mm-info" id="mbinfo" aria-live="polite"></div><div class="mm-bar"><button class="rlink" id="mbre">다시 시작</button></div></div>';
@@ -148,7 +148,7 @@
   ctx.fillStyle='#2a2620';ctx.strokeStyle='#d9c28a';ctx.beginPath();ctx.arc(SX,SY,R+5,0,6.2832);ctx.fill();ctx.stroke();
   if(proj)ball(proj.x,proj.y,proj.c);else if(state==='play')ball(SX,SY,cur);
   ball(R*1.6,SY+8,nxt,.72);
-  ctx.fillStyle='rgba(240,230,200,.5)';ctx.font='11px sans-serif';ctx.textAlign='center';ctx.fillText('다음',R*1.6,SY+34);
+  ctx.fillStyle='rgba(240,230,200,.5)';ctx.font='12px '+getComputedStyle(root).fontFamily;ctx.textAlign='center';ctx.fillText('다음',R*1.6,SY+34);
   if(state!=='play'){ctx.fillStyle='rgba(0,0,0,.45)';ctx.fillRect(0,0,W,H)}}
  function layout(){
   var w=cv.clientWidth;if(!w){cw=0;return}
