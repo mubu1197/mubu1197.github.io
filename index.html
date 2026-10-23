@@ -350,11 +350,11 @@ details.ac .dl{border-top:0}
 .chip small{color:var(--dim);font-size:11.5px}
 .mm-stat{margin-left:auto;font-size:13.5px;color:var(--mute)}
 .mm-stat b{color:var(--gold);font-weight:500}
-.mm-board{display:grid;gap:10px;grid-template-columns:repeat(4,1fr)}
-.mm-board.c6{grid-template-columns:repeat(6,1fr)}
-.mm-card{aspect-ratio:3/4;padding:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
-.mm-in{display:block;width:100%;height:100%;position:relative;transition:transform .18s}
-.mm-card.fl .mm-in{transform:scaleX(.02)}
+.mm-board{display:grid;gap:10px;grid-template-columns:repeat(4,minmax(0,1fr))}
+.mm-board.c6{grid-template-columns:repeat(6,minmax(0,1fr))}
+.mm-card{display:block;position:relative;width:100%;min-width:0;height:0;padding:0 0 133.333%;touch-action:manipulation;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.mm-in{display:block;position:absolute;inset:0;transition:transform .18s}
+.mm-card.flip .mm-in{transform:scaleX(.02)}
 .mm-b,.mm-f{position:absolute;inset:0;border-radius:6px;overflow:hidden;isolation:isolate}
 .mm-b{background:url("img/office.png") center/auto 74% no-repeat,linear-gradient(150deg,#c2a76f,#8d7243);background-blend-mode:multiply;border:1px solid #d9c28a;transition:filter .2s}
 .mm-card:hover .mm-b,.mm-card:focus-visible .mm-b{filter:brightness(1.18)}
@@ -375,7 +375,7 @@ details.ac .dl{border-top:0}
 #mbr{max-width:420px}
 .mb-cv{display:block;width:100%;aspect-ratio:360/520;border:1px solid var(--line);border-radius:6px;background:#0c0b10;cursor:crosshair;outline:none}
 .mb-cv:focus-visible{border-color:var(--gold)}
-@media(max-width:560px){.mm-board.c6{grid-template-columns:repeat(4,1fr)}.mm-board{gap:8px}.mm-stat{margin-left:0;width:100%}}
+@media(max-width:560px){.mm-board.c6{grid-template-columns:repeat(4,minmax(0,1fr))}.mm-board{gap:8px}.mm-stat{margin-left:0;width:100%}}
 
 /* 입학 통지서 (밀랍 봉인 편지) */
 .lt-seal{position:relative;display:block;width:100%;aspect-ratio:1;isolation:isolate;overflow:hidden;border-radius:47% 53% 50% 50%/52% 48% 52% 48%;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--c) 65%,#fff) 0,var(--c) 42%,color-mix(in srgb,var(--c) 55%,#000) 100%);box-shadow:0 3px 8px rgba(0,0,0,.55),inset 0 0 0 3px rgba(255,255,255,.1)}

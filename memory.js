@@ -31,8 +31,8 @@
    return '<button class="mm-card" data-n="'+c.n+'" aria-label="카드 '+(c.n+1)+'"><span class="mm-in"><span class="mm-b"></span>'
     +'<span class="mm-f'+(dark(col)?' dk':'')+'" style="--c:'+col+'"><img src="img/'+ID[c.f]+'.png" alt=""><b>'+esc(F[c.f][0])+'</b></span></span></button>'}).join('');
   drawStat()}
- function setFace(c,on){var el=board.children[c.n];el.classList.add('fl');
-  setTimeout(function(){c.on=on;el.classList.toggle('on',on);el.setAttribute('aria-label',on?F[c.f][0]+' 브로치':'카드 '+(c.n+1));el.classList.remove('fl')},FL)}
+ function setFace(c,on){var el=board.children[c.n];el.classList.add('flip');
+  setTimeout(function(){c.on=on;el.classList.toggle('on',on);el.setAttribute('aria-label',on?F[c.f][0]+' 브로치':'카드 '+(c.n+1));el.classList.remove('flip')},FL)}
  function match(f){
   var i=f,x=F[i];
   info.innerHTML='<span class="mm-chip" style="background:'+x[2]+';box-shadow:0 0 10px '+x[2]+'"></span><b>'+esc(x[0])+'</b> <small>'+esc(x[1])+'</small> · 상징 '+esc(x[3])+(x[7]?' · 전공 '+esc(x[7]):'')+' · '+esc(x[4])
