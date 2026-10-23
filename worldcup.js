@@ -34,7 +34,7 @@
   var ok=SIZES.filter(function(s){return !s||s<=n});
   if(ok.indexOf(opt.size)<0)opt.size=ok.filter(function(s){return s}).pop()||0;
   var who=opt.who=="s"?"학생":"";
-  root.innerHTML='<div class="rintro wcs"><p>마음에 드는 쪽을 고르다 보면, 마지막에 남는 한 명이 당신의 단짝입니다.<br>성격은 제쳐 두고, 끌리는 쪽을 직감대로 눌러 주세요.</p>'
+  root.innerHTML='<div class="rintro wcs">'
    +'<div class="cap">참가자</div><div class="chips">'+WHO.map(function(w){return chip("who",w[0],w[1],opt.who==w[0])}).join('')+'</div>'
    +'<div class="cap">성별</div><div class="chips">'+GEN.map(function(g){return chip("gen",g[0],g[1].replace("#",who?"학생":"성"),opt.gen==g[0])}).join('')+'</div>'
    +'<div class="cap">규모</div><div class="chips">'+ok.map(function(s){return chip("size",s,s?s+"강":"전원 ("+n+"명)",opt.size==s)}).join('')+'</div>'
