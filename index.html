@@ -285,7 +285,7 @@ details.ac .dl{border-top:0}
 @media(prefers-reduced-motion:reduce){.wcv{animation:none}}
 
 /* 주문 제작소 */
-#wsr{max-width:900px}
+#wsr{max-width:1100px}
 .ws .cap{margin:20px 0 8px}
 .ws .cap span{color:var(--dim);letter-spacing:0;font-size:12px;margin-left:6px}
 .ws-stage{position:relative;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:radial-gradient(ellipse at 30% 40%,#1c1712 0,#0e0c0a 70%)}
@@ -307,6 +307,12 @@ details.ac .dl{border-top:0}
 .ws-sch button:hover{border-color:var(--c)}
 .ws-sch .ws-clear{margin-left:auto;color:var(--mute)}
 .ws-forms{display:grid;grid-template-columns:repeat(4,1fr)}
+/* 넓은 화면: 왼쪽에 구슬 판, 오른쪽에 형태 버튼(2×4)을 두어 한 화면에서 보며 누를 수 있게 합니다 */
+.ws-top{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:0 24px;align-items:stretch}
+.ws-main,.ws-side{min-width:0}
+.ws-side{display:flex;flex-direction:column}
+.ws-side .ws-forms{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;flex:1}
+@media(max-width:960px){.ws-top{display:block}.ws-side{display:block}.ws-side .ws-forms{grid-template-columns:repeat(4,1fr)}}
 .ws-forms button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:10px 12px;background:var(--panel);border:1px solid var(--line);border-radius:4px;color:var(--text);font:inherit;text-align:left;cursor:pointer;transition:border-color .2s,transform .2s}
 .ws-forms button b{font:700 15px var(--serif);color:var(--title)}
 .ws-forms button span{font-size:12px;color:var(--mute);line-height:1.5}

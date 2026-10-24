@@ -54,12 +54,12 @@
  function mixText(ci){return SPELL_COMBOS[ci][0].map(function(k){return SCHOOLS[k][0].replace(/계$/,'')}).join(' + ')}
 
  // ── 화면 뼈대 ─────────────────────────────────────────────────────
- root.innerHTML='<div class="ws"><div class="ws-stage"><canvas id="wscv" role="img" aria-label="마나 구슬을 끌어다 합치는 칸"></canvas>'
+ root.innerHTML='<div class="ws"><div class="ws-top"><div class="ws-main"><div class="ws-stage"><canvas id="wscv" role="img" aria-label="마나 구슬을 끌어다 합치는 칸"></canvas>'
   +'<div class="ws-core" id="wscore" aria-live="polite"></div><div class="ws-hint" id="wshint">아래 구슬을 끌어 고리에 넣어 보세요</div><div class="ws-res" id="wsres" aria-live="polite"></div></div>'
   +'<div class="cap">1. 마나 모으기 <span>(최대 3개 · 구슬을 끌어다 놓거나 아래 버튼을 눌러요 · 합치면 고리가 그 조합의 색으로 물들어요)</span></div>'
   +'<div class="ws-sch" id="wssch">'+SCHOOLS.map(function(s,i){return '<button data-k="'+i+'" style="--c:'+COL[i]+'" aria-pressed="false"><i style="background:'+GRAD[i]+'"></i>'+s[0]+'</button>'}).join('')+'<button class="ws-clear" id="wsclear">비우기</button></div>'
-  +'<div class="cap">2. 형태 고르기</div>'
-  +'<div class="ws-forms" id="wsforms">'+SPELL_FORMS.map(function(f,i){return '<button data-f="'+i+'"><b>'+f[0]+'</b><span>'+f[1]+'</span></button>'}).join('')+'</div>'
+  +'</div><div class="ws-side"><div class="cap">2. 형태 고르기</div>'
+  +'<div class="ws-forms" id="wsforms">'+SPELL_FORMS.map(function(f,i){return '<button data-f="'+i+'"><b>'+f[0]+'</b><span>'+f[1]+'</span></button>'}).join('')+'</div></div></div>'
   +'<details class="ac ws-box" id="wsbox"><summary>마법서<small id="wscount"></small></summary><div class="in"><div class="ws-prog"><i id="wsprog"></i></div><div id="wsbook"></div>'
   +'<div class="ws-bar"><button class="rlink" id="wsreset">기록 지우기</button></div></div></details></div>';
  var cv=document.getElementById('wscv'),ctx=cv.getContext('2d'),coreEl=document.getElementById('wscore'),hintEl=document.getElementById('wshint'),resEl=document.getElementById('wsres');
