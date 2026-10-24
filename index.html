@@ -73,7 +73,7 @@ body.lock{overflow:hidden}
 .ic img{display:block;width:100%;height:100%;object-fit:cover;filter:invert(1);mix-blend-mode:multiply}
 .ic.x{aspect-ratio:1!important;width:34px!important;height:34px;margin:0 14px;border:3px solid var(--gold);border-radius:5px;transform:rotate(45deg);mix-blend-mode:normal;box-shadow:0 0 18px var(--c)}
 .ic.x img{display:none}
-.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:22px 18px}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,168px),1fr));gap:20px 14px}
 .cc{background:none;border:0;color:var(--text);font:inherit;font-size:15px;text-align:center;cursor:pointer}
 .sq{aspect-ratio:1;background:var(--panel);border:1px solid var(--line);border-bottom:3px solid var(--c);margin-bottom:6px;overflow:hidden}
 .sq img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
@@ -340,6 +340,43 @@ details.ac .dl{border-top:0}
 .ws-bar{margin-top:20px}
 @media(max-width:640px){#wscv{aspect-ratio:1/1}.ws-forms{grid-template-columns:repeat(2,1fr)}.ws-hint{bottom:calc(12% + 34px);font-size:13px}.ws-res{font-size:13px;padding:7px 12px}.ws-res small{display:none}.ws-sch .ws-clear{margin-left:0}}
 
+/* 캐릭터 명부 */
+.ctool{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:0 0 6px}
+.csr{flex:1;min-width:210px;max-width:360px;background:var(--panel);border:1px solid var(--line);border-radius:99px;color:var(--text);padding:9px 18px;font:inherit;font-size:14px}
+.csr:focus{outline:none;border-color:var(--gold)}
+.ccount{font-size:14px;color:var(--mute)}.ccount b{color:var(--gold);font-weight:500}
+.cgh{display:flex;align-items:center;gap:12px;font:700 18px var(--serif);color:var(--title);margin:36px 0 18px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.cgh i{width:9px;height:9px;border-radius:2px;transform:rotate(45deg);background:var(--c);box-shadow:0 0 10px var(--c)}
+.cgh small{font:13px var(--sans);color:var(--dim)}
+.cempty{margin:40px 0;color:var(--mute);font-size:15px}
+.cc .sq{transition:transform .25s,box-shadow .25s,border-color .25s}
+.cc .sq>img{transition:transform .5s}
+.cc:hover .sq,.cc:focus-visible .sq{transform:translateY(-4px);box-shadow:0 10px 26px color-mix(in srgb,var(--c) 38%,transparent)}
+.cc:hover .sq>img{transform:scale(1.05)}
+.cn{display:block;margin-top:2px;font:700 15px var(--serif);color:var(--title)}
+.cm{display:block;margin-top:1px;font-size:12px;color:var(--dim)}
+.cb{color:var(--gold);opacity:.85}
+.ctag{position:absolute;left:8px;top:8px;z-index:2;padding:2px 10px;border-radius:99px;font-size:11.5px;font-style:normal;color:var(--gold);background:rgba(13,12,15,.8);border:1px solid color-mix(in srgb,var(--gold) 50%,transparent)}
+#cd .cpic{width:min(100%,400px);flex-shrink:0;position:sticky;top:84px}
+#cd .cpic .sq{width:100%;margin-bottom:8px}
+#cd .cnav{display:flex;justify-content:space-between;gap:12px}
+#cd .cnav button{background:none;border:0;padding:6px 2px;font:inherit;font-size:13.5px;color:var(--mute);cursor:pointer}
+#cd .cnav button:hover{color:var(--gold)}
+.cbadge{display:inline-flex;align-items:center;gap:9px;padding:4px 14px 4px 11px;border:1px solid var(--line);border-radius:99px;background:var(--panel);font-size:13px;color:var(--gold)}
+.cbadge i{width:9px;height:9px;border-radius:2px;transform:rotate(45deg);background:var(--c);box-shadow:0 0 8px var(--c)}
+#cd h3{margin:14px 0 2px;font:700 32px var(--serif);color:var(--title)}
+.cfull{margin-bottom:16px;font-size:13.5px;color:var(--mute)}
+.ctags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.ctags span,.csch span{padding:4px 13px;border:1px solid var(--line);border-radius:99px;background:#14120f;font-size:13px;color:var(--text)}
+.csch{display:flex;flex-wrap:wrap;gap:8px}
+.csch span i{display:inline-block;width:8px;height:8px;margin-right:7px;border-radius:50%;background:var(--sc)}
+.ch4{margin:26px 0 4px;font:700 14px var(--serif);letter-spacing:.1em;color:var(--gold)}
+.cgauge{display:flex;gap:5px;margin:9px 0 6px}
+.cgauge i{flex:1;height:6px;border-radius:3px;background:#26221b}
+.cgauge i.on{background:var(--g)}
+.cstage{font-size:13.5px;color:var(--mute)}
+@media(max-width:560px){.cg{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}.cn{font-size:14.5px}#cd .cpic{position:static}#cd h3{font-size:27px}.cgh{margin-top:28px}}
+
 /* 플레이 존 */
 #play .chips{margin-bottom:22px}
 .pnote,.mm-lead{margin:0 0 16px;max-width:720px;font-size:15.5px;line-height:1.9;color:#a89c88}
@@ -533,7 +570,7 @@ body.lt-lock{overflow:hidden}
 <section id="chars">
 <h2 data-t="chars">캐릭터</h2>
 <p class="lead">브로치를 눌러 학부별로 보고 숨길 수 있어요. 캐릭터를 누르면 상세 정보가 열립니다.</p>
-<div id="clist"><div class="frow" id="cf"></div><div class="cg" id="cl"></div></div>
+<div id="clist"><div class="frow" id="cf"></div><div class="ctool"><input class="csr" id="cq" type="search" placeholder="이름 · 종족 · 국적으로 찾기" aria-label="캐릭터 검색" autocomplete="off"><span class="ccount" id="cn"></span></div><div id="cl"></div></div>
 <div id="cd" hidden></div>
 </section>
 
@@ -675,19 +712,31 @@ const CH=[];
  })})();
 // 순서: 교무청 교직원 → 마르셰 → 로시에 … 오르덴, 각 학부는 교관이 맨 앞
 CH.sort((a,b)=>(a.f==12?-1:a.f)-(b.f==12?-1:b.f)||(b.o-a.o));
-const sq=c=>`<div class="sq" style="--c:${K[c.f].c}"><div class="ph">${ic(c.f,60,dim(K[c.f].c))}</div>${cimg(c.img)}</div>`;
-const card=c=>`<button class="cc" data-id="${c.id}">${sq(c)}<span>${c.s}</span></button>`;
+const sq=(c,x)=>`<div class="sq" style="--c:${K[c.f].c}"><div class="ph">${ic(c.f,60,dim(K[c.f].c))}</div>${cimg(c.img)}${x||""}</div>`;
+const card=c=>`<button class="cc" data-id="${c.id}" style="--c:${K[c.f].c}">${sq(c,c.o?'<i class="ctag">교관</i>':"")}<span class="cn">${c.s}</span><span class="cm">${c.race} · ${c.cir}서클</span><span class="cm cb${/^비귀족/.test(c.noble)?" nb":""}">${c.r!="학생"&&!c.o?c.r:nobleOf(c.noble)}</span></button>`;
 const on=new Set(K.map((_,i)=>i));
 $('cf').innerHTML=gemRows();
-const rl=()=>{$('cl').innerHTML=CH.filter(c=>on.has(c.f)||(c.o&&on.has(12))).map(card).join('')};rl();
+const SC={"자연계":"#8fd3ff","신성계":"#ffe7a8","암흑계":"#8a5cff","생명계":"#3dff6e","비전계":"#4f9bff","강화계":"#ff8a2a"};   // 주문 제작소의 마나 색과 같습니다
+const nobleOf=n=>/^비귀족/.test(n)?"비귀족":/^교직원/.test(n)?"교직원":(n.match(/(공작|후작|백작|자작|남작)가|왕실|황실/)||[(n.match(/\(([^,)]+)/)||[0,"귀족"])[1]])[0];
+const vivid=h=>{const v=[1,3,5].map(j=>parseInt(h.substr(j,2),16));return (v[0]*.299+v[1]*.587+v[2]*.114)/255<.3?"#"+v.map(x=>Math.round(x+(255-x)*.45).toString(16).padStart(2,"0")).join(""):h};
+let cq="",curIds=[];
+// 학부별 묶음으로 보여 줍니다 (교무청 → 마르셰 … 오르덴). 브로치로 숨긴 학부는 빠지고, 교무청을 켜 두면 숨긴 학부의 교관이 따로 모입니다.
+const rl=()=>{const hit=c=>!cq||[c.n,c.race,c.nat,c.sch,c.cls,c.noble].join(" ").includes(cq);
+ const gs=[12,0,1,2,3,4,5,6,7,8,9,10,11].filter(f=>on.has(f)).map(f=>[K[f].n,K[f].c,CH.filter(c=>c.f==f&&hit(c))]);
+ if(on.has(12))gs.push(["교관 (12학부)","#a68a54",CH.filter(c=>c.o&&c.f!=12&&!on.has(c.f)&&hit(c))]);
+ const sh=gs.filter(g=>g[2].length),total=sh.reduce((a,g)=>a+g[2].length,0);
+ $('cn').innerHTML=`<b>${total}</b>명`;
+ $('cl').innerHTML=total?sh.map(g=>`<h3 class="cgh" style="--c:${g[1]}"><i></i>${g[0]} <small>${g[2].length}명</small></h3><div class="cg">${g[2].map(card).join('')}</div>`).join(''):'<p class="cempty">조건에 맞는 캐릭터가 없어요.</p>'};rl();
+$('cq').oninput=e=>{cq=e.target.value.trim();rl()};
 $('cf').onclick=e=>{const g=e.target.closest('.gem');if(!g)return;const i=+g.dataset.i;on.has(i)?on.delete(i):on.add(i);g.classList.toggle('off',!on.has(i));rl()};
 const kv=rows=>rows.map(r=>`<div class="kv"><span class="k">${r[0]}</span><span class="v">${r[1]}</span></div>`).join("");
-function openC(id){const c=CH.find(x=>x.id==id);$('clist').hidden=true;$('cd').hidden=false;
+function openC(id,ids){const c=CH.find(x=>x.id==id);if(ids)curIds=ids;$('cd').dataset.id=id;$('clist').hidden=true;$('cd').hidden=false;
  const st=stage(c.cir);
  const rows=[["풀네임",c.n],["종족",c.race],["국적",c.nat],["신분",c.noble],["성별",c.g],["나이",c.a],["소속 학부",K[c.f].n]];
  if(c.r!="학생")rows.push(["직책",c.r+(c.o?" (교무청 소속)":"")]);
- rows.push(["유형",c.cls],["특화 계열",c.sch],["서클",c.cir+"서클 · "+st[1]+" "+st[2]],["성격",c.pers]);
- $('cd').innerHTML=`<button class="back">← 목록</button><div class="cdw">${sq(c)}<div class="info"><h3>${c.s}</h3><div class="m">${K[c.f].n} · ${c.r}</div>${kv(rows)}</div></div>`;
+ const ch=(a,f)=>a.split(/\s*,\s*/).map(f).join("");
+ const ix=curIds.indexOf(id),nv=d=>{const o=CH.find(x=>x.id==curIds[ix+d]);return o&&`<button data-n="${d}">${d<0?"← ":""}${o.s}${d>0?" →":""}</button>`||"<span></span>"};
+ $('cd').innerHTML=`<button class="back">← 목록</button><div class="cdw" style="--c:${K[c.f].c}"><div class="cpic">${sq(c)}${ix>=0&&curIds.length>1?`<div class="cnav">${nv(-1)}${nv(1)}</div>`:""}</div><div class="info"><span class="cbadge"><i></i>${K[c.f].n}${c.r!="학생"?" · "+c.r+(c.o?" (교무청 소속)":""):""}</span><h3>${c.s}</h3><div class="cfull">${c.n}</div><div class="ctags"><span>${c.race}</span><span>${c.g}</span><span>${c.a}</span></div>${kv([["국적",c.nat],["신분",c.noble]])}<div class="kv"><span class="k">성격</span><span class="v csch">${ch(c.pers,x=>`<span>${x}</span>`)}</span></div><div class="ch4">마법</div>${kv([["유형",c.cls]])}<div class="kv"><span class="k">특화 계열</span><span class="v csch">${ch(c.sch,x=>`<span style="--sc:${SC[x]||"#aaa"}"><i></i>${x}</span>`)}</span></div><div class="kv"><span class="k">서클</span><span class="v"><div class="cgauge" style="--g:${vivid(K[c.f].c)}">${Array.from({length:Math.max(9,c.cir)},(_,i)=>`<i${i<c.cir?' class="on"':""}></i>`).join("")}</div><span class="cstage">${c.cir}서클 · ${st[1]} ${st[2]}</span></span></div></div></div>`;
  $('chars').scrollIntoView()}
 
 // ── 학부 상세 페이지
@@ -714,7 +763,8 @@ function openE(id){const e=EV[id];if(!e)return;$('slist').hidden=true;$('evd').h
  $('sched').scrollIntoView()}
 
 document.addEventListener('click',e=>{
- const c=e.target.closest('.cc');if(c)return openC(c.dataset.id);
+ const c=e.target.closest('.cc');if(c)return openC(c.dataset.id,[...(c.closest('#cl')||c.parentNode).querySelectorAll('.cc')].map(x=>x.dataset.id));
+ const nb=e.target.closest('#cd .cnav button');if(nb)return openC(curIds[curIds.indexOf($('cd').dataset.id)+ +nb.dataset.n]);
  if(e.target.closest('#cd .back')){$('cd').hidden=true;$('clist').hidden=false;return}
  const v=e.target.closest('.evb[data-e]');if(v)return openE(v.dataset.e);
  if(e.target.closest('#evd .back')){$('evd').hidden=true;$('slist').hidden=false;$('sched').scrollIntoView()}});
