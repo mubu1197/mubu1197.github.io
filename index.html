@@ -386,6 +386,17 @@ img,canvas{-webkit-user-drag:none;user-select:none;-webkit-user-select:none;-web
 .cstage{font-size:13.5px;color:var(--mute)}
 @media(max-width:560px){.cg{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}.cn{font-size:14.5px}#cd .cpic{position:static}#cd h3{font-size:27px}.cgh{margin-top:28px}}
 
+/* 캐릭터 이전·다음 전환 */
+#cd .cdw.xo-l{animation:cdOutL .15s ease-in forwards}
+#cd .cdw.xo-r{animation:cdOutR .15s ease-in forwards}
+#cd .cdw.xi-r{animation:cdInR .24s cubic-bezier(.2,.8,.2,1)}
+#cd .cdw.xi-l{animation:cdInL .24s cubic-bezier(.2,.8,.2,1)}
+@keyframes cdOutL{to{opacity:0;transform:translateX(-56px)}}
+@keyframes cdOutR{to{opacity:0;transform:translateX(56px)}}
+@keyframes cdInR{from{opacity:0;transform:translateX(56px)}}
+@keyframes cdInL{from{opacity:0;transform:translateX(-56px)}}
+@media(prefers-reduced-motion:reduce){#cd .cdw{animation:none!important}}
+
 /* 플레이 존 */
 #play .chips{margin-bottom:22px}
 .pnote,.mm-lead{margin:0 0 16px;max-width:720px;font-size:15.5px;line-height:1.9;color:#a89c88}
@@ -608,13 +619,13 @@ body.lt-lock{overflow:hidden}
 <section id="play">
 <h2 data-t="play">플레이 존</h2>
 <p class="lead">쉬어 가는 곳이에요. 가볍게 즐겨 보세요.</p>
-<div class="chips" id="ptabs" role="group" aria-label="놀이 고르기"><button class="chip" data-p="mm" aria-pressed="true">브로치 짝맞추기</button><button class="chip" data-p="ws" aria-pressed="false">주문 제작소</button><button class="chip" data-p="mb" aria-pressed="false">마나 버블</button><button class="chip" data-p="ct" aria-pressed="false">컬러 타일</button><button class="chip" data-p="sg" aria-pressed="false">학부 합치기</button><button class="chip" data-p="wt" aria-pressed="false">시험관 정리</button></div>
-<div class="pp" id="pp-mm"><div id="mmr"></div></div>
+<div class="chips" id="ptabs" role="group" aria-label="놀이 고르기"><button class="chip" data-p="ws" aria-pressed="true">주문 제작소</button><button class="chip" data-p="mm" aria-pressed="false">메모리 카드</button><button class="chip" data-p="mb" aria-pressed="false">퍼즐 버블</button><button class="chip" data-p="ct" aria-pressed="false">컬러 타일</button><button class="chip" data-p="sg" aria-pressed="false">수박 게임</button><button class="chip" data-p="wt" aria-pressed="false">컬러 소트</button></div>
+<div class="pp" id="pp-mm" hidden><div id="mmr"></div></div>
 <div class="pp" id="pp-mb" hidden><div id="mbr"></div></div>
 <div class="pp" id="pp-ct" hidden><div id="ctr"></div></div>
 <div class="pp" id="pp-sg" hidden><div id="sgr"></div></div>
 <div class="pp" id="pp-wt" hidden><div id="wtr"></div></div>
-<div class="pp" id="pp-ws" hidden>
+<div class="pp" id="pp-ws">
 <p class="pnote">여섯 계열의 마나를 합치고 형태를 골라 마법을 펼쳐 보세요. 이곳의 마법 이름과 형태는 놀이를 위한 것이에요.<br>실제 플레이에서는 정해진 명칭 없이 자유롭게 마법을 펼쳐요.</p>
 <div id="wsr"></div>
 </div>
@@ -774,14 +785,23 @@ const rl=()=>{const hit=c=>!cq||[c.n,c.race,c.nat,c.sch,c.cls,c.noble].join(" ")
 $('cq').oninput=e=>{cq=e.target.value.trim();rl()};
 $('cf').onclick=e=>{const g=e.target.closest('.gem');if(!g)return;const i=+g.dataset.i;on.has(i)?on.delete(i):on.add(i);g.classList.toggle('off',!on.has(i));rl()};
 const kv=rows=>rows.map(r=>`<div class="kv"><span class="k">${r[0]}</span><span class="v">${r[1]}</span></div>`).join("");
-function openC(id,ids){const c=CH.find(x=>x.id==id);if(ids)curIds=ids;$('cd').dataset.id=id;$('clist').hidden=true;$('cd').hidden=false;
+function openC(id,ids,dir){const c=CH.find(x=>x.id==id);if(ids)curIds=ids;$('cd').dataset.id=id;$('clist').hidden=true;$('cd').hidden=false;
  const st=stage(c.cir);
  const rows=[["풀네임",c.n],["종족",c.race],["국적",c.nat],["신분",c.noble],["성별",c.g],["나이",c.a],["소속 학부",K[c.f].n]];
  if(c.r!="학생")rows.push(["직책",c.r+(c.o?" (교무청 소속)":"")]);
  const ch=(a,f)=>a.split(/\s*,\s*/).map(f).join("");
  const ix=curIds.indexOf(id),nv=d=>{const o=CH.find(x=>x.id==curIds[ix+d]);return o&&`<button data-n="${d}">${d<0?"← ":""}${o.s}${d>0?" →":""}</button>`||"<span></span>"};
- $('cd').innerHTML=`<button class="back">← 목록</button><div class="cdw" style="--c:${K[c.f].c}"><div class="cpic">${sq(c)}${ix>=0&&curIds.length>1?`<div class="cnav">${nv(-1)}${nv(1)}</div>`:""}</div><div class="info"><span class="cbadge"><i></i>${K[c.f].n}${c.r!="학생"?" · "+c.r+(c.o?" (교무청 소속)":""):""}</span><h3>${c.s}</h3><div class="cfull">${c.n}</div><div class="ctags"><span>${c.race}</span><span>${c.g}</span><span>${c.a}</span></div>${kv([["국적",c.nat],["신분",c.noble]])}<div class="kv"><span class="k">성격</span><span class="v csch">${ch(c.pers,x=>`<span>${x}</span>`)}</span></div><div class="ch4">마법</div>${kv([["유형",c.cls]])}<div class="kv"><span class="k">특화 계열</span><span class="v csch">${ch(c.sch,x=>`<span style="--sc:${SC[x]||"#aaa"}"><i></i>${x}</span>`)}</span></div><div class="kv"><span class="k">서클</span><span class="v"><div class="cgauge" style="--g:${vivid(K[c.f].c)}">${Array.from({length:Math.max(9,c.cir)},(_,i)=>`<i${i<c.cir?' class="on"':""}></i>`).join("")}</div><span class="cstage">${c.cir}서클 · ${st[1]} ${st[2]}</span></span></div></div></div>`;
- $('chars').scrollIntoView()}
+ $('cd').innerHTML=`<button class="back">← 목록</button><div class="cdw" style="--c:${K[c.f].c}"><div class="cpic">${sq(c)}${ix>=0&&curIds.length>1?`<div class="cnav">${nv(-1)}${nv(1)}</div>`:""}</div><div class="info"><span class="cbadge"><i></i>${K[c.f].n}${c.r!="학생"?" · "+c.r+(c.o?" (교무청 소속)":""):""}</span><h3>${c.s}</h3><div class="cfull">${c.n}</div><div class="ctags"><span>${c.race}</span><span>${c.g}</span><span>${c.a}</span></div>${kv([["국적",c.nat],["신분",c.noble]])}<div class="kv"><span class="k">성격</span><span class="v csch">${ch(c.pers,x=>`<span>${x}</span>`)}</span></div><div class="ch4">마법</div>${kv([["유형",c.cls]])}<div class="kv"><span class="k">특화 계열</span><span class="v csch">${ch(c.sch,x=>`<span style="--sc:${SC[x]||"#aaa"}"><i></i>${x}</span>`)}</span></div><div class="kv"><span class="k">서클</span><span class="v"><div class="cgauge" style="--g:${vivid(K[c.f].c)}">${Array.from({length:Math.max(14,c.cir)},(_,i)=>`<i${i<c.cir?' class="on"':""}></i>`).join("")}</div><span class="cstage">${c.cir}서클 · ${st[1]} ${st[2]}</span></span></div></div></div>`;
+ const w=$('cd').querySelector('.cdw');if(dir&&w)w.classList.add(dir>0?'xi-r':'xi-l');
+ if(!dir)$('chars').scrollIntoView()}
+
+// 이전·다음: 누른 방향으로 카드가 슥 밀려 나가고, 다음 카드가 반대편에서 들어옵니다
+let navBusy=0;
+function goC(d){
+ if($('cd').hidden||navBusy)return;const id=curIds[curIds.indexOf($('cd').dataset.id)+d];if(!id)return;
+ const w=$('cd').querySelector('.cdw'),calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+ if(!w||calm)return openC(id,null,0);
+ navBusy=1;w.classList.remove('xi-r','xi-l');w.classList.add(d>0?'xo-l':'xo-r');setTimeout(()=>{openC(id,null,d);navBusy=0},150)}
 
 // ── 학부 상세 페이지
 function openF(i,keep){const f=F[i],ls=h=>h||'<p class="lead">아직 등록되지 않았어요.</p>';
@@ -809,12 +829,13 @@ function openE(id){const e=EV[id];if(!e)return;$('slist').hidden=true;$('evd').h
 
 document.addEventListener('click',e=>{
  const c=e.target.closest('.cc');if(c)return openC(c.dataset.id,[...(c.closest('#cl')||c.parentNode).querySelectorAll('.cc')].map(x=>x.dataset.id));
- const nb=e.target.closest('#cd .cnav button');if(nb)return openC(curIds[curIds.indexOf($('cd').dataset.id)+ +nb.dataset.n]);
+ const nb=e.target.closest('#cd .cnav button');if(nb)return goC(+nb.dataset.n);
  if(e.target.closest('#cd .back')){$('cd').hidden=true;$('clist').hidden=false;return}
  const v=e.target.closest('.evb[data-e]');if(v)return openE(v.dataset.e);
  if(e.target.closest('#evd .back')){$('evd').hidden=true;$('slist').hidden=false;$('sched').scrollIntoView()}});
 
 pick(0);
+document.addEventListener('keydown',e=>{if(/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==='ArrowLeft')goC(-1);else if(e.key==='ArrowRight')goC(1)});
 
 // ── 학부 주소: 주소 끝에 학부 이름을 붙이면 그 학부의 상세 페이지가 바로 열립니다.
 //    예) index.html#rossier (로시에) · #janus (야누스) · #office (교무청). 영문 이름의 소문자이며, 파일 이름(kardel 등)으로도 열립니다.
