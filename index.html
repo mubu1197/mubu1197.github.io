@@ -527,7 +527,7 @@ body.lt-lock{overflow:hidden}
 </section>
 
 <section id="fpage" hidden>
-<button class="back" onclick="document.getElementById('fpage').hidden=true;document.getElementById('faculty').scrollIntoView()">← 12학부</button>
+<button class="back" onclick="document.getElementById('fpage').hidden=true;document.getElementById('faculty').scrollIntoView();try{history.replaceState(null,'','#faculty')}catch(e){}">← 12학부</button>
 <div class="fpw" id="fpb"></div>
 <h3 class="sub" id="fh1">교관</h3><div class="cg" id="fpi"></div>
 <h3 class="sub" id="fh2">학생</h3><div class="cg" id="fps"></div>
@@ -599,7 +599,7 @@ body.lt-lock{overflow:hidden}
  var sp=document.getElementById('splash'),b=document.body,t;
  function close(){clearTimeout(t);sp.classList.add('out');b.classList.remove('lock');try{sessionStorage.setItem('seen','1')}catch(e){}}
  var seen=false;try{seen=sessionStorage.getItem('seen')=='1'}catch(e){}
- if(seen){sp.classList.add('out');return}
+ if(seen||location.hash.length>1){sp.classList.add('out');return}      // 주소에 #가 붙은 링크로 들어오면 입장 화면 없이 바로 보여 줍니다
  b.classList.add('lock');
  sp.addEventListener('click',close);
  document.addEventListener('keydown',function k(e){if(!sp.classList.contains('out')){close()}});
@@ -746,8 +746,9 @@ function openC(id,ids){const c=CH.find(x=>x.id==id);if(ids)curIds=ids;$('cd').da
  $('chars').scrollIntoView()}
 
 // ── 학부 상세 페이지
-function openF(i){const f=F[i],ls=h=>h||'<p class="lead">아직 등록되지 않았어요.</p>';
+function openF(i,keep){const f=F[i],ls=h=>h||'<p class="lead">아직 등록되지 않았어요.</p>';
  $('fpage').hidden=false;
+ if(!keep)try{history.replaceState(null,'','#'+F[i][1].toLowerCase())}catch(e){}
  $('fpb').innerHTML=ic(i,200)+`<div><h2>${f[0]} <small>${f[1]}</small></h2><div style="font-size:13px;color:var(--gold);margin:6px 0 ${f[7]?"6px":"18px"}">${i==12?"행정 기관":f[4]+" · "+f[5]+" 중심"} · 상징 ${f[3]}</div>${f[7]?`<div class="maj" style="margin-bottom:18px"><b>전공 :</b> ${f[7]}</div>`:""}${typeof MOTTO!=="undefined"&&MOTTO[ID[i]]?`<div class="motto">${MOTTO[ID[i]]}</div>`:""}<div class="body" style="--c:${f[2]}">${paras(LONG[ID[i]]||f[6],"drop")}</div></div>`;
  const hs=[$('fh1'),$('fh2')];
  if(i==12){hs[0].textContent="교직원";hs[1].textContent="교관 (12학부)";
@@ -777,6 +778,15 @@ document.addEventListener('click',e=>{
 
 pick(0);
 
+// ── 학부 주소: 주소 끝에 학부 이름을 붙이면 그 학부의 상세 페이지가 바로 열립니다.
+//    예) index.html#rossier (로시에) · #janus (야누스) · #office (교무청). 영문 이름의 소문자이며, 파일 이름(kardel 등)으로도 열립니다.
+const hashF=()=>{const h=decodeURIComponent(location.hash.slice(1)).toLowerCase();return F.findIndex((f,i)=>f[1].toLowerCase()==h||ID[i]==h)};
+const goHash=()=>{const i=hashF();if(i>=0){openF(i,true);$('fpage').scrollIntoView({behavior:'instant'})}};
+window.addEventListener('hashchange',goHash);goHash();
+// 이미지가 늦게 뜨면서 위치가 밀리므로, 처음 몇 초 동안은 사용자가 움직이기 전까지 학부 페이지에 위치를 다시 맞춥니다.
+if(hashF()>=0){let us=0,n=0;['wheel','touchstart','keydown','mousedown'].forEach(v=>addEventListener(v,()=>us=1,{once:true,passive:true}));
+ const tk=setInterval(()=>{if(us||++n>14||hashF()<0||$('fpage').hidden)return clearInterval(tk);$('fpage').scrollIntoView({behavior:'instant'})},300)}
+
 const T={
 ko:{title:"노르테이아 아카데미",world:"세계관",gate:"게이트",faculty:"12학부",magic:"마법",chars:"캐릭터",campus:"캠퍼스",sched:"연간 일정",nations:"국가",factions:"파벌",ritual:"학부 선택 도우미",wc:"단짝 월드컵",play:"플레이 존"},
 ja:{title:"ノルテイア・アカデミー",world:"世界観",gate:"ゲート",faculty:"12学部",magic:"魔法",chars:"キャラクター",campus:"キャンパス",sched:"年間スケジュール",nations:"国家",factions:"派閥",ritual:"学部選びのお手伝い",wc:"相棒ワールドカップ",play:"プレイゾーン"},
@@ -800,6 +810,7 @@ build();
 document.getElementById('lang').addEventListener('change',function(){setTimeout(build,0)});
 d.addEventListener('click',function(e){var a=e.target.closest('a[data-id]');if(!a)return;
  var fp=document.getElementById('fpage');if(fp)fp.hidden=true;
+ try{history.replaceState(null,'','#'+a.dataset.id)}catch(e){}
  var el=document.getElementById(a.dataset.id);if(el)el.scrollIntoView({behavior:'smooth'})});
 function spy(){var cur='',y=window.innerHeight*0.35;
  ids.forEach(function(id){var el=document.getElementById(id);if(el&&!el.hidden&&el.getBoundingClientRect().top<=y)cur=id});
