@@ -346,6 +346,9 @@ details.ac .dl{border-top:0}
 .ws-bar{margin-top:20px}
 @media(max-width:640px){#wscv{aspect-ratio:1/1}.ws-forms{grid-template-columns:repeat(2,1fr)}.ws-hint{bottom:calc(12% + 34px);font-size:13px}.ws-res{font-size:13px;padding:7px 12px}.ws-res small{display:none}.ws-sch .ws-clear{margin-left:0}}
 
+/* 이미지 보호: 끌어서 저장, 길게 눌러 저장, 글자처럼 선택되는 것을 막습니다 (우클릭 메뉴는 아래 스크립트가 막습니다) */
+img,canvas{-webkit-user-drag:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+
 /* 캐릭터 명부 */
 .ctool{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin:0 0 6px}
 .csr{flex:1;min-width:210px;max-width:360px;background:var(--panel);border:1px solid var(--line);border-radius:99px;color:var(--text);padding:9px 18px;font:inherit;font-size:14px}
@@ -630,6 +633,12 @@ body.lt-lock{overflow:hidden}
  document.addEventListener('keydown',function k(e){if(!sp.classList.contains('out')){close()}});
  t=setTimeout(close,4200);
 })();
+</script>
+<script>
+// 이미지·캔버스 위에서는 우클릭 메뉴(이미지 저장, 새 탭에서 열기 등)와 끌어 저장을 막습니다. 글자 위의 우클릭은 그대로 쓸 수 있습니다.
+// 어디까지나 일반 방문자가 쉽게 저장하는 것을 막는 정도이며, 개발자 도구나 화면 캡처까지 막지는 못합니다.
+document.addEventListener('contextmenu',function(e){if(e.target.closest&&e.target.closest('img,canvas,picture'))e.preventDefault()});
+document.addEventListener('dragstart',function(e){if(e.target.tagName==='IMG'||e.target.tagName==='CANVAS')e.preventDefault()});
 </script>
 <script src="content.js"></script>
 <script src="quiz.js" defer></script>
