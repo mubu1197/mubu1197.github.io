@@ -416,6 +416,10 @@ details.ac .dl{border-top:0}
 .mm-chip{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:8px;vertical-align:-1px}
 #mbr{max-width:420px}
 #ctr{max-width:1100px}
+#sgr{max-width:440px}
+.sg-cv{aspect-ratio:420/620;cursor:pointer}
+.sg-chain{display:block;width:100%;height:44px;margin-top:8px}
+.sg-stat{margin-left:0}
 .ct-cv{cursor:pointer;aspect-ratio:23/15}
 .mb-cv{display:block;width:100%;aspect-ratio:360/520;border:1px solid var(--line);border-radius:6px;background:#0c0b10;cursor:crosshair;outline:none}
 .mb-cv:focus-visible{border-color:var(--gold)}
@@ -585,10 +589,11 @@ body.lt-lock{overflow:hidden}
 <section id="play">
 <h2 data-t="play">플레이 존</h2>
 <p class="lead">쉬어 가는 곳이에요. 가볍게 즐겨 보세요.</p>
-<div class="chips" id="ptabs" role="group" aria-label="놀이 고르기"><button class="chip" data-p="mm" aria-pressed="true">브로치 짝맞추기</button><button class="chip" data-p="ws" aria-pressed="false">주문 제작소</button><button class="chip" data-p="mb" aria-pressed="false">마나 버블</button><button class="chip" data-p="ct" aria-pressed="false">컬러 타일</button></div>
+<div class="chips" id="ptabs" role="group" aria-label="놀이 고르기"><button class="chip" data-p="mm" aria-pressed="true">브로치 짝맞추기</button><button class="chip" data-p="ws" aria-pressed="false">주문 제작소</button><button class="chip" data-p="mb" aria-pressed="false">마나 버블</button><button class="chip" data-p="ct" aria-pressed="false">컬러 타일</button><button class="chip" data-p="sg" aria-pressed="false">학부 합치기</button></div>
 <div class="pp" id="pp-mm"><div id="mmr"></div></div>
 <div class="pp" id="pp-mb" hidden><div id="mbr"></div></div>
 <div class="pp" id="pp-ct" hidden><div id="ctr"></div></div>
+<div class="pp" id="pp-sg" hidden><div id="sgr"></div></div>
 <div class="pp" id="pp-ws" hidden>
 <p class="pnote">여섯 계열의 마나를 합치고 형태를 골라 마법을 펼쳐 보세요. 이곳의 마법 이름과 형태는 놀이를 위한 것이에요.<br>실제 플레이에서는 정해진 명칭 없이 자유롭게 마법을 펼쳐요.</p>
 <div id="wsr"></div>
@@ -618,6 +623,8 @@ body.lt-lock{overflow:hidden}
 <script src="memory.js" defer></script>
 <script src="bubble.js" defer></script>
 <script src="tiles.js" defer></script>
+<script src="lib/matter.min.js" defer></script>
+<script src="suika.js" defer></script>
 <script src="play.js" defer></script>
 <script>
 const $=id=>document.getElementById(id);
