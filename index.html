@@ -417,6 +417,22 @@ details.ac .dl{border-top:0}
 #mbr{max-width:420px}
 #ctr{max-width:1100px}
 #sgr{max-width:440px}
+#wtr{max-width:1000px}
+.wt-board{display:flex;flex-wrap:wrap;justify-content:center;gap:34px 18px;margin:20px 0 6px;padding:40px 16px 22px;border:1px solid var(--line);border-radius:6px;background:linear-gradient(#17141f,#0c0b10)}
+.wt-tube{position:relative;display:flex;flex-direction:column-reverse;width:52px;height:176px;padding:4px 4px 5px;border:2px solid rgba(240,230,200,.35);border-top:0;border-radius:0 0 26px 26px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 12px rgba(255,255,255,.05);cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
+.wt-tube::before{content:"";position:absolute;left:-6px;right:-6px;top:-4px;height:6px;border:2px solid rgba(240,230,200,.35);border-radius:4px}
+.wt-tube:hover{border-color:rgba(240,230,200,.6)}
+.wt-tube.sel{transform:translateY(-18px);border-color:var(--gold)}
+.wt-tube.sel::before{border-color:var(--gold)}
+.wt-tube.done{border-color:var(--gold);box-shadow:0 0 16px color-mix(in srgb,var(--gold) 40%,transparent),inset 0 0 12px rgba(255,255,255,.05)}
+.wt-sl{position:relative;flex:0 0 25%;height:25%;overflow:hidden}
+.wt-sl:first-child{border-radius:0 0 21px 21px}
+.wt-sl.on{background:linear-gradient(90deg,color-mix(in srgb,var(--c) 68%,#fff),var(--c) 42%,color-mix(in srgb,var(--c) 72%,#000));border-top:1px solid rgba(255,255,255,.25)}
+.wt-sl.in{animation:wtin .3s ease-out}
+.wt-sl img{position:absolute;inset:0;display:block;width:100%;height:100%;padding:5px;box-sizing:border-box;object-fit:contain;mix-blend-mode:multiply;opacity:.7}
+@keyframes wtin{from{transform:scaleY(.05);transform-origin:top;opacity:.5}to{transform:scaleY(1);transform-origin:top;opacity:1}}
+@media(prefers-reduced-motion:reduce){.wt-sl.in{animation:none}.wt-tube{transition:none}}
+@media(max-width:560px){.wt-board{gap:30px 12px;padding:34px 10px 18px}.wt-tube{width:44px;height:150px}}
 .sg-cv{aspect-ratio:420/620;cursor:pointer}
 .sg-chain{display:block;width:100%;height:44px;margin-top:8px}
 .sg-stat{margin-left:0}
@@ -589,11 +605,12 @@ body.lt-lock{overflow:hidden}
 <section id="play">
 <h2 data-t="play">플레이 존</h2>
 <p class="lead">쉬어 가는 곳이에요. 가볍게 즐겨 보세요.</p>
-<div class="chips" id="ptabs" role="group" aria-label="놀이 고르기"><button class="chip" data-p="mm" aria-pressed="true">브로치 짝맞추기</button><button class="chip" data-p="ws" aria-pressed="false">주문 제작소</button><button class="chip" data-p="mb" aria-pressed="false">마나 버블</button><button class="chip" data-p="ct" aria-pressed="false">컬러 타일</button><button class="chip" data-p="sg" aria-pressed="false">학부 합치기</button></div>
+<div class="chips" id="ptabs" role="group" aria-label="놀이 고르기"><button class="chip" data-p="mm" aria-pressed="true">브로치 짝맞추기</button><button class="chip" data-p="ws" aria-pressed="false">주문 제작소</button><button class="chip" data-p="mb" aria-pressed="false">마나 버블</button><button class="chip" data-p="ct" aria-pressed="false">컬러 타일</button><button class="chip" data-p="sg" aria-pressed="false">학부 합치기</button><button class="chip" data-p="wt" aria-pressed="false">시험관 정리</button></div>
 <div class="pp" id="pp-mm"><div id="mmr"></div></div>
 <div class="pp" id="pp-mb" hidden><div id="mbr"></div></div>
 <div class="pp" id="pp-ct" hidden><div id="ctr"></div></div>
 <div class="pp" id="pp-sg" hidden><div id="sgr"></div></div>
+<div class="pp" id="pp-wt" hidden><div id="wtr"></div></div>
 <div class="pp" id="pp-ws" hidden>
 <p class="pnote">여섯 계열의 마나를 합치고 형태를 골라 마법을 펼쳐 보세요. 이곳의 마법 이름과 형태는 놀이를 위한 것이에요.<br>실제 플레이에서는 정해진 명칭 없이 자유롭게 마법을 펼쳐요.</p>
 <div id="wsr"></div>
@@ -625,6 +642,7 @@ body.lt-lock{overflow:hidden}
 <script src="tiles.js" defer></script>
 <script src="lib/matter.min.js" defer></script>
 <script src="suika.js" defer></script>
+<script src="water.js" defer></script>
 <script src="play.js" defer></script>
 <script>
 const $=id=>document.getElementById(id);
