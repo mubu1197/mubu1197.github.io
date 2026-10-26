@@ -8,7 +8,7 @@
  if(typeof F==="undefined"||typeof ID==="undefined")return;
  var root=document.getElementById('ctr');if(!root)return;
  var U=32,PEN=3,FILL=.55;                                                 // 칸 하나의 그림 크기 / 실수 시 줄어드는 초 / 타일이 차 있는 비율
- var LV=[['쉬움',[3,4,6,8,11,0],150,110],['보통',[3,4,6,8,11,0,1,2],120,120],['어려움',[3,4,6,8,11,0,1,2,5,7],120,130],['극한',[0,1,2,3,4,5,6,7,8,9,10,11],120,140]];   // 이름, 쓰는 학부, 제한 시간(초), 목표 점수
+ var LV=[['쉬움',[3,4,6,8,11,0],150,110],['보통',[3,4,6,8,11,0,1,2],120,120],['어려움',[3,4,6,8,11,0,1,2,5,10],120,130],['극한',[0,1,2,3,4,5,6,7,8,9,10,11],120,140]];   // 이름, 쓰는 학부, 제한 시간(초), 목표 점수
  var lv=1,cols,rows,g,score,left,state,started,hov,pops,beams,floats,miss,hit,best={},vis=false,raf=0,last=0,lastAt=0,cw=0,lastSec=-1,goal=false,emb=true;
  var COL=[],IMG=[],LI=[],DK=[];
  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;

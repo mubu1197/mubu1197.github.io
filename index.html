@@ -673,7 +673,7 @@ if(typeof FAC==="undefined"||typeof ROSTER==="undefined"||typeof EVENTS==="undef
 }
 const F=FAC;
 const ORD=[0,1,2,3,4,5,12,6,7,8,9,10,11];
-const ID=["marche","rossier","varche","tonica","bronte","castel","erva","levant","volter","bellois","kardel","orden","office"];
+const ID=["marche","rossier","varche","tonica","bronte","castel","erva","kardel","volter","bellois","levant","orden","office"];
 const K=F.map((f,i)=>({n:f[0],c:f[2],id:ID[i]}));
 const box=a=>a.map(x=>`<div class="box"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join('');
 // ── 이미지 칸: 파일 이름만 적으면 가벼운 축소본 img/s/이름.jpg 를 먼저 쓰고, 없으면 img/이름.png → jpg → jpeg → webp → gif 순으로 찾습니다
