@@ -611,8 +611,8 @@ body.lt-lock{overflow:hidden}
 
 <section id="chars">
 <h2 data-t="chars">캐릭터</h2>
-<p class="lead">브로치를 눌러 학부별로 보고 숨길 수 있어요. 캐릭터를 누르면 상세 정보가 열립니다.</p>
-<div id="clist"><div class="frow" id="cf"></div><div class="ctool"><input class="csr" id="cq" type="search" placeholder="이름 · 종족 · 국적으로 찾기" aria-label="캐릭터 검색" autocomplete="off"><span class="ccount" id="cn"></span></div><div id="cl"></div></div>
+<p class="lead">브로치를 누르면 그 학부만 보이고, 이어서 누르면 하나씩 더해져요. 캐릭터를 누르면 상세 정보가 열립니다.</p>
+<div id="clist"><div class="frow" id="cf"></div><div class="ctool"><input class="csr" id="cq" type="search" placeholder="이름 · 종족 · 국적으로 찾기" aria-label="캐릭터 검색" autocomplete="off"><span class="ccount" id="cn"></span><button class="rlink" id="call" hidden>전체 보기</button></div><div id="cl"></div></div>
 <div id="cd" hidden></div>
 </section>
 
@@ -783,7 +783,14 @@ const rl=()=>{const hit=c=>!cq||[c.n,c.race,c.nat,c.sch,c.cls,c.noble].join(" ")
  $('cn').innerHTML=`<b>${total}</b>명`;
  $('cl').innerHTML=total?sh.map(g=>`<h3 class="cgh" style="--c:${g[1]}"><i></i>${g[0]} <small>${g[2].length}명</small></h3><div class="cg">${g[2].map(card).join('')}</div>`).join(''):'<p class="cempty">조건에 맞는 캐릭터가 없어요.</p>'};rl();
 $('cq').oninput=e=>{cq=e.target.value.trim();rl()};
-$('cf').onclick=e=>{const g=e.target.closest('.gem');if(!g)return;const i=+g.dataset.i;on.has(i)?on.delete(i):on.add(i);g.classList.toggle('off',!on.has(i));rl()};
+// 모두 켜진 상태에서 처음 누른 학부만 남기고, 그다음부터는 누르는 대로 하나씩 켜고 끕니다. 마지막 하나를 끄면 전체로 돌아갑니다.
+const gemSync=()=>{document.querySelectorAll('#cf .gem').forEach(g=>g.classList.toggle('off',!on.has(+g.dataset.i)));$('call').hidden=on.size===K.length};
+$('cf').onclick=e=>{const g=e.target.closest('.gem');if(!g)return;const i=+g.dataset.i;
+ if(on.size===K.length){on.clear();on.add(i)}
+ else if(on.has(i)){on.delete(i);if(!on.size)K.forEach((_,k)=>on.add(k))}
+ else on.add(i);
+ gemSync();rl()};
+$('call').onclick=()=>{K.forEach((_,k)=>on.add(k));gemSync();rl()};
 const kv=rows=>rows.map(r=>`<div class="kv"><span class="k">${r[0]}</span><span class="v">${r[1]}</span></div>`).join("");
 function openC(id,ids,dir){const c=CH.find(x=>x.id==id);if(ids)curIds=ids;$('cd').dataset.id=id;$('clist').hidden=true;$('cd').hidden=false;
  const st=stage(c.cir);
