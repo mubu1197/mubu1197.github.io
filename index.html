@@ -176,7 +176,8 @@ details.ac>summary small{margin-left:auto;font:13px var(--sans);color:var(--dim)
 details.ac[open]>summary{border-bottom:1px solid var(--line)}
 details.ac .in{padding:20px}
 details.ac .in>p{font-size:15.5px;line-height:1.95;color:var(--text);max-width:720px}
-details.ac .pic{max-width:560px}
+details.ac .r32 img{aspect-ratio:2/1;object-fit:cover}
+@media(max-width:640px){details.ac .r32 img{aspect-ratio:3/2}}
 details.ac .dl{border-top:0}
 .fc{display:grid;grid-template-columns:minmax(200px,300px) 1fr;gap:28px;align-items:center;border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:24px;margin-bottom:18px}
 .fc .flag{flex:none;width:100%}
