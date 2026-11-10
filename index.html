@@ -519,11 +519,11 @@ body.lt-lock{overflow:hidden}
 </style>
 </head>
 <body>
-<div id="splash" role="dialog" aria-label="노르테이아 아카데미 입장"><div class="sg"></div><div class="logo" data-t="title">노르테이아 아카데미</div><div class="en">NORTEIA ACADEMY</div><button id="enter">입장</button></div>
+<div id="splash" role="dialog" aria-label="노르테이아 아카데미 입장"><div class="sg"></div><div class="logo" data-t="title">노르테이아 아카데미</div><div class="en">NORTHEIA ACADEMY</div><button id="enter">입장</button></div>
 <nav><b>노르테이아</b><a href="#world" data-t="world">세계관</a><a href="#gate" data-t="gate">게이트</a><a href="#factions" data-t="factions">파벌</a><a href="#ritual" data-t="ritual">학부 선택 도우미</a><a href="#faculty" data-t="faculty">12학부</a><a href="#magic" data-t="magic">마법</a><a href="#campus" data-t="campus">캠퍼스</a><a href="#sched" data-t="sched">연간 일정</a><a href="#nations" data-t="nations">국가</a><a href="#wc" data-t="wc">단짝 월드컵</a><a href="#chars" data-t="chars">캐릭터</a><a href="#play" data-t="play">플레이 존</a><select id="lang" aria-label="언어"><option value="ko">한국어</option><option value="ja">日本語</option><option value="en">English</option><option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option><option value="es">Español</option></select></nav>
 
 <header>
-<p class="s">NORTEIA ACADEMY</p>
+<p class="s">NORTHEIA ACADEMY</p>
 <h1 data-t="title">노르테이아 아카데미</h1>
 <p class="d">대륙 중앙의 중립 도시국가, 여섯 나라가 함께 세운 아카데미.<br>게이트에 맞서는 열두 학부의 이야기를 모았습니다.</p>
 </header>
@@ -632,7 +632,7 @@ body.lt-lock{overflow:hidden}
 </div>
 </section>
 
-<footer>노르테이아 아카데미 · NORTEIA ACADEMY</footer>
+<footer>노르테이아 아카데미 · NORTHEIA ACADEMY</footer>
 
 <script>
 (function(){
@@ -857,10 +857,10 @@ if(hashF()>=0){let us=0,n=0;['wheel','touchstart','keydown','mousedown'].forEach
 const T={
 ko:{title:"노르테이아 아카데미",world:"세계관",gate:"게이트",faculty:"12학부",magic:"마법",chars:"캐릭터",campus:"캠퍼스",sched:"연간 일정",nations:"국가",factions:"파벌",ritual:"학부 선택 도우미",wc:"단짝 월드컵",play:"플레이 존"},
 ja:{title:"ノルテイア・アカデミー",world:"世界観",gate:"ゲート",faculty:"12学部",magic:"魔法",chars:"キャラクター",campus:"キャンパス",sched:"年間スケジュール",nations:"国家",factions:"派閥",ritual:"学部選びのお手伝い",wc:"相棒ワールドカップ",play:"プレイゾーン"},
-en:{title:"Norteia Academy",world:"World",gate:"Gates",faculty:"12 Faculties",magic:"Magic",chars:"Characters",campus:"Campus",sched:"Annual Schedule",nations:"Nations",factions:"Factions",ritual:"Faculty Guide",wc:"Soulmate Cup",play:"Play Zone"},
+en:{title:"Northeia Academy",world:"World",gate:"Gates",faculty:"12 Faculties",magic:"Magic",chars:"Characters",campus:"Campus",sched:"Annual Schedule",nations:"Nations",factions:"Factions",ritual:"Faculty Guide",wc:"Soulmate Cup",play:"Play Zone"},
 "zh-CN":{title:"诺尔泰亚学院",world:"世界观",gate:"传送门",faculty:"十二学部",magic:"魔法",chars:"角色",campus:"校园",sched:"年度日程",nations:"国家",factions:"派系",ritual:"学部选择助手",wc:"搭档世界杯",play:"游戏区"},
 "zh-TW":{title:"諾爾泰亞學院",world:"世界觀",gate:"傳送門",faculty:"十二學部",magic:"魔法",chars:"角色",campus:"校園",sched:"年度日程",nations:"國家",factions:"派系",ritual:"學部選擇助手",wc:"搭檔世界盃",play:"遊戲區"},
-es:{title:"Academia de Norteia",world:"Mundo",gate:"Portales",faculty:"12 facultades",magic:"Magia",chars:"Personajes",campus:"Campus",sched:"Calendario anual",nations:"Naciones",factions:"Facciones",ritual:"Guía de facultades",wc:"Copa de compañeros",play:"Zona de juegos"}};
+es:{title:"Academia de Northeia",world:"Mundo",gate:"Portales",faculty:"12 facultades",magic:"Magia",chars:"Personajes",campus:"Campus",sched:"Calendario anual",nations:"Naciones",factions:"Facciones",ritual:"Guía de facultades",wc:"Copa de compañeros",play:"Zona de juegos"}};
 function setLang(l){const d=T[l]||T.ko;document.querySelectorAll('[data-t]').forEach(e=>e.textContent=d[e.dataset.t]);document.documentElement.lang=l;document.title=d.title;try{localStorage.setItem('lang',l)}catch(e){}}
 $('lang').onchange=e=>setLang(e.target.value);
 try{const l=localStorage.getItem('lang');if(l&&T[l]){$('lang').value=l;setLang(l)}}catch(e){}

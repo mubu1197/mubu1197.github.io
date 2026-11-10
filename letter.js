@@ -47,7 +47,7 @@ var LETTER={
  }
  function paper(i,name){
   var L=lines(i,name);
-  return '<div class="lt-scroll"><div class="lt-crest">NORTEIA ACADEMY</div><h3>'+esc(LETTER.title)+'</h3><div class="lt-orn"><i></i></div>'
+  return '<div class="lt-scroll"><div class="lt-crest">NORTHEIA ACADEMY</div><h3>'+esc(LETTER.title)+'</h3><div class="lt-orn"><i></i></div>'
    +'<p class="lt-to">'+esc(L.to)+'</p>'
    +L.body.map(function(p){return '<p>'+bold(p)+'</p>'}).join('')
    +'<div class="lt-date"><span>'+esc(L.from)+'</span><span>'+esc(L.sent)+'</span></div>'
