@@ -105,7 +105,7 @@ def build(lang):
         if v is None or v=='' or v=='-': return
         d[k]=v
     # 1) 문장 단위 번역
-    for ch in 'ABCDE':
+    for ch in 'ABCDEF':
         path=os.path.join(T,'src','%s.%s.tsv'%(lang,ch))
         for line in open(path,encoding='utf-8').read().split('\n'):
             if not line.strip(): continue
