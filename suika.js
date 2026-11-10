@@ -85,7 +85,7 @@
    var nb=mk(t+1,x,y);nb.age=1;Bd.setVelocity(nb,{x:(a.velocity.x+b.velocity.x)/4,y:(a.velocity.y+b.velocity.y)/4});Bd.setAngle(nb,(a.angle+b.angle)/2);
    M.Composite.add(world,nb);bodies.push(nb);fx(x,y,t+1);
    score+=SC[t+1];floats.push({x:x,y:y,t:'+'+SC[t+1],age:0});
-   if(t+1===N-1&&!done12){done12=true;floats.push({x:W/2,y:H/2,t:'교무청 완성!',age:-.2,big:true})}});
+   if(t+1===N-1&&!done12){done12=true;floats.push({x:W/2,y:H/2,t:TR('교무청 완성!'),age:-.2,big:true})}});
   if(score>best){best=score;try{localStorage.setItem('sgbest',best)}catch(e){}}
   drawStat()}
  function finish(){
@@ -121,7 +121,7 @@
   floats.forEach(function(f){if(f.age<0)return;var u=f.age/(f.big?1.4:.9);ctx.globalAlpha=1-u*u;ctx.fillStyle=f.big?'#ffe7a8':'#fff';ctx.font=(f.big?'700 32px ':'700 16px ')+ff;ctx.textAlign='center';ctx.shadowColor='#000';ctx.shadowBlur=6;ctx.fillText(f.t,f.x,f.y-u*28);ctx.shadowBlur=0});
   ctx.globalAlpha=1;
   // 다음 구슬
-  ctx.fillStyle='rgba(240,230,200,.5)';ctx.font='12px '+ff;ctx.textAlign='right';ctx.fillText('다음',W-50,28);
+  ctx.fillStyle='rgba(240,230,200,.5)';ctx.font='12px '+ff;ctx.textAlign='right';ctx.fillText(TR('다음'),W-50,28);
   ball(nxt,W-30,24,0,1,Math.min(1,30/D[nxt]));
   if(state!=='play'){ctx.fillStyle='rgba(0,0,0,.45)';ctx.fillRect(0,0,W,H)}}
  function layout(){

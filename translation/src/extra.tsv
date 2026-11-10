@@ -1,0 +1,80 @@
+봉인된 편지 열기	Open the sealed letter	封印された手紙を開く	打開封緘的信	Abrir la carta sellada
+봉인 열기	Break the seal	封印を開く	打開封蠟	Romper el sello
+카드판	Card board	カード盤	卡片盤	Tablero de cartas
+마나 구슬을 끌어다 합치는 칸	Area for dragging and combining mana orbs	マナの珠をドラッグして合わせる場所	拖曳並合併魔力珠的區域	Zona para arrastrar y combinar orbes de maná
+마나 버블 판. 방향키로 조준하고 스페이스로 발사해요	Mana Bubble board. Aim with the arrow keys and fire with Space	マナバブルの盤。方向キーで狙い、スペースで発射します	魔力泡泡盤面。用方向鍵瞄準，空白鍵發射	Tablero de Burbujas de maná. Apunta con las flechas y dispara con la barra espaciadora
+타일의 학부 문양을 켜고 꺼요	Turn the faculty emblems on tiles on or off	タイルの学部紋章の表示を切り替えます	開關方塊上的學部紋章	Activa o desactiva los emblemas de facultad de las fichas
+컬러 타일 판. 빈칸을 눌러 같은 색 타일을 지워요	Color Tiles board. Press an empty cell to clear same-color tiles	カラータイルの盤。空きマスを押して同じ色のタイルを消します	色彩方塊盤面。按空格消除相同顏色的方塊	Tablero de Fichas de color. Pulsa una casilla vacía para quitar fichas del mismo color
+학부 합치기 판. 눌러서 위치를 정하고 손을 떼면 떨어져요	Faculty merging board. Press to choose a position and release to drop	学部合体の盤。押して位置を決め、指を離すと落ちます	學部合成盤面。按住決定位置，放開手就會掉落	Tablero de fusión de facultades. Pulsa para elegir posición y suelta para que caiga
+합쳐지는 순서	Merge order	合体する順番	合成順序	Orden de fusión
+켜면 다른 색 위에도 부을 수 있어요	When on, you can pour onto other colors too	オンにすると別の色の上にも注げます	開啟後也能倒在其他顏色上	Si se activa, puedes verter también sobre otros colores
+층의 학부 문양을 켜고 꺼요	Turn the faculty emblems on layers on or off	層の学部紋章の表示を切り替えます	開關各層的學部紋章	Activa o desactiva los emblemas de facultad de las capas
+시험관	Test tube	試験管	試管	Tubo de ensayo
+맨 위로	Back to top	一番上へ	回到頂端	Ir arriba
+· 하강까지	· Until drop	· 下降まで	· 距離下降	· Hasta bajar
+발 · 시간	shots · Time	発 · 時間	發 · 時間	disparos · Tiempo
+를 눌러 보세요.	 may help.	を押してみましょう。	試試看吧。	 puede ayudar.
+남학생 제외	Excluding male students	男子学生を除く	排除男學生	Sin estudiantes hombres
+여학생 제외	Excluding female students	女子学生を除く	排除女學生	Sin estudiantes mujeres
+남성 제외	Excluding men	男性を除く	排除男性	Sin hombres
+여성 제외	Excluding women	女性を除く	排除女性	Sin mujeres
+학생	Student	学生	學生	Estudiante
+교관	Instructor	教官	教官	Instructor
+총장	Chancellor	学院長	院長	Rector
+부총장	Vice-Chancellor	副学院長	副院長	Vicerrector
+교무청장	Head of the Office	教務庁長	教務處長	Jefe de la Oficina
+의무실장	Head of the Infirmary	医務室長	醫務室長	Jefe de enfermería
+기숙사 사감	Dorm Warden	寮監	宿舍舍監	Supervisor de residencia
+마법사	Mage	魔法使い	魔法師	Mago
+전사	Warrior	戦士	戰士	Guerrero
+공작가	Ducal	公爵家	公爵家	Casa ducal
+후작가	Marquess	侯爵家	侯爵家	Casa marquesal
+백작가	Count	伯爵家	伯爵家	Casa condal
+자작가	Viscount	子爵家	子爵家	Casa vizcondal
+남작가	Baron	男爵家	男爵家	Casa baronial
+왕실	Royal	王家	王室	Realeza
+황실	Imperial	皇家	皇室	Casa imperial
+자연	Nature	自然	自然	Naturaleza
+신성	Divine	神聖	神聖	Divina
+암흑	Dark	暗黒	暗黑	Oscura
+생명	Life	生命	生命	Vida
+비전	Arcane	秘術	秘術	Arcana
+강화	Reinforcement	強化	強化	Refuerzo
+인간	Human	人間	人類	Humano
+하이 엘프	High Elf	ハイエルフ	高等精靈	Alto elfo
+우드 엘프	Wood Elf	ウッドエルフ	木精靈	Elfo de los bosques
+다크 엘프	Dark Elf	ダークエルフ	黑暗精靈	Elfo oscuro
+요정	Fairy	妖精	妖精	Hada
+흡혈귀	Vampire	吸血鬼	吸血鬼	Vampiro
+용족 (수룡)	Dragonkin (Water Dragon)	竜族(水竜)	龍族（水龍）	Dracónido (dragón de agua)
+용족 (백룡)	Dragonkin (White Dragon)	竜族(白竜)	龍族（白龍）	Dracónido (dragón blanco)
+물 님프(인어)	Water Nymph (Mermaid)	水のニンフ(人魚)	水之寧芙（人魚）	Ninfa de agua (sirena)
+나무 님프(드라이어드)	Tree Nymph (Dryad)	木のニンフ(ドライアド)	樹之寧芙（樹精）	Ninfa de árbol (dríade)
+공작가 영식	Son of a Ducal House	公爵家の令息	公爵家公子	Hijo de una casa ducal
+공작가 영애	Daughter of a Ducal House	公爵家の令嬢	公爵家千金	Hija de una casa ducal
+공작가 출신	From a Ducal House	公爵家の出身	公爵家出身	De una casa ducal
+후작가 영애	Daughter of a Marquess's House	侯爵家の令嬢	侯爵家千金	Hija de una casa marquesal
+후작가 출신	From a Marquess's House	侯爵家の出身	侯爵家出身	De una casa marquesal
+백작가 영식	Son of a Count's House	伯爵家の令息	伯爵家公子	Hijo de una casa condal
+백작가 영애	Daughter of a Count's House	伯爵家の令嬢	伯爵家千金	Hija de una casa condal
+백작가 출신	From a Count's House	伯爵家の出身	伯爵家出身	De una casa condal
+자작가 영식	Son of a Viscount's House	子爵家の令息	子爵家公子	Hijo de una casa vizcondal
+자작가 영애	Daughter of a Viscount's House	子爵家の令嬢	子爵家千金	Hija de una casa vizcondal
+자작가 출신	From a Viscount's House	子爵家の出身	子爵家出身	De una casa vizcondal
+남작가 영식	Son of a Baron's House	男爵家の令息	男爵家公子	Hijo de una casa baronial
+남작가 영애	Daughter of a Baron's House	男爵家の令嬢	男爵家千金	Hija de una casa baronial
+왕실 직계, 제1왕녀	Royal line, First Princess	王家直系・第一王女	王室直系，第一公主	Línea real, primera princesa
+왕실 직계, 제2왕녀	Royal line, Second Princess	王家直系・第二王女	王室直系，第二公主	Línea real, segunda princesa
+황실 직계, 제1황녀	Imperial line, First Princess	皇家直系・第一皇女	皇室直系，第一公主	Línea imperial, primera princesa
+황실 직계, 제2황녀	Imperial line, Second Princess	皇家直系・第二皇女	皇室直系，第二公主	Línea imperial, segunda princesa
+황실 직계, 제3황녀	Imperial line, Third Princess	皇家直系・第三皇女	皇室直系，第三公主	Línea imperial, tercera princesa
+성녀	Saint	聖女	聖女	Santa
+노르테이아 입학 전형	Northeia admission screening	ノルテイア入学選考	諾爾泰亞入學甄選	Selección de ingreso de Northeia
+오리디아 입학 전형	Oridia admission screening	オリディア入学選考	奧里迪亞入學甄選	Selección de ingreso de Oridia
+추천서 입학	Admitted by recommendation	推薦状による入学	推薦信入學	Ingreso por recomendación
+(교무청 소속)	(Office)	(教務庁所属)	（隸屬教務處）	(Oficina)
+지식 중심	Knowledge-focused	知識中心	以知識為主	Centrada en el conocimiento
+다중 중심	Multi-focused	多重中心	以多元為主	Centrada en lo múltiple
+행정 중심	Administration-focused	行政中心	以行政為主	Centrada en la administración
+명	 characters	人	人	 personajes
+받는 분	Recipient	宛名	收件人	Destinatario

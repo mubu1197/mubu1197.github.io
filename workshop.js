@@ -333,7 +333,7 @@
   if(b.dataset.k!==undefined&&b.closest('#wssch'))return toggleSel(+b.dataset.k);
   if(b.id==='wsclear'){sel=[];resEl.classList.remove('on');return renderSel()}
   if(b.dataset.f!==undefined&&b.closest('#wsforms'))return cast(+b.dataset.f);
-  if(b.id==='wsreset'){if(window.confirm('마법서의 모든 기록을 지울까요?')){got={};saveBook();renderBook();say('마법서를 비웠어요.')}}});
+  if(b.id==='wsreset'){if(window.confirm(TR('마법서의 모든 기록을 지울까요?'))){got={};saveBook();renderBook();say('마법서를 비웠어요.')}}});
  if('IntersectionObserver' in window)new IntersectionObserver(function(en){visible=en[0].isIntersecting;if(visible)wake()}).observe(cv);
  if(window.ResizeObserver)new ResizeObserver(wake).observe(cv);else window.addEventListener('resize',wake);
 

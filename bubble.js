@@ -148,7 +148,7 @@
   ctx.fillStyle='#2a2620';ctx.strokeStyle='#d9c28a';ctx.beginPath();ctx.arc(SX,SY,R+5,0,6.2832);ctx.fill();ctx.stroke();
   if(proj)ball(proj.x,proj.y,proj.c);else if(state==='play')ball(SX,SY,cur);
   ball(R*1.6,SY+8,nxt,.72);
-  ctx.fillStyle='rgba(240,230,200,.5)';ctx.font='12px '+getComputedStyle(root).fontFamily;ctx.textAlign='center';ctx.fillText('다음',R*1.6,SY+34);
+  ctx.fillStyle='rgba(240,230,200,.5)';ctx.font='12px '+getComputedStyle(root).fontFamily;ctx.textAlign='center';ctx.fillText(TR('다음'),R*1.6,SY+34);
   if(state!=='play'){ctx.fillStyle='rgba(0,0,0,.45)';ctx.fillRect(0,0,W,H)}}
  function layout(){
   var w=cv.clientWidth;if(!w){cw=0;return}

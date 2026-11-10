@@ -109,7 +109,7 @@ var RITUAL=[
   if(a=="start")return start();
   if(a=="last")return result(saved(),null);
   if(a=="back"){st.n--;st.pick.length=st.n;return ask()}
-  if(a=="copy"){var i=+b.dataset.i,s="나에게 어울리는 노르테이아 아카데미의 학부는 "+F[i][0]+"! "+location.href.split('#')[0];
+  if(a=="copy"){var i=+b.dataset.i,s=TR("나에게 어울리는 노르테이아 아카데미의 학부는")+" "+TR(F[i][0])+"! "+location.href.split('#')[0];
    try{navigator.clipboard.writeText(s).then(function(){b.textContent="복사되었어요"},function(){b.textContent="복사하지 못했어요"})}catch(x){b.textContent="복사하지 못했어요"}return}
   if(b.dataset.k!==undefined&&st){
    st.pick[st.n]=+b.dataset.k;st.n++;

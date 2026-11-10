@@ -35,6 +35,7 @@ var LETTER={
  // 편지 문장 (화면과 '편지 복사'가 같은 문장을 씁니다)
  function lines(i,name){
   var f=F[i],L=LETTER;
+  if(window.I18N_PACK&&I18N_PACK.letter)return I18N_PACK.letter(i,name,L,f,headName());   // 번역 언어일 때는 번역 파일의 문장틀을 씁니다
   return {
    to:name+" 귀하",
    body:[

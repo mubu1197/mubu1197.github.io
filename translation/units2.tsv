@@ -1,0 +1,23 @@
+1001	letter.js	봉인된 편지 열기
+1002	letter.js	닫기
+1003	letter.js	봉인 열기
+1004	workshop.js	마나 구슬을 끌어다 합치는 칸
+1005	memory.js	카드판
+1006	memory.js	카드 '+(c.n+1)+'
+1007	memory.js*	 브로치
+1008	memory.js*	카드 
+1009	bubble.js	마나 버블 판. 방향키로 조준하고 스페이스로 발사해요
+1010	tiles.js	타일의 학부 문양을 켜고 꺼요
+1011	tiles.js	컬러 타일 판. 빈칸을 눌러 같은 색 타일을 지워요
+1012	suika.js	학부 합치기 판. 눌러서 위치를 정하고 손을 떼면 떨어져요
+1013	suika.js	합쳐지는 순서
+1014	water.js	켜면 다른 색 위에도 부을 수 있어요
+1015	water.js	층의 학부 문양을 켜고 꺼요
+1016	water.js	시험관
+1017	water.js	시험관 '+(i+1)+'
+1018	index.html	노르테이아 아카데미 입장
+1019	index.html	언어
+1020	index.html	이름 · 종족 · 국적으로 찾기
+1021	index.html	캐릭터 검색
+1022	index.html	놀이 고르기
+1023	index.html	맨 위로

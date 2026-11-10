@@ -59,12 +59,12 @@
    m.forEach(function(x){var v=g[x[0]][x[1]];g[x[0]][x[1]]=-1;
     pops.push({x:x[1]*U+U/2,y:x[0]*U+U/2,c:v,age:0});beams.push({x0:cx,y0:cy,x1:x[1]*U+U/2,y1:x[0]*U+U/2,c:v,age:0})});
    score+=m.length;floats.push({x:cx,y:cy,t:'+'+m.length,c:'#fff',age:0});
-   if(!goal&&score>=LV[lv][3]){goal=true;floats.push({x:cols*U/2,y:rows*U/2,t:'목표 달성!',c:'#ffe7a8',age:-.15,big:true})}
+   if(!goal&&score>=LV[lv][3]){goal=true;floats.push({x:cols*U/2,y:rows*U/2,t:TR('목표 달성!'),c:'#ffe7a8',age:-.15,big:true})}
    drawStat();
    if(!tilesLeft())return finish('clear');
    if(!anyMove())return finish('stuck');
   }else{
-   left-=PEN;miss.push({x:c*U+U/2,y:r*U+U/2,age:0});floats.push({x:c*U+U/2,y:r*U+U/2,t:'−'+PEN+'초',c:'#ff7b7b',age:0});
+   left-=PEN;miss.push({x:c*U+U/2,y:r*U+U/2,age:0});floats.push({x:c*U+U/2,y:r*U+U/2,t:TR('−'+PEN+'초'),c:'#ff7b7b',age:0});
    if(left<=0){left=0;finish('time');return}
    drawStat()}
   wake()}

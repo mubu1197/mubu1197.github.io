@@ -92,7 +92,7 @@
   if(a=="start")return start();
   if(a=="reset"){st=null;return intro()}
   if(a=="last"){var c=saved();return c&&finish(c)}
-  if(a=="copy"){var c2=CH.find(function(x){return x.id==b.dataset.id}),s="내 단짝은 노르테이아 아카데미의 "+c2.s+"("+K[c2.f].n+")! "+location.href.split('#')[0];
+  if(a=="copy"){var c2=CH.find(function(x){return x.id==b.dataset.id}),s=TR("내 단짝은 노르테이아 아카데미의")+" "+TR(c2.s)+"("+TR(K[c2.f].n)+")! "+location.href.split('#')[0];
    try{navigator.clipboard.writeText(s).then(function(){b.textContent="복사되었어요"},function(){b.textContent="복사하지 못했어요"})}catch(x){b.textContent="복사하지 못했어요"}return}
   if(b.dataset.w!==undefined&&st&&st.mode=="match"&&!st.busy){
    var last=st.cur.length==2&&st.round==2,w=+b.dataset.w,pair=[st.cur[0],st.cur[1]];
