@@ -113,6 +113,13 @@ h3.sub{font:700 17px var(--serif);color:var(--title);margin:28px 0 14px}
 .flag{position:relative;flex:0 0 108px;aspect-ratio:2688/1792;background:#0f0e12;border:1px dashed var(--line);border-radius:2px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:11px;letter-spacing:.1em}
 .flag img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .nb>div:last-child{min-width:0}
+.unif{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:880px;margin-bottom:16px}
+.uf{margin:0;border:1px solid var(--line);background:var(--panel);border-radius:4px;overflow:hidden}
+.uf img{display:block;width:100%;aspect-ratio:1;object-fit:cover;object-position:center top;background:#f4f3f1}
+.uf figcaption{padding:14px 18px 18px}.uf b{display:block;font:700 15.5px var(--serif);color:var(--gold);margin-bottom:10px}
+.ut{display:flex;flex-wrap:wrap;gap:6px}.ut span{font-size:13px;line-height:1;padding:7px 11px;border:1px solid var(--line);border-radius:99px;color:#b8ad99;background:rgba(255,255,255,.02)}
+#uniform .dl{max-width:880px;margin-top:6px}
+@media(max-width:560px){.unif{grid-template-columns:1fr}}
 .nm{margin-top:12px;font-size:13.5px;color:var(--mute)}.nm span{color:var(--gold);margin-right:10px}.nm b{display:inline-block;min-width:34px;text-align:center;padding:1px 10px;border:1px solid var(--line);border-radius:99px;color:var(--title);font-weight:600}.nn{margin-top:6px;font-size:13.5px;line-height:1.75;color:var(--mute)}
 #nat{grid-template-columns:repeat(3,1fr)}
 @media(max-width:899px){#nat{grid-template-columns:repeat(2,1fr)}}
@@ -549,6 +556,7 @@ body.lt-lock{overflow:hidden}
 <p class="lead">노르테이아 아카데미를 둘러싼 세계의 기본 설정입니다.</p>
 <div id="wpic"></div>
 <div class="grid" id="wgrid"></div>
+<div id="uniform"></div>
 </section>
 
 <section id="gate">
@@ -706,6 +714,7 @@ const paras=(t,cls)=>t.split(/\n\s*\n/).map((p,k)=>`<p${k||!cls?"":' class="'+cl
 // ── 세계관
 $('wpic').innerHTML=pic(typeof WORLD_IMG!=='undefined'?WORLD_IMG:'','wide');
 $('wgrid').innerHTML=box(WORLD);
+if(typeof UNIFORM!=='undefined')$('uniform').innerHTML=`<h3 class="sub">${UNIFORM.h}</h3><p class="lead" style="margin-bottom:20px">${UNIFORM.lead}</p><div class="unif">${UNIFORM.items.map(x=>`<figure class="uf"><img src="${x[1]}" alt="${x[0]}" loading="lazy" decoding="async"><figcaption><b>${x[0]}</b><div class="ut">${x[2].map(t=>`<span>${t}</span>`).join('')}</div></figcaption></figure>`).join('')}</div>${dl(UNIFORM.rules)}`;
 
 // ── 게이트
 const gmax=Math.max(...GATE_GRADES.map(g=>g[1]));
