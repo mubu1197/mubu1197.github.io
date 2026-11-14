@@ -679,13 +679,13 @@
 679	workshop	의
 680	workshop	아래 구슬을 끌어 고리에 넣어 보세요
 681	workshop	1. 마나 모으기
-682	workshop	(최대 3개 · 구슬을 끌어다 놓거나 아래 버튼을 눌러요 · 합치면 고리가 그 조합의 색으로 물들어요)
+682	workshop	(최대 6개 · 구슬을 끌어다 놓거나 아래 버튼을 눌러요 · 합치면 고리가 그 조합의 색으로 물들어요)
 683	workshop	비우기
 684	workshop	2. 형태 고르기
 685	workshop	마법서
 686	workshop	기록 지우기
 687	workshop	이름 모를 마나
-688	workshop	마나는 한 번에 세 가지까지만 합칠 수 있어요. 먼저 하나를 빼 주세요.
+688	workshop	마나는 한 번에 여섯 가지까지만 합칠 수 있어요. 먼저 하나를 빼 주세요.
 689	workshop	먼저 마나 구슬을 하나 이상 고리에 모아 주세요.
 690	workshop	새로 발견!
 691	workshop	형태 · 아직 발견하지 못했어요
@@ -879,3 +879,50 @@
 879	content	검은 리본을 칼라 바로 아래에서 나비매듭으로 묶습니다.
 880	content	자신의 학부 색상을 상징하는 보석 브로치는 매듭 자리에 답니다.
 881	content	신입생은 입학식 전까지 브로치 없이 제복만 입고, 입학식에서 담당 교관에게 브로치를 받습니다.
+882	spells_ext	섭리
+883	spells_ext	성좌
+884	spells_ext	격전
+885	spells_ext	낙원
+886	spells_ext	수호
+887	spells_ext	서광
+888	spells_ext	독무
+889	spells_ext	마수
+890	spells_ext	폐허
+891	spells_ext	태동
+892	spells_ext	연옥
+893	spells_ext	순교
+894	spells_ext	집행
+895	spells_ext	성체
+896	spells_ext	마인
+897	spells_ext	신화
+898	spells_ext	마신
+899	spells_ext	화원
+900	spells_ext	천벌
+901	spells_ext	원시
+902	spells_ext	무위
+903	spells_ext	만상
+904	spells_ext	삶과 죽음, 빛과 어둠이 자연의 순환 속에 이어진다
+905	spells_ext	별빛 아래 모든 기운이 이어진 하늘의 짜임
+906	spells_ext	빛과 어둠, 자연의 힘을 몸에 두르고 나아가는 싸움
+907	spells_ext	자연과 신성한 생명이 마나로 피어난 곳
+908	spells_ext	자연과 신성이 육체를 지켜 주는 가호
+909	spells_ext	새벽빛처럼 번지는 자연과 신성의 기운에 힘을 싣는다
+910	spells_ext	생명을 갉는 독이 마나를 타고 안개처럼 번져 간다
+911	spells_ext	어둠에 물든 야생, 독니를 품은 육체
+912	spells_ext	마나로 증폭한 쇠락의 자연, 모든 것이 허물어진다
+913	spells_ext	자연과 생명, 마나와 힘이 한꺼번에 눈을 뜬다
+914	spells_ext	삶과 죽음, 빛과 어둠이 마나로 얽힌 경계
+915	spells_ext	고통을 짊어지고도 쓰러지지 않는 신성한 육체
+916	spells_ext	빛과 어둠의 이치를 마나로 벼려 내리치는 판결
+917	spells_ext	신성한 생명을 마나로 빚어 몸에 깃들게 한다
+918	spells_ext	어둠과 생명을 마나로 개조한, 인간을 넘어선 육체
+919	spells_ext	하나의 몸에 빛과 어둠, 생명과 마나가 깃든다
+920	spells_ext	신성 없이 자연과 어둠으로 빚은 거대한 존재
+921	spells_ext	어둠 없는 낙원, 모든 생명이 한껏 피어난다
+922	spells_ext	생명 없이 빛과 어둠, 자연과 힘으로 내리는 심판
+923	spells_ext	마나를 거치지 않고 몸으로 부딪는 원초의 힘
+924	spells_ext	힘을 들이지 않아도 섭리가 저절로 움직인다
+925	spells_ext	여섯 계열의 마나가 한데 모여 세상의 모든 현상이 된다
+926	workshop	네 계열
+927	workshop	다섯 계열
+928	workshop	여섯 계열

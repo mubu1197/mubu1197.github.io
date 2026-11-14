@@ -21,6 +21,7 @@
  var GRAD=PAL.map(function(p){return 'linear-gradient(135deg,'+p.slice(0,3).join(',')+')'});
  var TYPE=['leaf','mote','smoke','heart','star','streak'];            // 계열마다 입자의 모양이 다릅니다 (조합 효과에 조금씩 섞임)
  var KEY={};SPELL_COMBOS.forEach(function(c,i){KEY[c[0].join('')]=i});
+ var MAXSEL=Math.max.apply(null,SPELL_COMBOS.map(function(c){return c[0].length})),NUMKO={3:'세',4:'네',5:'다섯',6:'여섯'};   // 한 번에 합칠 수 있는 계열 수(조합 데이터의 가장 긴 것)
  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
  function rnd(a,b){return a+Math.random()*(b-a)}
  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -50,13 +51,13 @@
  function comboFound(ci){var n=0,f;for(f=0;f<NF;f++)if(got[ci*NF+f])n++;return n}
  function spellName(ci,fi){return SPELL_COMBOS[ci][1]+'의 '+SPELL_FORMS[fi][0]}
  function spellText(ci,fi){return (typeof SPELL_TEXT!=="undefined"&&SPELL_TEXT[ci+'-'+fi])||(SPELL_COMBOS[ci][2]+'. '+SPELL_FORMS[fi][1]+'.')}
- function power(ci,fi){return Math.max(0,Math.min(1,((SPELL_COMBOS[ci][0].length-1)*3+SPELL_FORMS[fi][2])/10))}   // 연출의 세기 0~1
+ function power(ci,fi){return Math.max(0,Math.min(1,((SPELL_COMBOS[ci][0].length-1)*3+SPELL_FORMS[fi][2])/((MAXSEL-1)*3+4)))}   // 연출의 세기 0~1
  function mixText(ci){return SPELL_COMBOS[ci][0].map(function(k){return SCHOOLS[k][0].replace(/계$/,'')}).join(' + ')}
 
  // ── 화면 뼈대 ─────────────────────────────────────────────────────
  root.innerHTML='<div class="ws"><div class="ws-top"><div class="ws-main"><div class="ws-stage"><canvas id="wscv" role="img" aria-label="마나 구슬을 끌어다 합치는 칸"></canvas>'
-  +'<div class="ws-core" id="wscore" aria-live="polite"></div><div class="ws-hint" id="wshint">아래 구슬을 끌어 고리에 넣어 보세요</div><div class="ws-res" id="wsres" aria-live="polite"></div></div>'
-  +'<div class="cap">1. 마나 모으기 <span>(최대 3개 · 구슬을 끌어다 놓거나 아래 버튼을 눌러요 · 합치면 고리가 그 조합의 색으로 물들어요)</span></div>'
+  +'<div class="ws-core" id="wscore" aria-live="polite"></div><div class="ws-hint" id="wshint">아래 구슬을 끌어 고리에 넣어 보세요</div></div><div class="ws-res" id="wsres" aria-live="polite"></div>'
+  +'<div class="cap">1. 마나 모으기 <span>(최대 '+MAXSEL+'개 · 구슬을 끌어다 놓거나 아래 버튼을 눌러요 · 합치면 고리가 그 조합의 색으로 물들어요)</span></div>'
   +'<div class="ws-sch" id="wssch">'+SCHOOLS.map(function(s,i){return '<button data-k="'+i+'" style="--c:'+COL[i]+'" aria-pressed="false"><i style="background:'+GRAD[i]+'"></i>'+s[0]+'</button>'}).join('')+'<button class="ws-clear" id="wsclear">비우기</button></div>'
   +'</div><div class="ws-side"><div class="cap">2. 형태 고르기</div>'
   +'<div class="ws-forms" id="wsforms">'+SPELL_FORMS.map(function(f,i){return '<button data-f="'+i+'"><b>'+f[0]+'</b><span>'+f[1]+'</span></button>'}).join('')+'</div></div></div>'
@@ -285,16 +286,16 @@
   if(alive())raf=requestAnimationFrame(frame);else last=0}
 
  // ── 선택 상태·글자 ────────────────────────────────────────────────
- function say(html,keep){resEl.innerHTML=html;resEl.classList.add('on');clearTimeout(resTimer);if(!keep)resTimer=setTimeout(function(){resEl.classList.remove('on')},5200)}
+ function say(html){resEl.innerHTML=html;resEl.classList.add('on')}   // 설명 칸은 무대 아래에 따로 있어서 이펙트를 가리지 않고, 다음 주문까지 그대로 남습니다
  function hideHint(){if(!hintGone){hintGone=true;hintEl.classList.add('off')}}
  function chip(ci){var i=info(ci);return '<i class="ws-chip" style="background:'+i.main+';box-shadow:0 0 8px '+i.vis+'"></i>'}
  function renderSel(){
   [].forEach.call(document.querySelectorAll('#wssch button[data-k]'),function(b){b.setAttribute('aria-pressed',sel.indexOf(+b.dataset.k)>=0)});
   var s=sortedSel(),ci=s.length?KEY[s.join('')]:-1;
   if(!s.length)coreEl.innerHTML='';
-  else coreEl.innerHTML=s.map(function(k){return '<span style="color:'+COL[k]+'">'+SCHOOLS[k][0]+'</span>'}).join(' + ')+' '+chip(ci)+'<em>→ '+(comboFound(ci)?SPELL_COMBOS[ci][1]:'이름 모를 마나')+'</em>';
+  else coreEl.innerHTML=s.map(function(k){return '<span style="color:'+COL[k]+'">'+(s.length>3?SCHOOLS[k][0].replace(/계$/,''):SCHOOLS[k][0])+'</span>'}).join(' + ')+' '+chip(ci)+'<em>→ '+(comboFound(ci)?SPELL_COMBOS[ci][1]:'이름 모를 마나')+'</em>';
   placeCore();wake()}
- function addSel(k){if(sel.indexOf(k)>=0)return;if(sel.length>=3){say('마나는 한 번에 세 가지까지만 합칠 수 있어요. 먼저 하나를 빼 주세요.');return}sel.push(k);hideHint();renderSel()}
+ function addSel(k){if(sel.indexOf(k)>=0)return;if(sel.length>=MAXSEL){say('마나는 한 번에 '+NUMKO[MAXSEL]+' 가지까지만 합칠 수 있어요. 먼저 하나를 빼 주세요.');return}sel.push(k);hideHint();renderSel()}
  function delSel(k){var i=sel.indexOf(k);if(i>=0){sel.splice(i,1);renderSel()}}
  function toggleSel(k){sel.indexOf(k)>=0?delSel(k):addSel(k)}
 
@@ -313,7 +314,7 @@
   for(f=0;f<NF;f++){var id=ci*NF+f;rows+=got[id]?'<li class="on"><b>'+esc(spellName(ci,f))+'</b><span>'+esc(spellText(ci,f))+'</span></li>':'<li><b>? ? ?</b><span>'+esc(SPELL_FORMS[f][0])+' 형태 · 아직 발견하지 못했어요</span></li>'}
   return {sum:'<i class="ws-sw" style="background:'+m+';box-shadow:0 0 10px '+info(ci).vis+'88"></i><b>'+(n?esc(c[1]):'? ? ?')+'</b><small>'+n+' / '+NF+'</small>',body:'<ul><li class="mix"><span>'+esc(mixText(ci))+'</span><code>'+m+'</code></li>'+rows+'</ul>',full:n===NF}}
  function renderBook(){
-  var groups=[['단일 계열',1],['두 계열',2],['세 계열',3]],h='';
+  var groups=[['단일 계열',1],['두 계열',2],['세 계열',3],['네 계열',4],['다섯 계열',5],['여섯 계열',6]].filter(function(g){return g[1]<=MAXSEL}),h='';
   groups.forEach(function(g){h+='<h4 class="ws-gh">'+g[0]+'</h4><div class="ws-cards">';
    SPELL_COMBOS.forEach(function(c,ci){if(c[0].length!==g[1])return;var x=cardInner(ci);h+='<details class="ws-card'+(x.full?' full':'')+'" data-ci="'+ci+'"><summary>'+x.sum+'</summary>'+x.body+'</details>'});h+='</div>'});
   document.getElementById('wsbook').innerHTML=h;updateCount()}
@@ -331,7 +332,7 @@
  root.addEventListener('click',function(e){
   var b=e.target.closest('button');if(!b)return;
   if(b.dataset.k!==undefined&&b.closest('#wssch'))return toggleSel(+b.dataset.k);
-  if(b.id==='wsclear'){sel=[];resEl.classList.remove('on');return renderSel()}
+  if(b.id==='wsclear'){sel=[];return renderSel()}
   if(b.dataset.f!==undefined&&b.closest('#wsforms'))return cast(+b.dataset.f);
   if(b.id==='wsreset'){if(window.confirm(TR('마법서의 모든 기록을 지울까요?'))){got={};saveBook();renderBook();say('마법서를 비웠어요.')}}});
  if('IntersectionObserver' in window)new IntersectionObserver(function(en){visible=en[0].isIntersecting;if(visible)wake()}).observe(cv);

@@ -105,7 +105,7 @@ def build(lang):
         if v is None or v=='' or v=='-': return
         d[k]=v
     # 1) 문장 단위 번역
-    for ch in 'ABCDEF':
+    for ch in 'ABCDEFG':
         path=os.path.join(T,'src','%s.%s.tsv'%(lang,ch))
         for line in open(path,encoding='utf-8').read().split('\n'):
             if not line.strip(): continue
@@ -187,6 +187,8 @@ def pat(lang):
      "[/^(귀족|비귀족|교직원) \\((.+)\\)$/,function(m,tr){return (tr(m[1])||m[1])+'%s'+(tr(m[2])||m[2])+'%s'}],"%(pa[0],pa[1]),
      "[/^전사 \\((.+)\\)$/,function(m,tr){return (tr('전사')||'전사')+'%s'+(tr(m[1])||m[1])+'%s'}],"%(pa[0],pa[1]),
      "[/^(구체|창|화살|장벽|영역|파동|사슬|화신) 형태 · 아직 발견하지 못했어요$/,function(m,tr){return %s.replace('$1',tr(m[1])||m[1])}],"%T_('undisc'),
+     "[/^→ (.+)$/,function(m,tr){var x=tr(m[1]);return x==null?null:'→ '+x}],",
+     "[/^(.+?)\\. (.+)\\.$/,function(m,tr){var a=tr(m[1]),b=tr(m[2]);if(a==null||b==null)return null;return a+%s+b+%s}],"%(json.dumps(['. ','。','。','. '][c]),json.dumps(['.','。','。','.'][c])),
      "[/^(\\d+)월$/,function(m){return %s[+m[1]-1]}],"%mo,
      "[/^(\\d+)번 만에, (\\d+:\\d+)에 끝냈어요( \\(최고 기록 (\\d+)번\\)| — 새 최고 기록이에요)?$/,function(m){var r=%s(m);return r+(m[4]?%s.replace('$1',m[4]):m[3]?%s:'')}],"%(F('m_end'),T_('m_best'),T_('m_new')),
      "[/^(\\d+)발, (\\d+:\\d+)에 끝냈어요( — 새 최고 점수예요)?$/,function(m){return %s(m)+(m[3]?%s:'')}],"%(F('b_end'),T_('h_new')),

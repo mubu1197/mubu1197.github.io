@@ -318,8 +318,8 @@ details.ac .dl{border-top:0}
 .ws-core em{font-style:normal;color:var(--gold)}
 .ws-hint{position:absolute;left:0;right:0;bottom:calc(14% + 34px);text-align:center;font:500 14px var(--serif);letter-spacing:.1em;color:var(--dim);pointer-events:none;transition:opacity .5s}
 .ws-hint.off{opacity:0}
-.ws-res{position:absolute;left:12px;right:12px;top:10px;padding:9px 14px;border:1px solid var(--line);border-radius:4px;background:rgba(13,12,15,.88);font-size:14px;line-height:1.7;color:var(--text);opacity:0;transform:translateY(-6px);transition:opacity .3s,transform .3s;pointer-events:none}
-.ws-res.on{opacity:1;transform:none}
+.ws-res{margin-top:10px;min-height:78px;padding:11px 16px;border:1px solid transparent;border-radius:6px;background:transparent;font-size:14px;line-height:1.7;color:var(--text);opacity:0;transform:translateY(-4px);transition:opacity .3s,transform .3s,border-color .3s,background .3s}
+.ws-res.on{opacity:1;transform:none;border-color:var(--line);background:var(--panel)}
 .ws-res b{font:700 16px var(--serif);color:var(--title)}
 .ws-res u{text-decoration:none;color:#0d0c0f;background:var(--gold);border-radius:99px;font-size:11.5px;padding:1px 8px;margin-left:6px}
 .ws-res em{font-style:normal;color:var(--gold);margin-left:6px;font-size:12.5px}
@@ -368,7 +368,7 @@ details.ac .dl{border-top:0}
 .ws-card li.on b{color:var(--gold)}
 .ws-card li.on span{color:var(--text)}
 .ws-bar{margin-top:20px}
-@media(max-width:640px){#wscv{aspect-ratio:1/1}.ws-forms{grid-template-columns:repeat(2,1fr)}.ws-hint{bottom:calc(12% + 34px);font-size:13px}.ws-res{font-size:13px;padding:7px 12px}.ws-res small{display:none}.ws-sch .ws-clear{margin-left:0}}
+@media(max-width:640px){#wscv{aspect-ratio:1/1}.ws-forms{grid-template-columns:repeat(2,1fr)}.ws-hint{bottom:calc(12% + 34px);font-size:13px}.ws-res{font-size:13px;padding:9px 12px;min-height:72px}.ws-sch .ws-clear{margin-left:0}}
 
 /* 이미지 보호: 끌어서 저장, 길게 눌러 저장, 글자처럼 선택되는 것을 막습니다 (우클릭 메뉴는 아래 스크립트가 막습니다) */
 img,canvas{-webkit-user-drag:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
@@ -681,6 +681,7 @@ document.addEventListener('dragstart',function(e){if(e.target.tagName==='IMG'||e
 <script src="worldcup.js" defer></script>
 <script src="letter.js" defer></script>
 <script src="spells.js" defer></script>
+<script src="spells_ext.js" defer></script>
 <script src="workshop.js" defer></script>
 <script src="memory.js" defer></script>
 <script src="bubble.js" defer></script>
