@@ -6,13 +6,13 @@
 (function(){
  if(typeof CH==="undefined"||typeof sq==="undefined")return;
  var root=document.getElementById('wcr');if(!root)return;
- var WHO=[["s","학생만"],["all","교관·교직원 포함"]],SIZES=[16,32,64,0];
+ var WHO=[["s","학생만"],["all","교관·교직원 포함"],["t","교관·교직원만"]],SIZES=[16,32,64,0];
  // 성별 제외 옵션: [값, 라벨의 앞부분]  (참가자가 '학생만'이면 '남학생', 아니면 '남성'으로 표시)
  var GEN=[["all","전체"],["noM","남# 제외"],["noF","여# 제외"]];
  var opt={who:"s",size:32,gen:"all",kw:false},st=null;
 
  function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
- function pool(){return CH.filter(function(c){return (opt.who=="all"||c.r=="학생")&&!(opt.gen=="noM"&&c.g=="남성")&&!(opt.gen=="noF"&&c.g=="여성")})}
+ function pool(){return CH.filter(function(c){return (opt.who=="all"||(opt.who=="t"?c.r!="학생":c.r=="학생"))&&(opt.who=="t"||!(opt.gen=="noM"&&c.g=="남성")&&!(opt.gen=="noF"&&c.g=="여성"))})}
  function pow2(n){var p=1;while(p<n)p*=2;return p}
  function saved(){try{var id=localStorage.getItem('wc');return CH.find(function(c){return c.id==id})||null}catch(e){return null}}
  function label(r){return r==2?"결승":r==4?"준결승":r+"강"}
@@ -29,6 +29,7 @@
 
  function chip(g,v,t,on){return '<button class="chip" data-g="'+g+'" data-v="'+v+'" aria-pressed="'+on+'">'+t+'</button>'}
  function intro(){
+  if(opt.who=="t")opt.gen="all"; // 교관·교직원은 전원 여성이라 성별 제외 옵션이 의미 없음
   var n=pool().length,pv=saved();
   // 참가자가 적어서 못 채우는 규모(예: 남학생 12명으로 16강)는 보여 주지 않고, 선택돼 있었다면 가능한 가장 큰 규모로 바꿉니다
   var ok=SIZES.filter(function(s){return !s||s<=n});
@@ -36,7 +37,7 @@
   var who=opt.who=="s"?"학생":"";
   root.innerHTML='<div class="rintro wcs">'
    +'<div class="cap">참가자</div><div class="chips">'+WHO.map(function(w){return chip("who",w[0],w[1],opt.who==w[0])}).join('')+'</div>'
-   +'<div class="cap">성별</div><div class="chips">'+GEN.map(function(g){return chip("gen",g[0],g[1].replace("#",who?"학생":"성"),opt.gen==g[0])}).join('')+'</div>'
+   +(opt.who=="t"?'':'<div class="cap">성별</div><div class="chips">'+GEN.map(function(g){return chip("gen",g[0],g[1].replace("#",who?"학생":"성"),opt.gen==g[0])}).join('')+'</div>')
    +'<div class="cap">규모</div><div class="chips">'+ok.map(function(s){return chip("size",s,s?s+"강":"전원 ("+n+"명)",opt.size==s)}).join('')+'</div>'
    +'<button class="go" data-a="start">월드컵 시작</button>'
    +(pv?'<p class="rprev">지난 단짝 — <button class="rlink" data-a="last">'+pv.s+'</button></p>':'')+'</div>';
