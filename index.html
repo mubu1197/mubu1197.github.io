@@ -56,7 +56,21 @@ h2{font:700 clamp(24px,4vw,34px) var(--serif);color:var(--title);margin-bottom:8
 .circ li{display:grid;grid-template-columns:72px 1fr;gap:4px 16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}
 .circ b{color:var(--gold)}.circ em{font-style:normal;color:var(--title)}
 .circ span{color:var(--mute)}
-footer{text-align:center;padding:48px 16px;color:var(--dim);font-size:12px;border-top:1px solid var(--line)}
+.gbox{border:1px solid var(--line);background:var(--panel);overflow:hidden}
+.gwrap{position:relative}
+.gwrap::before,.gwrap::after{content:"";position:absolute;pointer-events:none;z-index:1}
+.gwrap::before{inset:0;background:linear-gradient(90deg,var(--panel) 0,transparent 8%,transparent 92%,var(--panel) 100%)}
+.gwrap::after{left:0;right:0;bottom:0;height:70%;background:linear-gradient(transparent,var(--panel))}
+.gmq{display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.gmq::-webkit-scrollbar{display:none}
+.gmq.drag{cursor:grabbing}
+.gmq .gt{flex:0 0 auto;width:clamp(104px,26vw,170px);aspect-ratio:3/4;overflow:hidden;background:#1a1712}
+.gmq .gt img{width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;filter:saturate(.85) brightness(.8);pointer-events:none;-webkit-user-drag:none}
+.gfoot{padding:8px clamp(16px,4vw,40px) 36px;text-align:center;position:relative;margin-top:-56px;z-index:2}
+.gtxt{color:var(--text);margin-bottom:18px;line-height:1.8}
+.gbtn{display:inline-block;padding:13px 34px;border:1px solid var(--gold);color:var(--title);font:700 15.5px var(--serif);letter-spacing:.08em;background:rgba(20,18,15,.7);transition:background .2s,color .2s}
+.gbtn:hover,.gbtn:focus-visible{background:var(--gold);color:#14120f}
+.gnote{margin-top:14px;font-size:12.5px;color:var(--dim)}footer{text-align:center;padding:48px 16px;color:var(--dim);font-size:12px;border-top:1px solid var(--line)}
 @media(max-width:560px){#detail{flex-direction:column;align-items:flex-start}.circ li{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 
@@ -545,7 +559,7 @@ body.lt-lock{overflow:hidden}
 </head>
 <body>
 <div id="splash" role="dialog" aria-label="노르테이아 아카데미 입장"><div class="sg"></div><div class="logo" data-t="title">노르테이아 아카데미</div><div class="en">NORTHEIA ACADEMY</div><button id="enter">입장</button></div>
-<nav><b>노르테이아</b><a href="#world" data-t="world">세계관</a><a href="#gate" data-t="gate">게이트</a><a href="#factions" data-t="factions">파벌</a><a href="#ritual" data-t="ritual">학부 선택 도우미</a><a href="#faculty" data-t="faculty">12학부</a><a href="#magic" data-t="magic">마법</a><a href="#campus" data-t="campus">캠퍼스</a><a href="#sched" data-t="sched">연간 일정</a><a href="#nations" data-t="nations">국가</a><a href="#wc" data-t="wc">단짝 월드컵</a><a href="#chars" data-t="chars">캐릭터</a><a href="#play" data-t="play">플레이 존</a><select id="lang" aria-label="언어"><option value="ko">한국어</option><option value="ja">日本語</option><option value="en">English</option><option value="zh-TW">繁體中文</option><option value="es">Español</option></select></nav>
+<nav><b>노르테이아</b><a href="#world" data-t="world">세계관</a><a href="#gate" data-t="gate">게이트</a><a href="#factions" data-t="factions">파벌</a><a href="#ritual" data-t="ritual">학부 선택 도우미</a><a href="#faculty" data-t="faculty">12학부</a><a href="#magic" data-t="magic">마법</a><a href="#campus" data-t="campus">캠퍼스</a><a href="#sched" data-t="sched">연간 일정</a><a href="#nations" data-t="nations">국가</a><a href="#wc" data-t="wc">단짝 월드컵</a><a href="#chars" data-t="chars">캐릭터</a><a href="#gallery">이미지 갤러리</a><a href="#play" data-t="play">플레이 존</a><select id="lang" aria-label="언어"><option value="ko">한국어</option><option value="ja">日本語</option><option value="en">English</option><option value="zh-TW">繁體中文</option><option value="es">Español</option></select></nav>
 
 <header>
 <p class="s">NORTHEIA ACADEMY</p>
@@ -641,6 +655,19 @@ body.lt-lock{overflow:hidden}
 <p class="lead">브로치를 누르면 그 학부만 보이고, 이어서 누르면 하나씩 더해져요. 캐릭터를 누르면 상세 정보가 열립니다.</p>
 <div id="clist"><div class="frow" id="cf"></div><div class="ctool"><input class="csr" id="cq" type="search" placeholder="이름 · 종족 · 국적으로 찾기" aria-label="캐릭터 검색" autocomplete="off"><span class="ccount" id="cn"></span><button class="rlink" id="call" hidden>전체 보기</button></div><div id="cl"></div></div>
 <div id="cd" hidden></div>
+</section>
+
+<section id="gallery">
+<h2>이미지 갤러리</h2>
+<p class="lead">챗봇의 이미지 란에는 최대 3천 장까지만 넣을 수 있어서, 전체 이미지를 챗봇 안에서는 볼 수 없어요.</p>
+<div class="gbox">
+<div class="gwrap" aria-hidden="true"><div class="gmq" id="gmq"></div></div>
+<div class="gfoot">
+<p class="gtxt">전체 이미지를 보려면 아래 뷰어로 이동하세요.</p>
+<a class="gbtn" href="https://alie.kr/C0D2fqD" target="_blank" rel="noopener noreferrer">전체 이미지 보기</a>
+<p class="gnote">외부 뷰어 사이트로 이동해요. 성인용 이미지가 포함되어 있을 수 있어요.</p>
+</div>
+</div>
 </section>
 
 <section id="play">
@@ -812,6 +839,49 @@ const rl=()=>{const hit=c=>!cq||[c.n,c.race,c.nat,c.sch,c.cls,c.noble].join(" ")
  $('cn').innerHTML=`<b>${total}</b>명`;
  $('cl').innerHTML=total?sh.map(g=>`<h3 class="cgh" style="--c:${g[1]}"><i></i>${g[0]} <small>${g[2].length}명</small></h3><div class="cg">${g[2].map(card).join('')}</div>`).join(''):'<p class="cempty">조건에 맞는 캐릭터가 없어요.</p>'};rl();
 $('cq').oninput=e=>{cq=e.target.value.trim();rl()};
+
+// ── 이미지 갤러리: 125명의 대표 이미지를 무작위로 깔고, 가만히 두면 천천히 오른쪽으로 흘러갑니다.
+//    손가락(마우스)으로 밀면 멈추고 관성으로 넘어가며, 손을 떼면 잠시 뒤 다시 흐릅니다.
+(function(){
+ const box=$('gmq');if(!box)return;
+ const ids=CH.filter(c=>/^[A-Z][a-z]+_/.test(c.img)).map(c=>c.img);
+ for(let i=ids.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[ids[i],ids[j]]=[ids[j],ids[i]]}   // 접속할 때마다 새로 섞습니다
+ const one=ids.map(v=>`<div class="gt"><img src="img/thumb/${v}.jpg" alt="" loading="lazy" decoding="async" draggable="false" onerror="this.parentNode.remove()"></div>`).join('');
+ box.innerHTML=one+one+one;                         // 세 벌을 이어 붙여 끝없이 이어지게 합니다 (가운데 벌에서만 움직임)
+ const SPEED=28;                                    // 초당 픽셀 (오른쪽으로 흐름)
+ const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ let pos=0,third=0,last=0,hold=0,down=false,visible=false,raf=0,setTo=-1;
+ const measure=()=>{third=box.scrollWidth/3;if(third>0&&(pos<third||pos>=2*third)){pos=third+((pos%third)+third)%third;box.scrollLeft=pos;setTo=box.scrollLeft}};
+ const tick=t=>{raf=0;if(!visible)return;
+  const dt=Math.min(64,t-(last||t));last=t;
+  if(!still&&!down&&t>hold&&third>0){
+   if(Math.abs(box.scrollLeft-setTo)>2){pos=box.scrollLeft}          // 사용자가 밀어서 위치가 바뀐 경우
+   pos-=SPEED*dt/1000;                                              // scrollLeft가 줄어들면 그림은 오른쪽으로 갑니다
+   if(pos<third)pos+=third;
+   box.scrollLeft=pos;setTo=box.scrollLeft}
+  raf=requestAnimationFrame(tick)};
+ const kick=()=>{if(!raf&&visible){last=0;raf=requestAnimationFrame(tick)}};
+ const pause=ms=>{hold=performance.now()+ms};
+ // 손가락·휠로 직접 움직일 때는 관성이 끝날 때까지 기다립니다
+ box.addEventListener('scroll',()=>{if(Math.abs(box.scrollLeft-setTo)>2){pause(1600);pos=box.scrollLeft;
+   clearTimeout(box._w);box._w=setTimeout(()=>{if(!down&&(box.scrollLeft<third||box.scrollLeft>=2*third)){const x=box.scrollLeft+(box.scrollLeft<third?third:-third);box.scrollLeft=x;pos=x;setTo=box.scrollLeft}},200)}},{passive:true});
+ box.addEventListener('touchstart',()=>{down=true;pause(1e9)},{passive:true});
+ const up=()=>{down=false;pause(1600)};
+ box.addEventListener('touchend',up,{passive:true});box.addEventListener('touchcancel',up,{passive:true});
+ box.addEventListener('wheel',()=>pause(1600),{passive:true});
+ // 마우스: 끌어서 넘기기 (놓으면 관성으로 미끄러집니다)
+ let sx=0,sl=0,v=0,lx=0,lt=0,glide=0;
+ box.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'||e.button!==0)return;cancelAnimationFrame(glide);down=true;pause(1e9);sx=lx=e.clientX;sl=box.scrollLeft;v=0;lt=performance.now();box.classList.add('drag');box.setPointerCapture(e.pointerId)});
+ box.addEventListener('pointermove',e=>{if(!down||e.pointerType!=='mouse')return;const n=performance.now();v=(e.clientX-lx)/Math.max(1,n-lt);lx=e.clientX;lt=n;box.scrollLeft=sl-(e.clientX-sx)});
+ const end=e=>{if(!down||e.pointerType!=='mouse')return;down=false;box.classList.remove('drag');
+  let vel=-v*16;                                                  // 프레임당 픽셀
+  const slide=()=>{if(Math.abs(vel)<.3){pause(1200);return}box.scrollLeft+=vel;vel*=.95;glide=requestAnimationFrame(slide)};
+  if(Math.abs(vel)>1)slide();else pause(1200)};
+ box.addEventListener('pointerup',end);box.addEventListener('pointercancel',end);
+ new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible){measure();kick()}else{cancelAnimationFrame(raf);raf=0}},{threshold:0}).observe(box);
+ addEventListener('resize',()=>{third=box.scrollWidth/3});
+ box.addEventListener('load',()=>{third=box.scrollWidth/3},true);       // 사진이 들어오면 폭이 바뀝니다
+})();
 // 모두 켜진 상태에서 처음 누른 학부만 남기고, 그다음부터는 누르는 대로 하나씩 켜고 끕니다. 마지막 하나를 끄면 전체로 돌아갑니다.
 const gemSync=()=>{document.querySelectorAll('#cf .gem').forEach(g=>g.classList.toggle('off',!on.has(+g.dataset.i)));$('call').hidden=on.size===K.length};
 $('cf').onclick=e=>{const g=e.target.closest('.gem');if(!g)return;const i=+g.dataset.i;
