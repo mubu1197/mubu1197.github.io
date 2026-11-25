@@ -493,6 +493,8 @@ img,canvas{-webkit-user-drag:none;user-select:none;-webkit-user-select:none;-web
 .ct-cv{cursor:pointer;aspect-ratio:23/15}
 .mb-cv{display:block;width:100%;aspect-ratio:360/520;border:1px solid var(--line);border-radius:6px;background:#0c0b10;cursor:crosshair;outline:none}
 .mb-cv:focus-visible{border-color:var(--gold)}
+.gs-cv{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;margin:0 auto 0 0}
+.gs-zone{margin:0 0 8px;font-size:13px;letter-spacing:.06em;color:var(--dim)}
 @media(max-width:560px){.mm-board.c6{grid-template-columns:repeat(4,minmax(0,1fr))}.mm-board{gap:8px}.mm-stat{margin-left:0;width:100%}}
 
 /* 입학 통지서 (밀랍 봉인 편지) */
@@ -672,12 +674,13 @@ body.lt-lock{overflow:hidden}
 <section id="play">
 <h2 data-t="play">플레이 존</h2>
 <p class="lead">쉬어 가는 곳이에요. 가볍게 즐겨 보세요.</p>
-<div class="chips" id="ptabs" role="group" aria-label="놀이 고르기"><button class="chip" data-p="ws" aria-pressed="true">주문 제작소</button><button class="chip" data-p="mm" aria-pressed="false">메모리 카드</button><button class="chip" data-p="mb" aria-pressed="false">퍼즐 버블</button><button class="chip" data-p="ct" aria-pressed="false">컬러 타일</button><button class="chip" data-p="sg" aria-pressed="false">수박 게임</button><button class="chip" data-p="wt" aria-pressed="false">컬러 소트</button></div>
+<div class="chips" id="ptabs" role="group" aria-label="놀이 고르기"><button class="chip" data-p="ws" aria-pressed="true">주문 제작소</button><button class="chip" data-p="mm" aria-pressed="false">메모리 카드</button><button class="chip" data-p="mb" aria-pressed="false">퍼즐 버블</button><button class="chip" data-p="ct" aria-pressed="false">컬러 타일</button><button class="chip" data-p="sg" aria-pressed="false">수박 게임</button><button class="chip" data-p="wt" aria-pressed="false">컬러 소트</button><button class="chip" data-p="gs" aria-pressed="false">지뢰 찾기</button></div>
 <div class="pp" id="pp-mm" hidden><div id="mmr"></div></div>
 <div class="pp" id="pp-mb" hidden><div id="mbr"></div></div>
 <div class="pp" id="pp-ct" hidden><div id="ctr"></div></div>
 <div class="pp" id="pp-sg" hidden><div id="sgr"></div></div>
 <div class="pp" id="pp-wt" hidden><div id="wtr"></div></div>
+<div class="pp" id="pp-gs" hidden><div id="gsr"></div></div>
 <div class="pp" id="pp-ws">
 <p class="pnote">여섯 계열의 마나를 합치고 형태를 골라 마법을 펼쳐 보세요. 이곳의 마법 이름과 형태는 놀이를 위한 것이에요.<br>채팅에는 정해진 주문 목록이 없어서, 원하는 마법을 직접 서술하면 계열과 서클에 맞게 이야기 속에서 펼쳐져요.</p>
 <div id="wsr"></div>
@@ -717,6 +720,7 @@ document.addEventListener('dragstart',function(e){if(e.target.tagName==='IMG'||e
 <script src="lib/matter.min.js" defer></script>
 <script src="suika.js" defer></script>
 <script src="water.js" defer></script>
+<script src="gatesweep.js" defer></script>
 <script src="play.js" defer></script>
 <script>
 const $=id=>document.getElementById(id);
